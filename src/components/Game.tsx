@@ -24,9 +24,14 @@ export default function Game() {
   const touchFireRef = useRef(false);
   const handleRestartRef = useRef<() => void>(() => {});
 
+  const gamePhaseRef = useRef<'title' | 'countdown' | 'playing'>('title');
+  const countdownStartRef = useRef(0);
+  const countdownSoundStepRef = useRef(-1);
+
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
+  const [showUI, setShowUI] = useState(false);
 
   const handleRestart = () => {
     const gameState = gameStateRef.current;
@@ -120,6 +125,51 @@ export default function Game() {
     const gameLoop = () => {
       if (!physicsRef.current || !gameState) return;
 
+      const phase = gamePhaseRef.current;
+      const shouldFire = inputHandler.isFiring() || touchFireRef.current;
+
+      // === TITLE SCREEN ===
+      if (phase === 'title') {
+        renderer.drawStartScreen(ctx, Date.now());
+        if (shouldFire) {
+          gamePhaseRef.current = 'countdown';
+          countdownStartRef.current = Date.now();
+          countdownSoundStepRef.current = -1;
+        }
+        if (touchFireRef.current) touchFireRef.current = false;
+        animationIdRef.current = requestAnimationFrame(gameLoop);
+        return;
+      }
+
+      // === COUNTDOWN ===
+      if (phase === 'countdown') {
+        const elapsed = Date.now() - countdownStartRef.current;
+
+        // Play sound at each step transition
+        const currentStep = elapsed < 500 ? 0 : elapsed < 1000 ? 1 : elapsed < 1500 ? 2 : 3;
+        if (currentStep > countdownSoundStepRef.current) {
+          countdownSoundStepRef.current = currentStep;
+          if (currentStep < 3) {
+            sound.countdownTick();
+          } else {
+            sound.startFanfare();
+          }
+        }
+
+        renderer.drawCountdown(ctx, elapsed);
+
+        if (elapsed >= 2000) {
+          gamePhaseRef.current = 'playing';
+          setShowUI(true);
+        }
+
+        if (touchFireRef.current) touchFireRef.current = false;
+        animationIdRef.current = requestAnimationFrame(gameLoop);
+        return;
+      }
+
+      // === PLAYING ===
+
       // Keyboard input
       const dir = inputHandler.getDirection();
       if (dir === -1) {
@@ -129,7 +179,6 @@ export default function Game() {
       }
 
       // Spawn (keyboard Space or touch tap)
-      const shouldFire = inputHandler.isFiring() || touchFireRef.current;
       if (shouldFire && !gameState.isGameOver) {
         if (!nextFruitDelayRef.current) {
           const fruit = new Fruit(
@@ -222,13 +271,15 @@ export default function Game() {
           width={CANVAS_WIDTH}
           height={CANVAS_HEIGHT}
         />
-        <GameUI
-          score={score}
-          gameOver={gameOver}
-          onRestart={handleRestart}
-          soundOn={soundOn}
-          onSoundToggle={handleSoundToggle}
-        />
+        {showUI && (
+          <GameUI
+            score={score}
+            gameOver={gameOver}
+            onRestart={handleRestart}
+            soundOn={soundOn}
+            onSoundToggle={handleSoundToggle}
+          />
+        )}
       </div>
     </div>
   );

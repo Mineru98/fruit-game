@@ -67,4 +67,17 @@ export class SoundEngine {
     this.tone(330, 0.18, 'square', 0.13, 0.36);
     this.tone(262, 0.35, 'triangle', 0.10, 0.54);
   }
+
+  /** 카운트다운 틱 — 짧은 비프 */
+  countdownTick() {
+    this.tone(660, 0.08, 'square', 0.10);
+  }
+
+  /** 게임 시작 — 상승 팡파레 */
+  startFanfare() {
+    this.tone(523, 0.08, 'square', 0.12);
+    this.tone(659, 0.08, 'square', 0.12, 0.07);
+    this.tone(784, 0.08, 'square', 0.12, 0.14);
+    this.tone(1047, 0.18, 'square', 0.15, 0.21);
+  }
 }
