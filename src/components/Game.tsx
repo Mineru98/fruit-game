@@ -8,6 +8,20 @@ import { FruitSVG } from '../engine/FruitSVG';
 import GameCanvas from './GameCanvas';
 import GameUI from './GameUI';
 
+const NEON_COLORS: Record<number, string> = {
+  1: '#ff0055',
+  2: '#ff3366',
+  3: '#cc00ff',
+  4: '#ff9900',
+  5: '#ff8800',
+  6: '#ff2222',
+  7: '#ccdd22',
+  8: '#ff88aa',
+  9: '#ffdd00',
+  10: '#99cc66',
+  11: '#ff1155',
+};
+
 const CANVAS_WIDTH = 400;
 const CANVAS_HEIGHT = 600;
 const SPAWN_Y = 50;
@@ -192,25 +206,26 @@ export default function Game() {
         const previewLevel = gameState.nextFruitLevel;
         const previewRadius = Fruit.getRadius(previewLevel);
         const previewX = spawnXRef.current;
+        const previewNeon = NEON_COLORS[previewLevel] || '#00ffff';
         ctx.globalAlpha = nextFruitDelayRef.current ? 0.3 : 0.7;
         try {
           const previewCanvas = fruitSVGRef.current.getCanvasForLevel(previewLevel);
           if (previewCanvas.width > 0) {
             ctx.drawImage(previewCanvas, previewX - previewRadius, SPAWN_Y - previewRadius, previewRadius * 2, previewRadius * 2);
           } else {
-            ctx.fillStyle = Fruit.COLORS[previewLevel];
+            ctx.fillStyle = previewNeon;
             ctx.beginPath();
             ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
             ctx.fill();
           }
         } catch {
-          ctx.fillStyle = Fruit.COLORS[previewLevel];
+          ctx.fillStyle = previewNeon;
           ctx.beginPath();
           ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
           ctx.fill();
         }
         ctx.globalAlpha = nextFruitDelayRef.current ? 0.3 : 0.7;
-        ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+        ctx.strokeStyle = previewNeon;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
@@ -220,49 +235,76 @@ export default function Game() {
 
       // Draw fruits
       for (const fruit of gameState.fruits) {
+        const neonColor = NEON_COLORS[fruit.level] || '#00ffff';
+        ctx.shadowColor = neonColor;
+        ctx.shadowBlur = 8;
         try {
           const fruitCanvas = fruitSVGRef.current.getCanvasForLevel(fruit.level);
           if (fruitCanvas.width > 0) {
             ctx.drawImage(fruitCanvas, fruit.x - fruit.radius, fruit.y - fruit.radius, fruit.radius * 2, fruit.radius * 2);
           } else {
-            ctx.fillStyle = Fruit.COLORS[fruit.level];
+            ctx.fillStyle = neonColor;
             ctx.beginPath();
             ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
             ctx.fill();
           }
         } catch {
-          ctx.fillStyle = Fruit.COLORS[fruit.level];
+          ctx.fillStyle = neonColor;
           ctx.beginPath();
           ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
           ctx.fill();
         }
-        ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = 'transparent';
+        ctx.strokeStyle = neonColor;
+        ctx.globalAlpha = 0.4;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
         ctx.stroke();
+        ctx.globalAlpha = 1;
       }
 
       // Game over overlay
       if (gameState.isGameOver) {
-        ctx.fillStyle = 'rgba(0,0,0,0.6)';
+        ctx.fillStyle = 'rgba(0,0,0,0.88)';
         ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = 'bold 36px Arial';
+        // GAME OVER 텍스트
+        ctx.shadowColor = '#FFE000';
+        ctx.shadowBlur = 20;
+        ctx.fillStyle = '#FFE000';
+        ctx.font = "bold 28px 'Press Start 2P', monospace";
         ctx.textAlign = 'center';
-        ctx.fillText('게임 오버', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 20);
+        ctx.fillText('GAME OVER', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 30);
 
-        ctx.font = '24px Arial';
-        ctx.fillText(`점수: ${gameState.score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 20);
-
-        ctx.font = '16px Arial';
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // 점수
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = 'transparent';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = "12px 'Press Start 2P', monospace";
         ctx.fillText(
-          isTouchDevice ? '탭하여 재시작' : '클릭 또는 Space 키로 재시작',
+          `SCORE  ${String(gameState.score).padStart(5, '0')}`,
           CANVAS_WIDTH / 2,
-          CANVAS_HEIGHT / 2 + 60
+          CANVAS_HEIGHT / 2 + 10
         );
+
+        // PRESS SPACE (500ms 토글 깜박임)
+        const showBlink = Math.floor(Date.now() / 500) % 2 === 0;
+        if (showBlink) {
+          ctx.fillStyle = '#ff00ff';
+          ctx.shadowColor = '#ff00ff';
+          ctx.shadowBlur = 10;
+          ctx.font = "8px 'Press Start 2P', monospace";
+          const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+          ctx.fillText(
+            isTouchDevice ? 'TAP TO START' : 'PRESS SPACE',
+            CANVAS_WIDTH / 2,
+            CANVAS_HEIGHT / 2 + 50
+          );
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = 'transparent';
+        }
       }
 
       animationIdRef.current = requestAnimationFrame(gameLoop);
