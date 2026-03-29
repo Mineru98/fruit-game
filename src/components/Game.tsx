@@ -17,7 +17,7 @@ export default function Game() {
   const gameStateRef = useRef<GameState>(new GameState());
   const physicsRef = useRef<CannonPhysics | null>(null);
   const collisionHandlerRef = useRef<CollisionHandler>(new CollisionHandler());
-  const inputHandlerRef = useRef<InputHandler>(new InputHandler());
+  const inputHandlerRef = useRef<InputHandler | null>(null);
   const fruitSVGRef = useRef<FruitSVG>(new FruitSVG());
   const spawnXRef = useRef(CANVAS_WIDTH / 2);
   const nextFruitDelayRef = useRef(false);
@@ -39,7 +39,8 @@ export default function Game() {
     const physics = new CannonPhysics(CANVAS_WIDTH, CANVAS_HEIGHT);
     physicsRef.current = physics;
     const collisionHandler = collisionHandlerRef.current;
-    const inputHandler = inputHandlerRef.current;
+    const inputHandler = new InputHandler();
+    inputHandlerRef.current = inputHandler;
 
     gameState.reset();
     gameState.nextFruitLevel = Math.floor(Math.random() * 5) + 1;
@@ -181,7 +182,7 @@ export default function Game() {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
-      inputHandlerRef.current.destroy();
+      inputHandler.destroy();
     };
   }, []);
 

@@ -5,6 +5,9 @@ export class InputHandler {
 
   constructor() {
     this.handleKeyDown = (e: KeyboardEvent) => {
+      if ([' ', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+        e.preventDefault();
+      }
       this.keys[e.key] = true;
     };
     this.handleKeyUp = (e: KeyboardEvent) => {
