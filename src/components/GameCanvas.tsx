@@ -13,12 +13,13 @@ const GameCanvas = forwardRef<HTMLCanvasElement, GameCanvasProps>(
         ref={ref}
         width={width}
         height={height}
-        className={`block mx-auto bg-white ${className || ''}`}
+        className={`block mx-auto ${className || ''}`}
         style={{
           display: 'block',
-          margin: '8px auto',
-          background: '#fff',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+          margin: '6px auto',
+          background: '#000000',
+          border: '2px solid #00ffff',
+          boxShadow: '0 0 20px rgba(0,255,255,0.3), inset 0 0 30px rgba(0,255,255,0.04)',
           cursor: 'pointer',
           maxWidth: '100%',
           height: 'auto',

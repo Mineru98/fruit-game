@@ -289,7 +289,6 @@ export default function Game() {
           ref={canvasRef}
           width={CANVAS_WIDTH}
           height={CANVAS_HEIGHT}
-          className="border-2 border-gray-800 rounded shadow-lg"
         />
         <GameUI
           score={score}
