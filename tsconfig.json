@@ -13,8 +13,8 @@
     "allowImportingTsExtensions": true,
     "strict": true,
     "noEmit": true,
-    "types": ["jest", "@types/node"]
+    "types": ["@types/node"]
   },
-  "include": ["src", "tests"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
