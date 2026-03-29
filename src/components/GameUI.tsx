@@ -2,11 +2,13 @@ interface GameUIProps {
   score: number;
   gameOver: boolean;
   onRestart: () => void;
+  soundOn: boolean;
+  onSoundToggle: () => void;
 }
 
 const FONT = "'Press Start 2P', monospace";
 
-export default function GameUI({ score, gameOver, onRestart }: GameUIProps) {
+export default function GameUI({ score, gameOver, onRestart, soundOn, onSoundToggle }: GameUIProps) {
   const scoreStr = String(score).padStart(5, '0');
 
   return (
@@ -42,10 +44,27 @@ export default function GameUI({ score, gameOver, onRestart }: GameUIProps) {
         </div>
       </div>
 
-      {/* 조작 안내 */}
-      <div style={{ color: '#444', fontSize: '6px', textAlign: 'center', marginTop: '6px', letterSpacing: '1px' }}>
-        <span className="hidden md:inline">LEFT RIGHT MOVE  |  SPACE DROP</span>
-        <span className="md:hidden">TOUCH TO AIM &amp; DROP</span>
+      {/* 조작 안내 + 사운드 토글 */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 8px', marginTop: '6px' }}>
+        <div style={{ color: '#444', fontSize: '6px', letterSpacing: '1px' }}>
+          <span className="hidden md:inline">LEFT RIGHT MOVE | SPACE DROP</span>
+          <span className="md:hidden">TOUCH TO AIM &amp; DROP</span>
+        </div>
+        <button
+          onClick={onSoundToggle}
+          style={{
+            fontFamily: FONT,
+            color: soundOn ? '#00ffff' : '#444',
+            background: 'transparent',
+            border: 'none',
+            fontSize: '10px',
+            cursor: 'pointer',
+            padding: '2px 4px',
+          }}
+          title={soundOn ? 'SOUND ON' : 'SOUND OFF'}
+        >
+          {soundOn ? 'SND' : 'OFF'}
+        </button>
       </div>
 
       {/* 재시작 버튼 */}
