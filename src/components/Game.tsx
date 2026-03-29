@@ -89,8 +89,8 @@ export default function Game() {
           if (newFruit) {
             physics.addFruit(newFruit);
           }
-        } else {
-          collisionHandler.handleCollision(f1, f2);
+          physics.removeFruit(f1);
+          physics.removeFruit(f2);
         }
       }
 
