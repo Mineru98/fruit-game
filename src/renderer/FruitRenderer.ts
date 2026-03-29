@@ -87,7 +87,7 @@ const FRUIT_DEFS: Record<number, FruitDef> = {
   ]},
 };
 
-export class FruitSVG {
+export class FruitRenderer {
   private cache: Map<number, HTMLCanvasElement> = new Map();
   private readonly canvasSize = 80;
 

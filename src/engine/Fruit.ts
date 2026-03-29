@@ -1,20 +1,6 @@
 import { FruitData } from './types';
 
 export class Fruit {
-  static readonly COLORS: Record<number, string> = {
-    1: '#FF6B6B',
-    2: '#4ECDC4',
-    3: '#FFE66D',
-    4: '#A8E6CF',
-    5: '#FF8B94',
-    6: '#B8B8FF',
-    7: '#FFDAC1',
-    8: '#E2F0CB',
-    9: '#C7CEEA',
-    10: '#FF9AA2',
-    11: '#2E8B57',
-  };
-
   static readonly RADIUS_MAP: Record<number, number> = {
     1: 12,
     2: 14,

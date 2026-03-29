@@ -4,27 +4,11 @@ import { GameState } from '../engine/GameState';
 import { InputHandler } from '../engine/InputHandler';
 import { CannonPhysics } from '../engine/CannonPhysics';
 import { CollisionHandler } from '../engine/CollisionHandler';
-import { FruitSVG } from '../engine/FruitSVG';
+import { SoundEngine } from '../engine/SoundEngine';
+import { GameRenderer } from '../renderer/GameRenderer';
+import { CANVAS_WIDTH, CANVAS_HEIGHT, SPAWN_Y } from '../constants';
 import GameCanvas from './GameCanvas';
 import GameUI from './GameUI';
-
-const NEON_COLORS: Record<number, string> = {
-  1: '#ff0055',
-  2: '#ff3366',
-  3: '#cc00ff',
-  4: '#ff9900',
-  5: '#ff8800',
-  6: '#ff2222',
-  7: '#ccdd22',
-  8: '#ff88aa',
-  9: '#ffdd00',
-  10: '#99cc66',
-  11: '#ff1155',
-};
-
-const CANVAS_WIDTH = 400;
-const CANVAS_HEIGHT = 600;
-const SPAWN_Y = 50;
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,7 +16,8 @@ export default function Game() {
   const physicsRef = useRef<CannonPhysics | null>(null);
   const collisionHandlerRef = useRef<CollisionHandler>(new CollisionHandler());
   const inputHandlerRef = useRef<InputHandler | null>(null);
-  const fruitSVGRef = useRef<FruitSVG>(new FruitSVG());
+  const rendererRef = useRef<GameRenderer>(new GameRenderer());
+  const soundRef = useRef<SoundEngine>(new SoundEngine());
   const spawnXRef = useRef(CANVAS_WIDTH / 2);
   const nextFruitDelayRef = useRef(false);
   const animationIdRef = useRef<number | null>(null);
@@ -41,6 +26,7 @@ export default function Game() {
 
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
 
   const handleRestart = () => {
     const gameState = gameStateRef.current;
@@ -56,6 +42,11 @@ export default function Game() {
       setScore(0);
       setGameOver(false);
     }
+  };
+
+  const handleSoundToggle = () => {
+    const on = soundRef.current.toggle();
+    setSoundOn(on);
   };
 
   // Keep ref in sync so touch handler always calls latest version
@@ -75,6 +66,8 @@ export default function Game() {
     const collisionHandler = collisionHandlerRef.current;
     const inputHandler = new InputHandler();
     inputHandlerRef.current = inputHandler;
+    const renderer = rendererRef.current;
+    const sound = soundRef.current;
 
     gameState.reset();
     gameState.nextFruitLevel = Math.floor(Math.random() * 5) + 1;
@@ -147,6 +140,7 @@ export default function Game() {
           );
           gameState.addFruit(fruit);
           physics.addFruit(fruit);
+          sound.drop();
           gameState.nextFruitLevel = Math.floor(Math.random() * 5) + 1;
           nextFruitDelayRef.current = true;
           setTimeout(() => {
@@ -170,6 +164,7 @@ export default function Game() {
           const newFruit = collisionHandler.mergeFruits(f1, f2, gameState);
           if (newFruit) {
             physics.addFruit(newFruit);
+            sound.merge(newFruit.level);
           }
           physics.removeFruit(f1);
           physics.removeFruit(f2);
@@ -179,6 +174,7 @@ export default function Game() {
       // Game over check
       if (!gameState.isGameOver && gameState.checkGameOver(CANVAS_HEIGHT, SPAWN_Y)) {
         gameState.setGameOver();
+        sound.gameOver();
       }
 
       gameState.cleanup();
@@ -187,125 +183,17 @@ export default function Game() {
       setScore(gameState.score);
       setGameOver(gameState.isGameOver);
 
-      // Render background
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      // Render
+      renderer.drawBackground(ctx);
 
-      // Spawn line
-      ctx.strokeStyle = 'rgba(255,0,85,0.5)';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([4, 4]);
-      ctx.beginPath();
-      ctx.moveTo(0, SPAWN_Y);
-      ctx.lineTo(CANVAS_WIDTH, SPAWN_Y);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.lineWidth = 1;
-
-      // Draw next fruit preview
       if (!gameState.isGameOver) {
-        const previewLevel = gameState.nextFruitLevel;
-        const previewRadius = Fruit.getRadius(previewLevel);
-        const previewX = spawnXRef.current;
-        const previewNeon = NEON_COLORS[previewLevel] || '#00ffff';
-        ctx.globalAlpha = nextFruitDelayRef.current ? 0.3 : 0.7;
-        try {
-          const previewCanvas = fruitSVGRef.current.getCanvasForLevel(previewLevel);
-          if (previewCanvas.width > 0) {
-            ctx.drawImage(previewCanvas, previewX - previewRadius, SPAWN_Y - previewRadius, previewRadius * 2, previewRadius * 2);
-          } else {
-            ctx.fillStyle = previewNeon;
-            ctx.beginPath();
-            ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        } catch {
-          ctx.fillStyle = previewNeon;
-          ctx.beginPath();
-          ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = nextFruitDelayRef.current ? 0.3 : 0.7;
-        ctx.strokeStyle = previewNeon;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
+        renderer.drawPreview(ctx, gameState.nextFruitLevel, spawnXRef.current, nextFruitDelayRef.current);
       }
 
-      // Draw fruits
-      for (const fruit of gameState.fruits) {
-        const neonColor = NEON_COLORS[fruit.level] || '#00ffff';
-        ctx.shadowColor = neonColor;
-        ctx.shadowBlur = 8;
-        try {
-          const fruitCanvas = fruitSVGRef.current.getCanvasForLevel(fruit.level);
-          if (fruitCanvas.width > 0) {
-            ctx.drawImage(fruitCanvas, fruit.x - fruit.radius, fruit.y - fruit.radius, fruit.radius * 2, fruit.radius * 2);
-          } else {
-            ctx.fillStyle = neonColor;
-            ctx.beginPath();
-            ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        } catch {
-          ctx.fillStyle = neonColor;
-          ctx.beginPath();
-          ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.shadowBlur = 0;
-        ctx.shadowColor = 'transparent';
-        ctx.strokeStyle = neonColor;
-        ctx.globalAlpha = 0.4;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-      }
+      renderer.drawFruits(ctx, gameState.fruits);
 
-      // Game over overlay
       if (gameState.isGameOver) {
-        ctx.fillStyle = 'rgba(0,0,0,0.88)';
-        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-        // GAME OVER 텍스트
-        ctx.shadowColor = '#FFE000';
-        ctx.shadowBlur = 20;
-        ctx.fillStyle = '#FFE000';
-        ctx.font = "bold 28px 'Press Start 2P', monospace";
-        ctx.textAlign = 'center';
-        ctx.fillText('GAME OVER', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 30);
-
-        // 점수
-        ctx.shadowBlur = 0;
-        ctx.shadowColor = 'transparent';
-        ctx.fillStyle = '#ffffff';
-        ctx.font = "12px 'Press Start 2P', monospace";
-        ctx.fillText(
-          `SCORE  ${String(gameState.score).padStart(5, '0')}`,
-          CANVAS_WIDTH / 2,
-          CANVAS_HEIGHT / 2 + 10
-        );
-
-        // PRESS SPACE (500ms 토글 깜박임)
-        const showBlink = Math.floor(Date.now() / 500) % 2 === 0;
-        if (showBlink) {
-          ctx.fillStyle = '#ff00ff';
-          ctx.shadowColor = '#ff00ff';
-          ctx.shadowBlur = 10;
-          ctx.font = "8px 'Press Start 2P', monospace";
-          const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-          ctx.fillText(
-            isTouchDevice ? 'TAP TO START' : 'PRESS SPACE',
-            CANVAS_WIDTH / 2,
-            CANVAS_HEIGHT / 2 + 50
-          );
-          ctx.shadowBlur = 0;
-          ctx.shadowColor = 'transparent';
-        }
+        renderer.drawGameOver(ctx, gameState.score);
       }
 
       animationIdRef.current = requestAnimationFrame(gameLoop);
@@ -338,6 +226,8 @@ export default function Game() {
           score={score}
           gameOver={gameOver}
           onRestart={handleRestart}
+          soundOn={soundOn}
+          onSoundToggle={handleSoundToggle}
         />
       </div>
     </div>
