@@ -67,6 +67,7 @@ export default function Game() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    ctx.imageSmoothingEnabled = false;
 
     const gameState = gameStateRef.current;
     const physics = new CannonPhysics(CANVAS_WIDTH, CANVAS_HEIGHT);

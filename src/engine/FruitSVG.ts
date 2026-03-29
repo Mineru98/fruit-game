@@ -1,201 +1,95 @@
+type Rect = [number, number, number, number, string]; // [x, y, w, h, fill]
+
+interface FruitDef {
+  viewSize: number;
+  rects: Rect[];
+}
+
+const FRUIT_DEFS: Record<number, FruitDef> = {
+  1: { viewSize: 12, rects: [
+    [4,0,1,3,'#3d2000'], [7,0,1,3,'#3d2000'], [3,1,4,1,'#3d2000'],
+    [2,4,1,4,'#ff0055'], [3,3,2,6,'#ff0055'], [5,4,1,4,'#ff0055'],
+    [6,4,1,4,'#cc0044'], [7,3,2,6,'#cc0044'], [9,4,1,4,'#cc0044'],
+    [3,4,1,1,'#ff6688'], [7,4,1,1,'#ff6688'],
+  ]},
+  2: { viewSize: 12, rects: [
+    [4,0,1,2,'#00aa33'], [3,1,3,2,'#00aa33'],
+    [2,1,2,1,'#00cc44'], [7,1,2,1,'#00cc44'],
+    [2,2,8,1,'#ff0055'], [1,3,10,4,'#ff0055'],
+    [2,7,8,1,'#ff0055'], [3,8,6,1,'#ff0055'],
+    [4,9,4,1,'#ff0055'], [5,10,2,1,'#ff0055'],
+    [3,4,1,1,'#ffdd00'], [6,3,1,1,'#ffdd00'], [9,5,1,1,'#ffdd00'],
+    [4,6,1,1,'#ffdd00'], [7,6,1,1,'#ffdd00'],
+    [2,3,1,1,'#ff4477'],
+  ]},
+  3: { viewSize: 12, rects: [
+    [5,0,2,2,'#00aa33'],
+    [2,2,3,3,'#cc00ff'], [7,2,3,3,'#aa00dd'],
+    [1,5,3,3,'#aa00dd'], [4,5,4,3,'#cc00ff'], [8,5,3,3,'#9900bb'],
+    [3,8,3,3,'#9900bb'], [6,8,3,3,'#cc00ff'],
+    [2,2,1,1,'#ee44ff'], [7,2,1,1,'#ee44ff'], [4,5,1,1,'#ee44ff'],
+  ]},
+  4: { viewSize: 12, rects: [
+    [4,0,4,2,'#ff9900'], [5,0,1,1,'#00aa33'],
+    [1,2,10,1,'#ff9900'], [0,3,12,6,'#ff9900'],
+    [1,9,10,1,'#ff9900'], [2,10,8,1,'#ff9900'], [4,11,4,1,'#ff9900'],
+    [1,3,2,2,'#ffbb33'], [2,5,4,1,'#ffaa00'], [7,4,2,2,'#ffbb33'],
+  ]},
+  5: { viewSize: 12, rects: [
+    [4,0,4,1,'#006600'], [3,1,2,2,'#008800'], [7,1,2,2,'#006600'], [5,1,2,1,'#00aa00'],
+    [1,2,10,1,'#ff8800'], [0,3,12,6,'#ff8800'],
+    [1,9,10,1,'#ff8800'], [2,10,8,1,'#ff8800'], [4,11,4,1,'#ff8800'],
+    [0,6,12,1,'#ee7700'], [1,3,2,2,'#ffaa44'],
+  ]},
+  6: { viewSize: 12, rects: [
+    [5,0,2,2,'#3d2000'], [7,1,3,2,'#00aa33'],
+    [1,2,10,1,'#ee1111'],
+    [0,3,5,7,'#ee1111'], [7,3,5,7,'#ee1111'], [5,3,2,9,'#cc1100'],
+    [1,10,4,1,'#ee1111'], [7,10,4,1,'#ee1111'], [2,11,8,1,'#ee1111'],
+    [1,3,2,3,'#ff4444'],
+  ]},
+  7: { viewSize: 12, rects: [
+    [5,0,2,2,'#3d2000'],
+    [3,2,6,2,'#aacc00'],
+    [2,4,8,4,'#ccdd22'], [1,5,10,4,'#ccdd22'],
+    [2,9,8,1,'#ccdd22'], [3,10,6,1,'#aacc00'], [4,11,4,1,'#88aa00'],
+    [2,3,2,2,'#ddee44'], [5,5,1,1,'#bbcc11'],
+  ]},
+  8: { viewSize: 12, rects: [
+    [4,0,1,2,'#00aa33'],
+    [1,2,10,1,'#ffaaaa'], [0,3,12,6,'#ffaaaa'],
+    [1,9,10,1,'#ffaaaa'], [2,10,8,1,'#ff8888'], [4,11,4,1,'#ff6666'],
+    [5,1,2,11,'#ff8899'], [1,3,2,3,'#ffcccc'],
+  ]},
+  9: { viewSize: 12, rects: [
+    [2,0,2,3,'#00aa33'], [5,0,2,4,'#00cc44'], [8,0,2,3,'#00aa33'],
+    [1,3,10,7,'#ffdd00'], [2,10,8,1,'#ffdd00'], [3,11,6,1,'#eebb00'],
+    [1,5,10,1,'#ccaa00'], [1,7,10,1,'#ccaa00'],
+    [3,3,1,8,'#ccaa00'], [6,3,1,8,'#ccaa00'], [9,3,1,8,'#ccaa00'],
+  ]},
+  10: { viewSize: 12, rects: [
+    [5,0,2,1,'#3d2000'],
+    [1,1,10,2,'#99cc66'], [0,3,12,6,'#99cc66'],
+    [1,9,10,2,'#99cc66'], [3,11,6,1,'#77aa44'],
+    [0,4,12,1,'#bbee88'], [0,7,12,1,'#bbee88'],
+    [2,1,1,10,'#bbee88'], [5,1,1,10,'#aabb77'], [9,1,1,10,'#bbee88'],
+    [1,2,2,2,'#ccee99'],
+  ]},
+  11: { viewSize: 16, rects: [
+    [4,0,8,1,'#005500'], [2,1,12,2,'#007700'],
+    [1,3,14,10,'#009900'],
+    [2,13,12,2,'#007700'], [4,15,8,1,'#005500'],
+    [2,4,12,8,'#ff1155'],
+    [1,5,1,6,'#ff1155'], [14,5,1,6,'#ff1155'],
+    [3,1,2,3,'#00bb00'], [7,1,2,3,'#00aa00'], [11,1,2,3,'#00bb00'],
+    [4,7,2,2,'#111111'], [8,6,2,2,'#111111'], [11,9,2,2,'#111111'],
+    [2,4,2,2,'#ff4477'],
+  ]},
+};
+
 export class FruitSVG {
   private cache: Map<number, HTMLCanvasElement> = new Map();
-  private readonly size = 80;
-
-  getSVGForLevel(level: number): string {
-    const fruits: Record<number, string> = {
-      1: this.cherrySVG(),
-      2: this.strawberrySVG(),
-      3: this.grapeSVG(),
-      4: this.dekoponfSVG(),
-      5: this.kakiSVG(),
-      6: this.appleSVG(),
-      7: this.pearSVG(),
-      8: this.peachSVG(),
-      9: this.pineappleSVG(),
-      10: this.melonSVG(),
-      11: this.watermelonSVG(),
-    };
-    return fruits[level] || fruits[1];
-  }
-
-  private cherrySVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="1" height="3" fill="#3d2000"/>
-      <rect x="7" y="0" width="1" height="3" fill="#3d2000"/>
-      <rect x="3" y="1" width="4" height="1" fill="#3d2000"/>
-      <rect x="2" y="4" width="1" height="4" fill="#ff0055"/>
-      <rect x="3" y="3" width="2" height="6" fill="#ff0055"/>
-      <rect x="5" y="4" width="1" height="4" fill="#ff0055"/>
-      <rect x="6" y="4" width="1" height="4" fill="#cc0044"/>
-      <rect x="7" y="3" width="2" height="6" fill="#cc0044"/>
-      <rect x="9" y="4" width="1" height="4" fill="#cc0044"/>
-      <rect x="3" y="4" width="1" height="1" fill="#ff6688"/>
-      <rect x="7" y="4" width="1" height="1" fill="#ff6688"/>
-    </svg>`;
-  }
-
-  private strawberrySVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="1" height="2" fill="#00aa33"/>
-      <rect x="3" y="1" width="3" height="2" fill="#00aa33"/>
-      <rect x="2" y="1" width="2" height="1" fill="#00cc44"/>
-      <rect x="7" y="1" width="2" height="1" fill="#00cc44"/>
-      <rect x="2" y="2" width="8" height="1" fill="#ff0055"/>
-      <rect x="1" y="3" width="10" height="4" fill="#ff0055"/>
-      <rect x="2" y="7" width="8" height="1" fill="#ff0055"/>
-      <rect x="3" y="8" width="6" height="1" fill="#ff0055"/>
-      <rect x="4" y="9" width="4" height="1" fill="#ff0055"/>
-      <rect x="5" y="10" width="2" height="1" fill="#ff0055"/>
-      <rect x="3" y="4" width="1" height="1" fill="#ffdd00"/>
-      <rect x="6" y="3" width="1" height="1" fill="#ffdd00"/>
-      <rect x="9" y="5" width="1" height="1" fill="#ffdd00"/>
-      <rect x="4" y="6" width="1" height="1" fill="#ffdd00"/>
-      <rect x="7" y="6" width="1" height="1" fill="#ffdd00"/>
-      <rect x="2" y="3" width="1" height="1" fill="#ff4477"/>
-    </svg>`;
-  }
-
-  private grapeSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="0" width="2" height="2" fill="#00aa33"/>
-      <rect x="2" y="2" width="3" height="3" fill="#cc00ff"/>
-      <rect x="7" y="2" width="3" height="3" fill="#aa00dd"/>
-      <rect x="1" y="5" width="3" height="3" fill="#aa00dd"/>
-      <rect x="4" y="5" width="4" height="3" fill="#cc00ff"/>
-      <rect x="8" y="5" width="3" height="3" fill="#9900bb"/>
-      <rect x="3" y="8" width="3" height="3" fill="#9900bb"/>
-      <rect x="6" y="8" width="3" height="3" fill="#cc00ff"/>
-      <rect x="2" y="2" width="1" height="1" fill="#ee44ff"/>
-      <rect x="7" y="2" width="1" height="1" fill="#ee44ff"/>
-      <rect x="4" y="5" width="1" height="1" fill="#ee44ff"/>
-    </svg>`;
-  }
-
-  private dekoponfSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="4" height="2" fill="#ff9900"/>
-      <rect x="5" y="0" width="1" height="1" fill="#00aa33"/>
-      <rect x="1" y="2" width="10" height="1" fill="#ff9900"/>
-      <rect x="0" y="3" width="12" height="6" fill="#ff9900"/>
-      <rect x="1" y="9" width="10" height="1" fill="#ff9900"/>
-      <rect x="2" y="10" width="8" height="1" fill="#ff9900"/>
-      <rect x="4" y="11" width="4" height="1" fill="#ff9900"/>
-      <rect x="1" y="3" width="2" height="2" fill="#ffbb33"/>
-      <rect x="2" y="5" width="4" height="1" fill="#ffaa00"/>
-      <rect x="7" y="4" width="2" height="2" fill="#ffbb33"/>
-    </svg>`;
-  }
-
-  private kakiSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="4" height="1" fill="#006600"/>
-      <rect x="3" y="1" width="2" height="2" fill="#008800"/>
-      <rect x="7" y="1" width="2" height="2" fill="#006600"/>
-      <rect x="5" y="1" width="2" height="1" fill="#00aa00"/>
-      <rect x="1" y="2" width="10" height="1" fill="#ff8800"/>
-      <rect x="0" y="3" width="12" height="6" fill="#ff8800"/>
-      <rect x="1" y="9" width="10" height="1" fill="#ff8800"/>
-      <rect x="2" y="10" width="8" height="1" fill="#ff8800"/>
-      <rect x="4" y="11" width="4" height="1" fill="#ff8800"/>
-      <rect x="0" y="6" width="12" height="1" fill="#ee7700"/>
-      <rect x="1" y="3" width="2" height="2" fill="#ffaa44"/>
-    </svg>`;
-  }
-
-  private appleSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="0" width="2" height="2" fill="#3d2000"/>
-      <rect x="7" y="1" width="3" height="2" fill="#00aa33"/>
-      <rect x="1" y="2" width="10" height="1" fill="#ee1111"/>
-      <rect x="0" y="3" width="5" height="7" fill="#ee1111"/>
-      <rect x="7" y="3" width="5" height="7" fill="#ee1111"/>
-      <rect x="5" y="3" width="2" height="9" fill="#cc1100"/>
-      <rect x="1" y="10" width="4" height="1" fill="#ee1111"/>
-      <rect x="7" y="10" width="4" height="1" fill="#ee1111"/>
-      <rect x="2" y="11" width="8" height="1" fill="#ee1111"/>
-      <rect x="1" y="3" width="2" height="3" fill="#ff4444"/>
-    </svg>`;
-  }
-
-  private pearSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="0" width="2" height="2" fill="#3d2000"/>
-      <rect x="3" y="2" width="6" height="2" fill="#aacc00"/>
-      <rect x="2" y="4" width="8" height="4" fill="#ccdd22"/>
-      <rect x="1" y="5" width="10" height="4" fill="#ccdd22"/>
-      <rect x="2" y="9" width="8" height="1" fill="#ccdd22"/>
-      <rect x="3" y="10" width="6" height="1" fill="#aacc00"/>
-      <rect x="4" y="11" width="4" height="1" fill="#88aa00"/>
-      <rect x="2" y="3" width="2" height="2" fill="#ddee44"/>
-      <rect x="5" y="5" width="1" height="1" fill="#bbcc11"/>
-    </svg>`;
-  }
-
-  private peachSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="1" height="2" fill="#00aa33"/>
-      <rect x="1" y="2" width="10" height="1" fill="#ffaaaa"/>
-      <rect x="0" y="3" width="12" height="6" fill="#ffaaaa"/>
-      <rect x="1" y="9" width="10" height="1" fill="#ffaaaa"/>
-      <rect x="2" y="10" width="8" height="1" fill="#ff8888"/>
-      <rect x="4" y="11" width="4" height="1" fill="#ff6666"/>
-      <rect x="5" y="1" width="2" height="11" fill="#ff8899"/>
-      <rect x="1" y="3" width="2" height="3" fill="#ffcccc"/>
-    </svg>`;
-  }
-
-  private pineappleSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="0" width="2" height="3" fill="#00aa33"/>
-      <rect x="5" y="0" width="2" height="4" fill="#00cc44"/>
-      <rect x="8" y="0" width="2" height="3" fill="#00aa33"/>
-      <rect x="1" y="3" width="10" height="7" fill="#ffdd00"/>
-      <rect x="2" y="10" width="8" height="1" fill="#ffdd00"/>
-      <rect x="3" y="11" width="6" height="1" fill="#eebb00"/>
-      <rect x="1" y="5" width="10" height="1" fill="#ccaa00"/>
-      <rect x="1" y="7" width="10" height="1" fill="#ccaa00"/>
-      <rect x="3" y="3" width="1" height="8" fill="#ccaa00"/>
-      <rect x="6" y="3" width="1" height="8" fill="#ccaa00"/>
-      <rect x="9" y="3" width="1" height="8" fill="#ccaa00"/>
-    </svg>`;
-  }
-
-  private melonSVG(): string {
-    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="0" width="2" height="1" fill="#3d2000"/>
-      <rect x="1" y="1" width="10" height="2" fill="#99cc66"/>
-      <rect x="0" y="3" width="12" height="6" fill="#99cc66"/>
-      <rect x="1" y="9" width="10" height="2" fill="#99cc66"/>
-      <rect x="3" y="11" width="6" height="1" fill="#77aa44"/>
-      <rect x="0" y="4" width="12" height="1" fill="#bbee88"/>
-      <rect x="0" y="7" width="12" height="1" fill="#bbee88"/>
-      <rect x="2" y="1" width="1" height="10" fill="#bbee88"/>
-      <rect x="5" y="1" width="1" height="10" fill="#aabb77"/>
-      <rect x="9" y="1" width="1" height="10" fill="#bbee88"/>
-      <rect x="1" y="2" width="2" height="2" fill="#ccee99"/>
-    </svg>`;
-  }
-
-  private watermelonSVG(): string {
-    return `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="0" width="8" height="1" fill="#005500"/>
-      <rect x="2" y="1" width="12" height="2" fill="#007700"/>
-      <rect x="1" y="3" width="14" height="10" fill="#009900"/>
-      <rect x="2" y="13" width="12" height="2" fill="#007700"/>
-      <rect x="4" y="15" width="8" height="1" fill="#005500"/>
-      <rect x="2" y="4" width="12" height="8" fill="#ff1155"/>
-      <rect x="1" y="5" width="1" height="6" fill="#ff1155"/>
-      <rect x="14" y="5" width="1" height="6" fill="#ff1155"/>
-      <rect x="3" y="1" width="2" height="3" fill="#00bb00"/>
-      <rect x="7" y="1" width="2" height="3" fill="#00aa00"/>
-      <rect x="11" y="1" width="2" height="3" fill="#00bb00"/>
-      <rect x="4" y="7" width="2" height="2" fill="#111111"/>
-      <rect x="8" y="6" width="2" height="2" fill="#111111"/>
-      <rect x="11" y="9" width="2" height="2" fill="#111111"/>
-      <rect x="2" y="4" width="2" height="2" fill="#ff4477"/>
-    </svg>`;
-  }
+  private readonly canvasSize = 80;
 
   getCanvasForLevel(level: number): HTMLCanvasElement {
     if (this.cache.has(level)) {
@@ -203,19 +97,21 @@ export class FruitSVG {
     }
 
     const canvas = document.createElement('canvas');
-    canvas.width = this.size;
-    canvas.height = this.size;
+    canvas.width = this.canvasSize;
+    canvas.height = this.canvasSize;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return canvas;
 
-    const svg = this.getSVGForLevel(level);
-    const img = new Image();
-    img.onload = () => {
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(img, 0, 0, this.size, this.size);
-    };
-    img.src = 'data:image/svg+xml;base64,' + btoa(svg);
+    ctx.imageSmoothingEnabled = false;
+
+    const def = FRUIT_DEFS[level] ?? FRUIT_DEFS[1];
+    const scale = this.canvasSize / def.viewSize;
+
+    for (const [x, y, w, h, fill] of def.rects) {
+      ctx.fillStyle = fill;
+      ctx.fillRect(x * scale, y * scale, w * scale, h * scale);
+    }
 
     this.cache.set(level, canvas);
     return canvas;
