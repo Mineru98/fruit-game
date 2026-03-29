@@ -121,11 +121,26 @@ export default function Game() {
 
       // Draw next fruit preview
       if (!gameState.isGameOver && !nextFruitDelayRef.current) {
-        ctx.globalAlpha = 0.5;
-        ctx.fillStyle = Fruit.COLORS[gameState.nextFruitLevel];
-        ctx.beginPath();
-        ctx.arc(spawnXRef.current, SPAWN_Y, Fruit.getRadius(gameState.nextFruitLevel), 0, Math.PI * 2);
-        ctx.fill();
+        const previewLevel = gameState.nextFruitLevel;
+        const previewRadius = Fruit.getRadius(previewLevel);
+        const previewX = spawnXRef.current;
+        ctx.globalAlpha = 0.7;
+        try {
+          const previewCanvas = fruitSVGRef.current.getCanvasForLevel(previewLevel);
+          if (previewCanvas.width > 0) {
+            ctx.drawImage(previewCanvas, previewX - previewRadius, SPAWN_Y - previewRadius, previewRadius * 2, previewRadius * 2);
+          } else {
+            ctx.fillStyle = Fruit.COLORS[previewLevel];
+            ctx.beginPath();
+            ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        } catch {
+          ctx.fillStyle = Fruit.COLORS[previewLevel];
+          ctx.beginPath();
+          ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
         ctx.globalAlpha = 1;
       }
 
