@@ -141,6 +141,12 @@ export default function Game() {
           ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
           ctx.fill();
         }
+        ctx.globalAlpha = 0.7;
+        ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
+        ctx.stroke();
         ctx.globalAlpha = 1;
       }
 
