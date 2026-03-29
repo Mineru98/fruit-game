@@ -1,20 +1,28 @@
 export class InputHandler {
   private keys: Record<string, boolean> = {};
+  private handleKeyDown: (e: KeyboardEvent) => void;
+  private handleKeyUp: (e: KeyboardEvent) => void;
 
   constructor() {
+    this.handleKeyDown = (e: KeyboardEvent) => {
+      this.keys[e.key] = true;
+    };
+    this.handleKeyUp = (e: KeyboardEvent) => {
+      this.keys[e.key] = false;
+    };
     this.setupListeners();
   }
 
   private setupListeners(): void {
     if (typeof window === 'undefined') return;
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
+  }
 
-    window.addEventListener('keydown', (e) => {
-      this.keys[e.key] = true;
-    });
-
-    window.addEventListener('keyup', (e) => {
-      this.keys[e.key] = false;
-    });
+  destroy(): void {
+    if (typeof window === 'undefined') return;
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keyup', this.handleKeyUp);
   }
 
   getDirection(): -1 | 0 | 1 {

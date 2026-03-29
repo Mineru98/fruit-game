@@ -4,6 +4,7 @@ import { GameState } from '../engine/GameState';
 import { InputHandler } from '../engine/InputHandler';
 import { CannonPhysics } from '../engine/CannonPhysics';
 import { CollisionHandler } from '../engine/CollisionHandler';
+import { FruitSVG } from '../engine/FruitSVG';
 import GameCanvas from './GameCanvas';
 import GameUI from './GameUI';
 
@@ -17,6 +18,7 @@ export default function Game() {
   const physicsRef = useRef<CannonPhysics | null>(null);
   const collisionHandlerRef = useRef<CollisionHandler>(new CollisionHandler());
   const inputHandlerRef = useRef<InputHandler>(new InputHandler());
+  const fruitSVGRef = useRef<FruitSVG>(new FruitSVG());
   const spawnXRef = useRef(CANVAS_WIDTH / 2);
   const nextFruitDelayRef = useRef(false);
   const animationIdRef = useRef<number | null>(null);
@@ -128,12 +130,28 @@ export default function Game() {
 
       // Draw fruits
       for (const fruit of gameState.fruits) {
-        ctx.fillStyle = Fruit.COLORS[fruit.level];
-        ctx.beginPath();
-        ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
-        ctx.fill();
+        try {
+          const fruitCanvas = fruitSVGRef.current.getCanvasForLevel(fruit.level);
+          if (fruitCanvas.width > 0) {
+            ctx.drawImage(fruitCanvas, fruit.x - fruit.radius, fruit.y - fruit.radius, fruit.radius * 2, fruit.radius * 2);
+          } else {
+            // Fallback to circle if SVG not loaded yet
+            ctx.fillStyle = Fruit.COLORS[fruit.level];
+            ctx.beginPath();
+            ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        } catch {
+          // Fallback to simple circle
+          ctx.fillStyle = Fruit.COLORS[fruit.level];
+          ctx.beginPath();
+          ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
         ctx.strokeStyle = 'rgba(0,0,0,0.2)';
         ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
         ctx.stroke();
       }
 
@@ -163,6 +181,7 @@ export default function Game() {
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
+      inputHandlerRef.current.destroy();
     };
   }, []);
 
