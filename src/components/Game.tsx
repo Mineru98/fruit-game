@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Fruit } from '../engine/Fruit';
 import { GameState } from '../engine/GameState';
 import { InputHandler } from '../engine/InputHandler';
@@ -22,11 +22,30 @@ export default function Game() {
   const spawnXRef = useRef(CANVAS_WIDTH / 2);
   const nextFruitDelayRef = useRef(false);
   const animationIdRef = useRef<number | null>(null);
+  const touchFireRef = useRef(false);
+  const handleRestartRef = useRef<() => void>(() => {});
 
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [fruits, setFruits] = useState<Fruit[]>([]);
-  const [nextLevel, setNextLevel] = useState(1);
+
+  const handleRestart = () => {
+    const gameState = gameStateRef.current;
+    const physics = physicsRef.current;
+
+    if (gameState && physics) {
+      gameState.reset();
+      physics.reset();
+      gameState.nextFruitLevel = Math.floor(Math.random() * 5) + 1;
+      spawnXRef.current = CANVAS_WIDTH / 2;
+      nextFruitDelayRef.current = false;
+      touchFireRef.current = false;
+      setScore(0);
+      setGameOver(false);
+    }
+  };
+
+  // Keep ref in sync so touch handler always calls latest version
+  handleRestartRef.current = handleRestart;
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -45,10 +64,40 @@ export default function Game() {
     gameState.reset();
     gameState.nextFruitLevel = Math.floor(Math.random() * 5) + 1;
 
+    // Map clientX to canvas coordinate space (handles CSS scaling)
+    const getCanvasX = (clientX: number): number => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = CANVAS_WIDTH / rect.width;
+      return Math.max(20, Math.min(CANVAS_WIDTH - 20, (clientX - rect.left) * scaleX));
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      spawnXRef.current = getCanvasX(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      spawnXRef.current = getCanvasX(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      if (gameStateRef.current.isGameOver) {
+        handleRestartRef.current();
+      } else {
+        touchFireRef.current = true;
+      }
+    };
+
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+
     const gameLoop = () => {
       if (!physicsRef.current || !gameState) return;
 
-      // Input
+      // Keyboard input
       const dir = inputHandler.getDirection();
       if (dir === -1) {
         spawnXRef.current = Math.max(20, spawnXRef.current - 5);
@@ -56,8 +105,9 @@ export default function Game() {
         spawnXRef.current = Math.min(CANVAS_WIDTH - 20, spawnXRef.current + 5);
       }
 
-      // Spawn
-      if (inputHandler.isFiring() && !gameState.isGameOver) {
+      // Spawn (keyboard Space or touch tap)
+      const shouldFire = inputHandler.isFiring() || touchFireRef.current;
+      if (shouldFire && !gameState.isGameOver) {
         if (!nextFruitDelayRef.current) {
           const fruit = new Fruit(
             `fruit-${Date.now()}`,
@@ -74,6 +124,8 @@ export default function Game() {
           }, 500);
         }
       }
+      // Reset touch fire after each frame check
+      if (touchFireRef.current) touchFireRef.current = false;
 
       // Physics
       const activeFruits = gameState.getActiveFruits();
@@ -102,15 +154,14 @@ export default function Game() {
       gameState.cleanup();
 
       // Update React state
-      setFruits([...gameState.fruits]);
       setScore(gameState.score);
       setGameOver(gameState.isGameOver);
-      setNextLevel(gameState.nextFruitLevel);
 
-      // Render
+      // Render background
       ctx.fillStyle = '#f5f5f5';
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
+      // Spawn line
       ctx.strokeStyle = 'rgba(255,0,0,0.3)';
       ctx.setLineDash([5, 5]);
       ctx.beginPath();
@@ -119,7 +170,7 @@ export default function Game() {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Draw next fruit preview (항상 표시, 쿨다운 중엔 흐리게)
+      // Draw next fruit preview
       if (!gameState.isGameOver) {
         const previewLevel = gameState.nextFruitLevel;
         const previewRadius = Fruit.getRadius(previewLevel);
@@ -157,14 +208,12 @@ export default function Game() {
           if (fruitCanvas.width > 0) {
             ctx.drawImage(fruitCanvas, fruit.x - fruit.radius, fruit.y - fruit.radius, fruit.radius * 2, fruit.radius * 2);
           } else {
-            // Fallback to circle if SVG not loaded yet
             ctx.fillStyle = Fruit.COLORS[fruit.level];
             ctx.beginPath();
             ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
             ctx.fill();
           }
         } catch {
-          // Fallback to simple circle
           ctx.fillStyle = Fruit.COLORS[fruit.level];
           ctx.beginPath();
           ctx.arc(fruit.x, fruit.y, fruit.radius, 0, Math.PI * 2);
@@ -177,7 +226,7 @@ export default function Game() {
         ctx.stroke();
       }
 
-      // Draw game over overlay
+      // Game over overlay
       if (gameState.isGameOver) {
         ctx.fillStyle = 'rgba(0,0,0,0.6)';
         ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -191,7 +240,12 @@ export default function Game() {
         ctx.fillText(`점수: ${gameState.score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 20);
 
         ctx.font = '16px Arial';
-        ctx.fillText('Space 키로 재시작', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 60);
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        ctx.fillText(
+          isTouchDevice ? '탭하여 재시작' : 'Space 키로 재시작',
+          CANVAS_WIDTH / 2,
+          CANVAS_HEIGHT / 2 + 60
+        );
       }
 
       animationIdRef.current = requestAnimationFrame(gameLoop);
@@ -204,31 +258,16 @@ export default function Game() {
         cancelAnimationFrame(animationIdRef.current);
       }
       inputHandler.destroy();
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
     };
   }, []);
 
-  const handleRestart = () => {
-    const gameState = gameStateRef.current;
-    const physics = physicsRef.current;
-
-    if (gameState && physics) {
-      gameState.reset();
-      physics.reset();
-      gameState.nextFruitLevel = Math.floor(Math.random() * 5) + 1;
-      spawnXRef.current = CANVAS_WIDTH / 2;
-      nextFruitDelayRef.current = false;
-
-      setFruits([]);
-      setScore(0);
-      setGameOver(false);
-      setNextLevel(gameState.nextFruitLevel);
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-6 text-gray-800">🍎 과일 게임</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 overflow-hidden">
+      <div className="text-center w-full px-2">
+        <h1 className="text-2xl md:text-4xl font-bold mb-1 md:mb-6 text-gray-800">🍎 과일 게임</h1>
         <GameCanvas
           ref={canvasRef}
           width={CANVAS_WIDTH}

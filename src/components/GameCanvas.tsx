@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 interface GameCanvasProps {
   width: number;
@@ -6,7 +6,7 @@ interface GameCanvasProps {
   className?: string;
 }
 
-const GameCanvas = React.forwardRef<HTMLCanvasElement, GameCanvasProps>(
+const GameCanvas = forwardRef<HTMLCanvasElement, GameCanvasProps>(
   ({ width, height, className }, ref) => {
     return (
       <canvas
@@ -16,10 +16,13 @@ const GameCanvas = React.forwardRef<HTMLCanvasElement, GameCanvasProps>(
         className={`block mx-auto bg-white ${className || ''}`}
         style={{
           display: 'block',
-          margin: '20px auto',
+          margin: '8px auto',
           background: '#fff',
           boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
           cursor: 'pointer',
+          maxWidth: '100%',
+          height: 'auto',
+          touchAction: 'none',
         }}
       />
     );

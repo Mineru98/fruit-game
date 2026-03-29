@@ -15,10 +15,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
   background: #f0f0f0;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
