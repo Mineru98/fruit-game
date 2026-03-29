@@ -282,9 +282,8 @@ export default function Game() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden" style={{ background: '#0a0a1a' }}>
       <div className="text-center w-full px-2">
-        <h1 className="text-2xl md:text-4xl font-bold mb-1 md:mb-6 text-gray-800">🍎 과일 게임</h1>
         <GameCanvas
           ref={canvasRef}
           width={CANVAS_WIDTH}

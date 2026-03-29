@@ -4,23 +4,71 @@ interface GameUIProps {
   onRestart: () => void;
 }
 
+const FONT = "'Press Start 2P', monospace";
+
 export default function GameUI({ score, gameOver, onRestart }: GameUIProps) {
+  const scoreStr = String(score).padStart(5, '0');
+
   return (
-    <div className="mt-3 text-center">
-      <div className="text-2xl font-bold text-red-600 mb-2">
-        점수: <span className="text-3xl">{score}</span>
+    <div style={{ fontFamily: FONT, width: '100%', maxWidth: '400px', margin: '0 auto' }}>
+      {/* 타이틀 */}
+      <div style={{
+        textAlign: 'center',
+        color: '#FFE000',
+        fontSize: '11px',
+        letterSpacing: '3px',
+        textShadow: '0 0 12px #FFE000, 0 0 24px #FFE00066',
+        marginBottom: '8px',
+        paddingTop: '4px',
+      }}>
+        ★ FRUIT GAME ★
       </div>
-      <div className="text-sm text-gray-600 mb-3">
-        <span className="hidden md:inline">⬅️ ➡️ 이동 | Space/클릭으로 떨어뜨리기</span>
-        <span className="md:hidden">터치로 위치 지정 후 손 떼면 떨어짐</span>
+
+      {/* 점수판 */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        padding: '0 8px',
+        marginBottom: '4px',
+      }}>
+        <div>
+          <div style={{ color: '#00ffff', fontSize: '7px', letterSpacing: '2px' }}>1UP</div>
+          <div style={{ color: '#ffffff', fontSize: '11px', marginTop: '3px' }}>{scoreStr}</div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ color: '#ff00ff', fontSize: '7px', letterSpacing: '2px' }}>HI SCORE</div>
+          <div style={{ color: '#ffffff', fontSize: '11px', marginTop: '3px' }}>99999</div>
+        </div>
       </div>
+
+      {/* 조작 안내 */}
+      <div style={{ color: '#444', fontSize: '6px', textAlign: 'center', marginTop: '6px', letterSpacing: '1px' }}>
+        <span className="hidden md:inline">LEFT RIGHT MOVE  |  SPACE DROP</span>
+        <span className="md:hidden">TOUCH TO AIM &amp; DROP</span>
+      </div>
+
+      {/* 재시작 버튼 */}
       {gameOver && (
-        <button
-          onClick={onRestart}
-          className="px-8 py-3 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 active:bg-blue-700 transition text-lg"
-        >
-          다시 시작
-        </button>
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <button
+            onClick={onRestart}
+            style={{
+              fontFamily: FONT,
+              color: '#ff00ff',
+              border: '2px solid #ff00ff',
+              background: 'transparent',
+              padding: '8px 20px',
+              fontSize: '8px',
+              letterSpacing: '2px',
+              cursor: 'pointer',
+              animation: 'blink 1s step-end infinite',
+              boxShadow: '0 0 10px rgba(255,0,255,0.4)',
+            }}
+          >
+            PRESS START
+          </button>
+        </div>
       )}
     </div>
   );
