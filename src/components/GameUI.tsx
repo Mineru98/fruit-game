@@ -11,7 +11,7 @@ export default function GameUI({ score, gameOver, onRestart }: GameUIProps) {
         점수: <span className="text-3xl">{score}</span>
       </div>
       <div className="text-sm text-gray-600 mb-3">
-        <span className="hidden md:inline">⬅️ ➡️ 이동 | Space 떨어뜨리기</span>
+        <span className="hidden md:inline">⬅️ ➡️ 이동 | Space/클릭으로 떨어뜨리기</span>
         <span className="md:hidden">터치로 위치 지정 후 손 떼면 떨어짐</span>
       </div>
       {gameOver && (

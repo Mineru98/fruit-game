@@ -90,9 +90,24 @@ export default function Game() {
       }
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      spawnXRef.current = getCanvasX(e.clientX);
+    };
+
+    const handleMouseDown = (e: MouseEvent) => {
+      e.preventDefault();
+      if (gameStateRef.current.isGameOver) {
+        handleRestartRef.current();
+      } else {
+        touchFireRef.current = true;
+      }
+    };
+
     canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
     canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
     canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mousedown', handleMouseDown);
 
     const gameLoop = () => {
       if (!physicsRef.current || !gameState) return;
@@ -100,9 +115,9 @@ export default function Game() {
       // Keyboard input
       const dir = inputHandler.getDirection();
       if (dir === -1) {
-        spawnXRef.current = Math.max(20, spawnXRef.current - 5);
+        spawnXRef.current = Math.max(20, spawnXRef.current - 12);
       } else if (dir === 1) {
-        spawnXRef.current = Math.min(CANVAS_WIDTH - 20, spawnXRef.current + 5);
+        spawnXRef.current = Math.min(CANVAS_WIDTH - 20, spawnXRef.current + 12);
       }
 
       // Spawn (keyboard Space or touch tap)
@@ -242,7 +257,7 @@ export default function Game() {
         ctx.font = '16px Arial';
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         ctx.fillText(
-          isTouchDevice ? '탭하여 재시작' : 'Space 키로 재시작',
+          isTouchDevice ? '탭하여 재시작' : '클릭 또는 Space 키로 재시작',
           CANVAS_WIDTH / 2,
           CANVAS_HEIGHT / 2 + 60
         );
@@ -261,6 +276,8 @@ export default function Game() {
       canvas.removeEventListener('touchstart', handleTouchStart);
       canvas.removeEventListener('touchmove', handleTouchMove);
       canvas.removeEventListener('touchend', handleTouchEnd);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mousedown', handleMouseDown);
     };
   }, []);
 
