@@ -119,12 +119,12 @@ export default function Game() {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Draw next fruit preview
-      if (!gameState.isGameOver && !nextFruitDelayRef.current) {
+      // Draw next fruit preview (항상 표시, 쿨다운 중엔 흐리게)
+      if (!gameState.isGameOver) {
         const previewLevel = gameState.nextFruitLevel;
         const previewRadius = Fruit.getRadius(previewLevel);
         const previewX = spawnXRef.current;
-        ctx.globalAlpha = 0.7;
+        ctx.globalAlpha = nextFruitDelayRef.current ? 0.3 : 0.7;
         try {
           const previewCanvas = fruitSVGRef.current.getCanvasForLevel(previewLevel);
           if (previewCanvas.width > 0) {
@@ -141,7 +141,7 @@ export default function Game() {
           ctx.arc(previewX, SPAWN_Y, previewRadius, 0, Math.PI * 2);
           ctx.fill();
         }
-        ctx.globalAlpha = 0.7;
+        ctx.globalAlpha = nextFruitDelayRef.current ? 0.3 : 0.7;
         ctx.strokeStyle = 'rgba(0,0,0,0.2)';
         ctx.lineWidth = 1;
         ctx.beginPath();
