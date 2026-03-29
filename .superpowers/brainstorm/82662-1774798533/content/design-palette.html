@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0a1a; color:#fff; font-family:'Press Start 2P',monospace; padding:28px; }
+  h1 { color:#00ffff; font-size:12px; letter-spacing:3px; text-shadow:0 0 10px #00ffff; text-align:center; margin-bottom:6px; }
+  .sub { color:#555; font-size:7px; font-family:monospace; text-align:center; margin-bottom:28px; letter-spacing:1px; }
+  .section { margin-bottom:28px; }
+  .section-title { color:#ff00ff; font-size:8px; letter-spacing:2px; margin-bottom:12px; border-bottom:1px solid #222; padding-bottom:6px; }
+
+  /* 컬러 스와치 */
+  .swatches { display:flex; gap:12px; flex-wrap:wrap; }
+  .swatch { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .swatch-box { width:56px; height:56px; border-radius:4px; border:1px solid #333; }
+  .swatch-name { font-size:6px; color:#888; font-family:monospace; }
+  .swatch-hex  { font-size:7px; color:#ccc; font-family:monospace; }
+
+  /* 타이포 샘플 */
+  .typo-row { display:flex; align-items:baseline; gap:20px; margin-bottom:14px; }
+  .typo-label { color:#444; font-size:7px; font-family:monospace; width:100px; flex-shrink:0; }
+
+  /* 게임 UI 미리보기 */
+  .game-preview {
+    background:#000;
+    border:2px solid #00ffff;
+    box-shadow:0 0 20px #00ffff33;
+    border-radius:6px;
+    padding:16px;
+    max-width:360px;
+    margin:0 auto;
+  }
+</style>
+</head>
+<body>
+
+<h1>DESIGN SPEC — SECTION 1</h1>
+<p class="sub">컬러 팔레트 &amp; 타이포그래피 확인</p>
+
+<!-- 컬러 팔레트 -->
+<div class="section">
+  <div class="section-title">■ COLOR PALETTE</div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-box" style="background:#0a0a1a; border-color:#333;"></div>
+      <div class="swatch-name">BACKGROUND</div>
+      <div class="swatch-hex">#0a0a1a</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#000000;"></div>
+      <div class="swatch-name">CANVAS BG</div>
+      <div class="swatch-hex">#000000</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#FFE000; box-shadow:0 0 10px #FFE00088;"></div>
+      <div class="swatch-name">TITLE</div>
+      <div class="swatch-hex">#FFE000</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#00ffff; box-shadow:0 0 10px #00ffff88;"></div>
+      <div class="swatch-name">UI / BORDER</div>
+      <div class="swatch-hex">#00ffff</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#ff00ff; box-shadow:0 0 10px #ff00ff88;"></div>
+      <div class="swatch-name">ACCENT</div>
+      <div class="swatch-hex">#ff00ff</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#ff0055; box-shadow:0 0 8px #ff005566;"></div>
+      <div class="swatch-name">SPAWN LINE</div>
+      <div class="swatch-hex">#ff0055</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-box" style="background:#ffffff;"></div>
+      <div class="swatch-name">SCORE NUM</div>
+      <div class="swatch-hex">#ffffff</div>
+    </div>
+  </div>
+</div>
+
+<!-- 타이포그래피 -->
+<div class="section">
+  <div class="section-title">■ TYPOGRAPHY — Press Start 2P (전체 폰트 통일)</div>
+
+  <div class="typo-row">
+    <span class="typo-label">TITLE / 14px</span>
+    <span style="color:#FFE000; font-size:14px; text-shadow:0 0 10px #FFE000; letter-spacing:3px;">★ FRUIT GAME ★</span>
+  </div>
+  <div class="typo-row">
+    <span class="typo-label">LABEL / 8px</span>
+    <span style="color:#00ffff; font-size:8px; letter-spacing:2px;">1UP &nbsp;&nbsp; HI SCORE</span>
+  </div>
+  <div class="typo-row">
+    <span class="typo-label">SCORE / 11px</span>
+    <span style="color:#ffffff; font-size:11px;">08640 &nbsp;&nbsp; 99999</span>
+  </div>
+  <div class="typo-row">
+    <span class="typo-label">HINT / 7px</span>
+    <span style="color:#555; font-size:7px; letter-spacing:1px;">← → MOVE &nbsp; SPACE: DROP</span>
+  </div>
+  <div class="typo-row">
+    <span class="typo-label">GAME OVER / 28px</span>
+    <span style="color:#FFE000; font-size:22px; text-shadow:0 0 14px #FFE000;">GAME OVER</span>
+  </div>
+  <div class="typo-row">
+    <span class="typo-label">BLINK / 9px</span>
+    <span style="color:#ff00ff; font-size:9px; animation:blink 1s step-end infinite;">PRESS SPACE</span>
+  </div>
+</div>
+
+<!-- 게임 UI 전체 미리보기 -->
+<div class="section">
+  <div class="section-title">■ FULL UI PREVIEW</div>
+  <div class="game-preview">
+    <!-- 타이틀 -->
+    <div style="text-align:center; margin-bottom:10px;">
+      <div style="color:#FFE000; font-size:11px; letter-spacing:4px; text-shadow:0 0 10px #FFE000;">★ FRUIT GAME ★</div>
+    </div>
+    <!-- 점수판 -->
+    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+      <div>
+        <div style="color:#00ffff; font-size:7px; letter-spacing:2px;">1UP</div>
+        <div style="color:#fff; font-size:10px; margin-top:2px;">08640</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="color:#ff00ff; font-size:7px; letter-spacing:2px;">HI SCORE</div>
+        <div style="color:#fff; font-size:10px; margin-top:2px;">99999</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="color:#00ffff; font-size:7px; letter-spacing:2px;">LEVEL</div>
+        <div style="color:#fff; font-size:10px; margin-top:2px;">01</div>
+      </div>
+    </div>
+    <!-- 캔버스 영역 -->
+    <div style="background:#000; border:2px solid #00ffff; border-radius:4px; height:120px; display:flex; align-items:center; justify-content:center; position:relative; box-shadow:inset 0 0 30px #00ffff0a;">
+      <div style="position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, #ff0055, transparent);"></div>
+      <span style="color:#333; font-size:7px; letter-spacing:2px;">[ CANVAS ]</span>
+    </div>
+    <!-- 하단 -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+      <div style="color:#444; font-size:6px;">NEXT: ■</div>
+      <div style="color:#555; font-size:6px; letter-spacing:1px;">← → &nbsp; SPACE</div>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+</style>
+
+</body>
+</html>

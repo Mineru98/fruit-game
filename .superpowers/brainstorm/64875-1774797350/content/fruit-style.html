@@ -1,0 +1,89 @@
+<h2>과일 아이콘은 어떤 스타일로 할까요?</h2>
+<p class="subtitle">게임 속 과일들의 시각적 표현 방식을 골라주세요</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="pixel-art" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a1a; padding:16px; border-radius:8px; display:flex; gap:8px; justify-content:center; align-items:center; flex-wrap:wrap;">
+      <!-- 픽셀 아트 과일들 -->
+      <svg width="48" height="48" viewBox="0 0 8 8" style="image-rendering:pixelated;">
+        <!-- 체리: 빨간 픽셀 원 -->
+        <rect x="2" y="3" width="1" height="1" fill="#ff0055"/>
+        <rect x="3" y="2" width="2" height="1" fill="#ff0055"/>
+        <rect x="2" y="3" width="3" height="2" fill="#ff0055"/>
+        <rect x="3" y="5" width="1" height="1" fill="#ff0055"/>
+        <rect x="5" y="3" width="1" height="1" fill="#cc0044"/>
+        <rect x="6" y="2" width="2" height="1" fill="#cc0044"/>
+        <rect x="5" y="3" width="3" height="2" fill="#cc0044"/>
+        <rect x="6" y="5" width="1" height="1" fill="#cc0044"/>
+        <rect x="3" y="0" width="1" height="3" fill="#00ff41"/>
+        <rect x="5" y="0" width="1" height="3" fill="#00ff41"/>
+      </svg>
+      <svg width="56" height="56" viewBox="0 0 8 8" style="image-rendering:pixelated;">
+        <!-- 수박: 초록 큰 원 -->
+        <rect x="1" y="3" width="1" height="2" fill="#00ff41"/>
+        <rect x="2" y="1" width="4" height="1" fill="#00ff41"/>
+        <rect x="1" y="2" width="6" height="4" fill="#00ff41"/>
+        <rect x="2" y="6" width="4" height="1" fill="#00ff41"/>
+        <rect x="2" y="2" width="4" height="4" fill="#ff0055"/>
+        <rect x="2" y="3" width="1" height="1" fill="#000"/>
+        <rect x="5" y="4" width="1" height="1" fill="#000"/>
+      </svg>
+      <svg width="44" height="44" viewBox="0 0 8 8" style="image-rendering:pixelated;">
+        <!-- 포도: 보라 -->
+        <rect x="2" y="1" width="2" height="2" fill="#cc00ff"/>
+        <rect x="4" y="1" width="2" height="2" fill="#9900cc"/>
+        <rect x="1" y="3" width="2" height="2" fill="#9900cc"/>
+        <rect x="3" y="3" width="2" height="2" fill="#cc00ff"/>
+        <rect x="5" y="3" width="2" height="2" fill="#9900cc"/>
+        <rect x="2" y="5" width="2" height="2" fill="#cc00ff"/>
+        <rect x="4" y="5" width="2" height="2" fill="#9900cc"/>
+        <rect x="3" y="0" width="1" height="1" fill="#00ff41"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>A. 픽셀 아트</h3>
+      <p>과일을 네모난 픽셀 도트로 표현. 완전한 8비트 레트로 스타일. 가장 "도트 게임" 느낌.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="neon-circle" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a1a; padding:16px; border-radius:8px; display:flex; gap:10px; justify-content:center; align-items:center;">
+      <svg width="44" height="44" viewBox="0 0 44 44">
+        <circle cx="22" cy="22" r="18" fill="#ff0055" opacity="0.3"/>
+        <circle cx="22" cy="22" r="18" fill="none" stroke="#ff0055" stroke-width="2"/>
+        <circle cx="22" cy="22" r="16" fill="none" stroke="#ff7799" stroke-width="1" opacity="0.6"/>
+        <text x="22" y="27" text-anchor="middle" fill="#ff0055" font-size="16" font-family="monospace" font-weight="bold">1</text>
+      </svg>
+      <svg width="52" height="52" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="22" fill="#00ffff" opacity="0.2"/>
+        <circle cx="26" cy="26" r="22" fill="none" stroke="#00ffff" stroke-width="2"/>
+        <circle cx="26" cy="26" r="20" fill="none" stroke="#88ffff" stroke-width="1" opacity="0.5"/>
+        <text x="26" y="31" text-anchor="middle" fill="#00ffff" font-size="18" font-family="monospace" font-weight="bold">5</text>
+      </svg>
+      <svg width="60" height="60" viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="26" fill="#ff00ff" opacity="0.2"/>
+        <circle cx="30" cy="30" r="26" fill="none" stroke="#ff00ff" stroke-width="2"/>
+        <circle cx="30" cy="30" r="24" fill="none" stroke="#ff88ff" stroke-width="1" opacity="0.5"/>
+        <text x="30" y="36" text-anchor="middle" fill="#ff00ff" font-size="20" font-family="monospace" font-weight="bold">11</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>B. 네온 원형 + 숫자</h3>
+      <p>원형에 레벨 숫자 표시 + 네온 글로우. 심플하고 읽기 쉬우며 세련된 아케이드 느낌.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="pixel-emoji" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a1a; padding:16px; border-radius:8px; display:flex; gap:8px; justify-content:center; align-items:center; flex-wrap:wrap;">
+      <div style="border:2px solid #ff0055; padding:6px; border-radius:4px; box-shadow:0 0 6px #ff005588; font-size:28px; background:#1a0010;">🍒</div>
+      <div style="border:2px solid #ff7700; padding:6px; border-radius:4px; box-shadow:0 0 6px #ff770088; font-size:32px; background:#1a0800;">🍊</div>
+      <div style="border:2px solid #00ff41; padding:6px; border-radius:4px; box-shadow:0 0 6px #00ff4188; font-size:36px; background:#001a08;">🍉</div>
+    </div>
+    <div class="card-body">
+      <h3>C. 이모지 + 네온 테두리</h3>
+      <p>기존 과일 이모지를 유지하되, 네온 테두리/글로우로 아케이드 분위기 연출. 과일 인식이 쉬움.</p>
+    </div>
+  </div>
+
+</div>

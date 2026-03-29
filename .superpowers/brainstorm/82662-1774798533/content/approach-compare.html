@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디자인 접근 방식 비교</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a1a;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  h1 {
+    text-align: center;
+    color: #00ffff;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 12px #00ffff;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 8px;
+    font-family: monospace;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+  }
+  .cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .card {
+    cursor: pointer;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 280px;
+    transition: all 0.2s;
+    background: #050510;
+  }
+  .card:hover { border-color: #00ffff; transform: translateY(-4px); }
+  .card.selected { border-color: #00ffff; box-shadow: 0 0 20px #00ffff44; }
+  .card-label {
+    text-align: center;
+    padding: 10px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #222;
+  }
+  .card-desc {
+    padding: 10px 12px;
+    font-size: 7px;
+    color: #aaa;
+    font-family: monospace;
+    line-height: 1.6;
+    letter-spacing: 0px;
+    border-top: 1px solid #222;
+  }
+  .card-desc .pro { color: #00ff41; }
+  .card-desc .con { color: #ff4466; }
+
+  /* ── GAME MOCK ── */
+  .game-mock {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .mock-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 4px;
+  }
+  .mock-canvas {
+    width: 200px;
+    height: 220px;
+    border: 2px solid;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .spawn-line {
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 30px;
+  }
+  .mock-footer { width: 100%; padding: 0 4px; }
+
+  /* ── A: 전면 리디자인 ── */
+  .a .card-label { color: #FFE000; text-shadow: 0 0 8px #FFE000; }
+  .a .mock-canvas {
+    background: #000;
+    border-color: #00ffff;
+    box-shadow: inset 0 0 20px #00ffff11;
+  }
+  .a .spawn-line { background: rgba(255,0,85,0.4); }
+
+  /* ── B: CSS+Canvas만 ── */
+  .b .card-label { color: #ff00ff; text-shadow: 0 0 8px #ff00ff; }
+  .b .mock-canvas {
+    background: #050510;
+    border-color: #ff00ff;
+    box-shadow: inset 0 0 20px #ff00ff11;
+  }
+  .b .spawn-line { background: rgba(255,0,255,0.4); }
+
+  /* ── C: 도트 원형 ── */
+  .c .card-label { color: #00ff41; text-shadow: 0 0 8px #00ff41; }
+  .c .mock-canvas {
+    background: #020d02;
+    border-color: #00ff41;
+    box-shadow: inset 0 0 20px #00ff4111;
+  }
+  .c .spawn-line { background: rgba(0,255,65,0.4); }
+</style>
+</head>
+<body>
+
+<h1>■ APPROACH SELECT ■</h1>
+<p class="subtitle">각 방식의 실제 화면 미리보기 — 클릭해서 선택</p>
+
+<div class="cards">
+
+  <!-- ═══ 방식 A: 전면 리디자인 ═══ -->
+  <div class="card a" onclick="select(this,'a')">
+    <div class="card-label">A. 전면 리디자인</div>
+    <div class="game-mock">
+      <!-- 상단 아케이드 헤더 -->
+      <div style="width:200px; text-align:center;">
+        <div style="color:#FFE000;font-size:9px;letter-spacing:3px;text-shadow:0 0 8px #FFE000;">★ FRUIT GAME ★</div>
+      </div>
+      <div class="mock-header" style="width:200px;">
+        <div style="text-align:left;">
+          <div style="color:#00ffff;font-size:6px;">1UP</div>
+          <div style="color:#fff;font-size:9px;">08640</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="color:#ff00ff;font-size:6px;">HI</div>
+          <div style="color:#fff;font-size:9px;">99999</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="color:#00ffff;font-size:6px;">LV</div>
+          <div style="color:#fff;font-size:9px;">01</div>
+        </div>
+      </div>
+
+      <!-- 캔버스 -->
+      <div class="mock-canvas">
+        <div class="spawn-line"></div>
+        <!-- 픽셀 아트 과일들 -->
+        <!-- 체리 (preview, 상단) -->
+        <svg width="24" height="24" viewBox="0 0 8 8" style="image-rendering:pixelated; position:absolute; top:18px; left:88px;">
+          <rect x="2" y="0" width="1" height="3" fill="#00ff41"/>
+          <rect x="1" y="3" width="3" height="3" fill="#ff0055"/>
+          <rect x="2" y="6" width="1" height="1" fill="#ff0055"/>
+          <rect x="1" y="3" width="1" height="1" fill="#cc0033"/>
+        </svg>
+
+        <!-- 수박 (크고 아래쪽) -->
+        <svg width="60" height="60" viewBox="0 0 10 10" style="image-rendering:pixelated; position:absolute; bottom:30px; left:20px;">
+          <rect x="1" y="4" width="1" height="2" fill="#00aa22"/>
+          <rect x="2" y="2" width="6" height="1" fill="#00aa22"/>
+          <rect x="1" y="3" width="8" height="4" fill="#00aa22"/>
+          <rect x="2" y="7" width="6" height="1" fill="#00aa22"/>
+          <rect x="2" y="3" width="6" height="4" fill="#ff0055"/>
+          <rect x="2" y="4" width="1" height="1" fill="#111"/>
+          <rect x="5" y="5" width="1" height="1" fill="#111"/>
+          <rect x="7" y="4" width="1" height="1" fill="#111"/>
+        </svg>
+
+        <!-- 포도 (중간) -->
+        <svg width="40" height="40" viewBox="0 0 8 8" style="image-rendering:pixelated; position:absolute; bottom:80px; left:80px;">
+          <rect x="2" y="1" width="2" height="2" fill="#cc00ff"/>
+          <rect x="4" y="1" width="2" height="2" fill="#9900cc"/>
+          <rect x="1" y="3" width="2" height="2" fill="#9900cc"/>
+          <rect x="3" y="3" width="2" height="2" fill="#cc00ff"/>
+          <rect x="5" y="3" width="2" height="2" fill="#9900cc"/>
+          <rect x="2" y="5" width="2" height="2" fill="#9900cc"/>
+          <rect x="4" y="5" width="2" height="2" fill="#7700aa"/>
+          <rect x="3" y="0" width="1" height="1" fill="#00ff41"/>
+        </svg>
+
+        <!-- 딸기 (오른쪽) -->
+        <svg width="32" height="32" viewBox="0 0 8 8" style="image-rendering:pixelated; position:absolute; bottom:60px; right:20px;">
+          <rect x="2" y="0" width="4" height="1" fill="#00aa22"/>
+          <rect x="1" y="1" width="6" height="1" fill="#ff0055"/>
+          <rect x="1" y="2" width="6" height="3" fill="#ff0055"/>
+          <rect x="2" y="5" width="4" height="1" fill="#ff0055"/>
+          <rect x="3" y="6" width="2" height="1" fill="#ff0055"/>
+          <rect x="2" y="3" width="1" height="1" fill="#ffff00"/>
+          <rect x="5" y="2" width="1" height="1" fill="#ffff00"/>
+          <rect x="4" y="4" width="1" height="1" fill="#ffff00"/>
+        </svg>
+      </div>
+
+      <!-- 다음 과일 -->
+      <div style="width:200px; display:flex; justify-content:space-between; align-items:center; padding: 0 4px;">
+        <div style="color:#888;font-size:6px;">NEXT:</div>
+        <svg width="20" height="20" viewBox="0 0 8 8" style="image-rendering:pixelated;">
+          <rect x="2" y="1" width="4" height="1" fill="#ff7700"/>
+          <rect x="1" y="2" width="6" height="4" fill="#ff7700"/>
+          <rect x="2" y="6" width="4" height="1" fill="#ff7700"/>
+        </svg>
+        <div style="color:#888;font-size:6px;">← → SPACE</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      모든 시각 요소 완전 교체. 과일 11개 픽셀 아트 SVG<br>
+      + Press Start 2P 폰트 + 아케이드 UI 전체 재작성.<br><br>
+      <span class="pro">✓ 완성도 최고, 진짜 오락실 느낌</span><br>
+      <span class="con">✗ 작업량 가장 많음</span>
+    </div>
+  </div>
+
+  <!-- ═══ 방식 B: CSS+Canvas만 ═══ -->
+  <div class="card b" onclick="select(this,'b')">
+    <div class="card-label">B. CSS+Canvas만 교체</div>
+    <div class="game-mock">
+      <div style="width:200px; text-align:center;">
+        <div style="color:#ff00ff;font-size:9px;letter-spacing:3px;text-shadow:0 0 8px #ff00ff;">■ FRUIT GAME ■</div>
+      </div>
+      <div class="mock-header" style="width:200px;">
+        <div style="text-align:left;">
+          <div style="color:#ff00ff;font-size:6px;">SCORE</div>
+          <div style="color:#fff;font-size:9px;">08640</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="color:#ff00ff;font-size:6px;">BEST</div>
+          <div style="color:#fff;font-size:9px;">99999</div>
+        </div>
+      </div>
+
+      <div class="mock-canvas">
+        <div class="spawn-line"></div>
+        <!-- 기존 이모지 과일 (그대로 유지) -->
+        <div style="position:absolute; top:18px; left:84px; font-size:18px; opacity:0.7;">🍒</div>
+        <div style="position:absolute; bottom:30px; left:15px; font-size:44px;">🍉</div>
+        <div style="position:absolute; bottom:85px; left:80px; font-size:30px;">🍇</div>
+        <div style="position:absolute; bottom:60px; right:18px; font-size:24px;">🍓</div>
+      </div>
+
+      <div style="width:200px; display:flex; justify-content:space-between; padding: 0 4px;">
+        <div style="color:#888;font-size:6px;">NEXT: 🍊</div>
+        <div style="color:#ff00ff;font-size:6px;">← → SPACE</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      과일 SVG 그대로 유지, 배경/폰트/UI만 교체.<br>
+      가장 빠르게 분위기 전환 가능.<br><br>
+      <span class="pro">✓ 빠름, 리스크 낮음</span><br>
+      <span class="con">✗ 이모지 과일 → 아케이드 느낌 반쪽</span>
+    </div>
+  </div>
+
+  <!-- ═══ 방식 C: 도트 원형 ═══ -->
+  <div class="card c" onclick="select(this,'c')">
+    <div class="card-label">C. CSS+도트 원형 과일</div>
+    <div class="game-mock">
+      <div style="width:200px; text-align:center;">
+        <div style="color:#00ff41;font-size:9px;letter-spacing:3px;text-shadow:0 0 8px #00ff41;">■ FRUIT GAME ■</div>
+      </div>
+      <div class="mock-header" style="width:200px;">
+        <div style="text-align:left;">
+          <div style="color:#00ff41;font-size:6px;">1UP</div>
+          <div style="color:#fff;font-size:9px;">08640</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="color:#00ff41;font-size:6px;">HI</div>
+          <div style="color:#fff;font-size:9px;">99999</div>
+        </div>
+      </div>
+
+      <div class="mock-canvas">
+        <div class="spawn-line"></div>
+        <!-- 네온 원형 + 레벨 숫자 -->
+        <!-- 수박 LV11 (크게) -->
+        <svg width="64" height="64" viewBox="0 0 64 64" style="position:absolute;bottom:20px;left:10px;">
+          <circle cx="32" cy="32" r="28" fill="#00ff4122" stroke="#00ff41" stroke-width="2"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#00ff4166" stroke-width="1"/>
+          <text x="32" y="37" text-anchor="middle" fill="#00ff41" font-size="14" font-family="'Press Start 2P',monospace">11</text>
+        </svg>
+        <!-- 포도 LV3 -->
+        <svg width="40" height="40" viewBox="0 0 40 40" style="position:absolute;bottom:90px;left:85px;">
+          <circle cx="20" cy="20" r="16" fill="#cc00ff22" stroke="#cc00ff" stroke-width="2"/>
+          <text x="20" y="25" text-anchor="middle" fill="#cc00ff" font-size="10" font-family="'Press Start 2P',monospace">3</text>
+        </svg>
+        <!-- 체리 LV1 (preview) -->
+        <svg width="24" height="24" viewBox="0 0 24 24" style="position:absolute;top:18px;left:88px;opacity:0.7;">
+          <circle cx="12" cy="12" r="9" fill="#ff005522" stroke="#ff0055" stroke-width="2"/>
+          <text x="12" y="16" text-anchor="middle" fill="#ff0055" font-size="8" font-family="'Press Start 2P',monospace">1</text>
+        </svg>
+        <!-- 딸기 LV2 -->
+        <svg width="32" height="32" viewBox="0 0 32 32" style="position:absolute;bottom:70px;right:20px;">
+          <circle cx="16" cy="16" r="12" fill="#ff770022" stroke="#ff7700" stroke-width="2"/>
+          <text x="16" y="20" text-anchor="middle" fill="#ff7700" font-size="8" font-family="'Press Start 2P',monospace">2</text>
+        </svg>
+      </div>
+
+      <div style="width:200px; display:flex; justify-content:space-between; padding: 0 4px;">
+        <div style="color:#888;font-size:6px;">NEXT: LV5</div>
+        <div style="color:#00ff41;font-size:6px;">← → SPACE</div>
+      </div>
+    </div>
+    <div class="card-desc">
+      과일 → 네온 원형 + 레벨 숫자. B보다 아케이드적이고<br>
+      A보다 빠름. 단, 과일 식별이 숫자 의존.<br><br>
+      <span class="pro">✓ A와 B 중간 — 빠르고 일관성 있음</span><br>
+      <span class="con">✗ "과일 게임" 느낌 약해짐</span>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center; margin-top:28px; color:#444; font-size:7px; letter-spacing:2px;">
+  CLICK TO SELECT — THEN TELL ME IN TERMINAL
+</div>
+
+<script>
+function select(el, choice) {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  // record selection
+  fetch('/select', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({type:'click', choice, text: el.querySelector('.card-label').textContent})
+  }).catch(()=>{});
+}
+</script>
+</body>
+</html>

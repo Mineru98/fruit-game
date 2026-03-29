@@ -1,0 +1,57 @@
+<h2>어떤 컬러 테마로 가고 싶으세요?</h2>
+<p class="subtitle">전체 게임의 분위기를 결정하는 배경/색상 스타일을 골라주세요</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="classic-pacman" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#000; padding:16px; border-radius:8px; font-family:'Courier New',monospace;">
+      <div style="border:3px solid #1a1aff; border-radius:8px; padding:12px; background:#000;">
+        <div style="color:#FFE000; font-size:18px; font-weight:bold; letter-spacing:3px; margin-bottom:8px;">■ FRUIT GAME ■</div>
+        <div style="color:#1a1aff; font-size:11px; margin-bottom:12px;">SCORE: 00000</div>
+        <div style="background:#111; border:2px solid #1a1aff; border-radius:4px; height:80px; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:28px;">🟡 🔴 🟣</span>
+        </div>
+        <div style="color:#fff; font-size:9px; margin-top:8px; text-align:center;">← → MOVE  SPACE DROP</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 클래식 팩맨</h3>
+      <p>순수 검정 배경 + 팩맨 노란색 + 파란색 테두리. 가장 정통 오락실 느낌.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="neon-arcade" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a1a; padding:16px; border-radius:8px; font-family:'Courier New',monospace;">
+      <div style="border:2px solid #ff00ff; border-radius:8px; padding:12px; background:#0a0a1a; box-shadow: 0 0 10px #ff00ff44;">
+        <div style="color:#00ffff; font-size:18px; font-weight:bold; letter-spacing:3px; margin-bottom:8px; text-shadow:0 0 8px #00ffff;">■ FRUIT GAME ■</div>
+        <div style="color:#ff00ff; font-size:11px; margin-bottom:12px; text-shadow:0 0 6px #ff00ff;">SCORE: 00000</div>
+        <div style="background:#111; border:2px solid #00ffff; border-radius:4px; height:80px; display:flex; align-items:center; justify-content:center; box-shadow:inset 0 0 10px #00ffff22;">
+          <span style="font-size:28px;">🟡 🔴 🟣</span>
+        </div>
+        <div style="color:#ff00ff; font-size:9px; margin-top:8px; text-align:center;">← → MOVE  SPACE DROP</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 네온 아케이드</h3>
+      <p>어두운 남색 배경 + 핫핑크/시안 네온 글로우 효과. 80년대 오락실 간판 느낌.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="crt-green" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#020d02; padding:16px; border-radius:8px; font-family:'Courier New',monospace;">
+      <div style="border:2px solid #00ff41; border-radius:8px; padding:12px; background:#020d02; box-shadow: 0 0 12px #00ff4122;">
+        <div style="color:#00ff41; font-size:18px; font-weight:bold; letter-spacing:3px; margin-bottom:8px; text-shadow:0 0 8px #00ff41;">■ FRUIT GAME ■</div>
+        <div style="color:#00cc33; font-size:11px; margin-bottom:12px;">SCORE: 00000</div>
+        <div style="background:#010901; border:2px solid #00ff41; border-radius:4px; height:80px; display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:28px; filter:hue-rotate(90deg) saturate(2);">🟡 🔴 🟣</span>
+        </div>
+        <div style="color:#00ff41; font-size:9px; margin-top:8px; text-align:center;">← → MOVE  SPACE DROP</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. CRT 그린</h3>
+      <p>구형 CRT 모니터 녹색 인광 스타일. 초창기 컴퓨터 게임 느낌.</p>
+    </div>
+  </div>
+
+</div>
