@@ -20,138 +20,180 @@ export class FruitSVG {
   }
 
   private cherrySVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 30 Q50 10 35 15 M50 30 Q50 10 65 15" stroke="#5d4037" stroke-width="3" fill="none"/>
-      <circle cx="35" cy="55" r="22" fill="#ff5252"/>
-      <circle cx="65" cy="55" r="22" fill="#d32f2f"/>
-      <circle cx="30" cy="48" r="5" fill="white" opacity="0.4"/>
-      <circle cx="60" cy="48" r="5" fill="white" opacity="0.4"/>
-      <circle cx="30" cy="58" r="2"/>
-      <circle cx="40" cy="58" r="2"/>
-      <path d="M33 63 Q35 65 37 63" stroke="black" fill="none"/>
-      <circle cx="60" cy="58" r="2"/>
-      <circle cx="70" cy="58" r="2"/>
-      <path d="M63 63 Q65 65 67 63" stroke="black" fill="none"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="1" height="3" fill="#3d2000"/>
+      <rect x="7" y="0" width="1" height="3" fill="#3d2000"/>
+      <rect x="3" y="1" width="4" height="1" fill="#3d2000"/>
+      <rect x="2" y="4" width="1" height="4" fill="#ff0055"/>
+      <rect x="3" y="3" width="2" height="6" fill="#ff0055"/>
+      <rect x="5" y="4" width="1" height="4" fill="#ff0055"/>
+      <rect x="6" y="4" width="1" height="4" fill="#cc0044"/>
+      <rect x="7" y="3" width="2" height="6" fill="#cc0044"/>
+      <rect x="9" y="4" width="1" height="4" fill="#cc0044"/>
+      <rect x="3" y="4" width="1" height="1" fill="#ff6688"/>
+      <rect x="7" y="4" width="1" height="1" fill="#ff6688"/>
     </svg>`;
   }
 
   private strawberrySVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 95 C25 95 15 55 25 35 C35 15 65 15 75 35 C85 55 75 95 50 95Z" fill="#ff1744"/>
-      <path d="M35 25 Q50 10 65 25 Q50 35 35 25Z" fill="#4caf50"/>
-      <circle cx="40" cy="50" r="1.5" fill="#ffeb3b"/>
-      <circle cx="60" cy="45" r="1.5" fill="#ffeb3b"/>
-      <circle cx="50" cy="65" r="1.5" fill="#ffeb3b"/>
-      <circle cx="35" cy="70" r="1.5" fill="#ffeb3b"/>
-      <circle cx="65" cy="75" r="1.5" fill="#ffeb3b"/>
-      <circle cx="45" cy="55" r="3"/>
-      <circle cx="55" cy="55" r="3"/>
-      <path d="M47 62 Q50 65 53 62" stroke="black" fill="none" stroke-width="1.5"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="1" height="2" fill="#00aa33"/>
+      <rect x="3" y="1" width="3" height="2" fill="#00aa33"/>
+      <rect x="2" y="1" width="2" height="1" fill="#00cc44"/>
+      <rect x="7" y="1" width="2" height="1" fill="#00cc44"/>
+      <rect x="2" y="2" width="8" height="1" fill="#ff0055"/>
+      <rect x="1" y="3" width="10" height="4" fill="#ff0055"/>
+      <rect x="2" y="7" width="8" height="1" fill="#ff0055"/>
+      <rect x="3" y="8" width="6" height="1" fill="#ff0055"/>
+      <rect x="4" y="9" width="4" height="1" fill="#ff0055"/>
+      <rect x="5" y="10" width="2" height="1" fill="#ff0055"/>
+      <rect x="3" y="4" width="1" height="1" fill="#ffdd00"/>
+      <rect x="6" y="3" width="1" height="1" fill="#ffdd00"/>
+      <rect x="9" y="5" width="1" height="1" fill="#ffdd00"/>
+      <rect x="4" y="6" width="1" height="1" fill="#ffdd00"/>
+      <rect x="7" y="6" width="1" height="1" fill="#ffdd00"/>
+      <rect x="2" y="3" width="1" height="1" fill="#ff4477"/>
     </svg>`;
   }
 
   private grapeSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="35" r="15" fill="#9c27b0"/>
-      <circle cx="60" cy="35" r="15" fill="#7b1fa2"/>
-      <circle cx="35" cy="55" r="15" fill="#8e24aa"/>
-      <circle cx="55" cy="55" r="15" fill="#6a1b9a"/>
-      <circle cx="50" cy="75" r="15" fill="#4a148c"/>
-      <path d="M50 25 L50 10" stroke="#4caf50" stroke-width="4"/>
-      <circle cx="36" cy="50" r="3" fill="white" opacity="0.3"/>
-      <circle cx="56" cy="50" r="3" fill="white" opacity="0.3"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="0" width="2" height="2" fill="#00aa33"/>
+      <rect x="2" y="2" width="3" height="3" fill="#cc00ff"/>
+      <rect x="7" y="2" width="3" height="3" fill="#aa00dd"/>
+      <rect x="1" y="5" width="3" height="3" fill="#aa00dd"/>
+      <rect x="4" y="5" width="4" height="3" fill="#cc00ff"/>
+      <rect x="8" y="5" width="3" height="3" fill="#9900bb"/>
+      <rect x="3" y="8" width="3" height="3" fill="#9900bb"/>
+      <rect x="6" y="8" width="3" height="3" fill="#cc00ff"/>
+      <rect x="2" y="2" width="1" height="1" fill="#ee44ff"/>
+      <rect x="7" y="2" width="1" height="1" fill="#ee44ff"/>
+      <rect x="4" y="5" width="1" height="1" fill="#ee44ff"/>
     </svg>`;
   }
 
   private dekoponfSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="55" r="40" fill="#ff9800"/>
-      <circle cx="50" cy="20" r="12" fill="#ff9800"/>
-      <circle cx="45" cy="15" r="2" fill="#4caf50"/>
-      <circle cx="40" cy="45" r="4"/>
-      <circle cx="60" cy="45" r="4"/>
-      <path d="M45 55 Q50 60 55 55" stroke="black" fill="none" stroke-width="2"/>
-      <circle cx="35" cy="40" r="6" fill="white" opacity="0.3"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="4" height="2" fill="#ff9900"/>
+      <rect x="5" y="0" width="1" height="1" fill="#00aa33"/>
+      <rect x="1" y="2" width="10" height="1" fill="#ff9900"/>
+      <rect x="0" y="3" width="12" height="6" fill="#ff9900"/>
+      <rect x="1" y="9" width="10" height="1" fill="#ff9900"/>
+      <rect x="2" y="10" width="8" height="1" fill="#ff9900"/>
+      <rect x="4" y="11" width="4" height="1" fill="#ff9900"/>
+      <rect x="1" y="3" width="2" height="2" fill="#ffbb33"/>
+      <rect x="2" y="5" width="4" height="1" fill="#ffaa00"/>
+      <rect x="7" y="4" width="2" height="2" fill="#ffbb33"/>
     </svg>`;
   }
 
   private kakiSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <rect x="15" y="25" width="70" height="60" rx="20" fill="#fb8c00"/>
-      <path d="M35 25 Q50 15 65 25 L50 35 Z" fill="#2e7d32"/>
-      <circle cx="40" cy="50" r="4"/>
-      <circle cx="60" cy="50" r="4"/>
-      <path d="M45 60 Q50 65 55 60" stroke="black" fill="none" stroke-width="2"/>
-      <circle cx="30" cy="40" r="6" fill="white" opacity="0.2"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="4" height="1" fill="#006600"/>
+      <rect x="3" y="1" width="2" height="2" fill="#008800"/>
+      <rect x="7" y="1" width="2" height="2" fill="#006600"/>
+      <rect x="5" y="1" width="2" height="1" fill="#00aa00"/>
+      <rect x="1" y="2" width="10" height="1" fill="#ff8800"/>
+      <rect x="0" y="3" width="12" height="6" fill="#ff8800"/>
+      <rect x="1" y="9" width="10" height="1" fill="#ff8800"/>
+      <rect x="2" y="10" width="8" height="1" fill="#ff8800"/>
+      <rect x="4" y="11" width="4" height="1" fill="#ff8800"/>
+      <rect x="0" y="6" width="12" height="1" fill="#ee7700"/>
+      <rect x="1" y="3" width="2" height="2" fill="#ffaa44"/>
     </svg>`;
   }
 
   private appleSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 90 C20 90 15 40 30 30 C40 20 60 20 70 30 C85 40 80 90 50 90Z" fill="#f44336"/>
-      <path d="M50 25 L50 10" stroke="#5d4037" stroke-width="3"/>
-      <path d="M50 15 Q65 10 70 20 Q55 25 50 15" fill="#4caf50"/>
-      <circle cx="40" cy="50" r="4"/>
-      <circle cx="60" cy="50" r="4"/>
-      <path d="M45 60 Q50 65 55 60" stroke="black" fill="none" stroke-width="2"/>
-      <circle cx="35" cy="40" r="6" fill="white" opacity="0.3"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="0" width="2" height="2" fill="#3d2000"/>
+      <rect x="7" y="1" width="3" height="2" fill="#00aa33"/>
+      <rect x="1" y="2" width="10" height="1" fill="#ee1111"/>
+      <rect x="0" y="3" width="5" height="7" fill="#ee1111"/>
+      <rect x="7" y="3" width="5" height="7" fill="#ee1111"/>
+      <rect x="5" y="3" width="2" height="9" fill="#cc1100"/>
+      <rect x="1" y="10" width="4" height="1" fill="#ee1111"/>
+      <rect x="7" y="10" width="4" height="1" fill="#ee1111"/>
+      <rect x="2" y="11" width="8" height="1" fill="#ee1111"/>
+      <rect x="1" y="3" width="2" height="3" fill="#ff4444"/>
     </svg>`;
   }
 
   private pearSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 95 C25 95 20 60 30 50 C35 40 40 15 50 15 C60 15 65 40 70 50 C80 60 75 95 50 95Z" fill="#cddc39"/>
-      <path d="M50 15 L50 5" stroke="#5d4037" stroke-width="3"/>
-      <circle cx="40" cy="55" r="4"/>
-      <circle cx="60" cy="55" r="4"/>
-      <path d="M45 65 Q50 70 55 65" stroke="black" fill="none" stroke-width="2"/>
-      <circle cx="40" cy="45" r="5" fill="white" opacity="0.2"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="0" width="2" height="2" fill="#3d2000"/>
+      <rect x="3" y="2" width="6" height="2" fill="#aacc00"/>
+      <rect x="2" y="4" width="8" height="4" fill="#ccdd22"/>
+      <rect x="1" y="5" width="10" height="4" fill="#ccdd22"/>
+      <rect x="2" y="9" width="8" height="1" fill="#ccdd22"/>
+      <rect x="3" y="10" width="6" height="1" fill="#aacc00"/>
+      <rect x="4" y="11" width="4" height="1" fill="#88aa00"/>
+      <rect x="2" y="3" width="2" height="2" fill="#ddee44"/>
+      <rect x="5" y="5" width="1" height="1" fill="#bbcc11"/>
     </svg>`;
   }
 
   private peachSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 90 C20 90 10 50 30 30 C45 15 50 30 50 30 C50 30 55 15 70 30 C90 50 80 90 50 90Z" fill="#ff8a80"/>
-      <path d="M50 30 L50 90" stroke="#ff5252" stroke-width="1" opacity="0.5"/>
-      <path d="M35 30 Q20 10 40 20 Q50 30 35 30" fill="#4caf50"/>
-      <circle cx="40" cy="55" r="4"/>
-      <circle cx="60" cy="55" r="4"/>
-      <path d="M45 65 Q50 70 55 65" stroke="black" fill="none" stroke-width="2"/>
-      <circle cx="35" cy="45" r="8" fill="white" opacity="0.3"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="1" height="2" fill="#00aa33"/>
+      <rect x="1" y="2" width="10" height="1" fill="#ffaaaa"/>
+      <rect x="0" y="3" width="12" height="6" fill="#ffaaaa"/>
+      <rect x="1" y="9" width="10" height="1" fill="#ffaaaa"/>
+      <rect x="2" y="10" width="8" height="1" fill="#ff8888"/>
+      <rect x="4" y="11" width="4" height="1" fill="#ff6666"/>
+      <rect x="5" y="1" width="2" height="11" fill="#ff8899"/>
+      <rect x="1" y="3" width="2" height="3" fill="#ffcccc"/>
     </svg>`;
   }
 
   private pineappleSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="50" cy="65" rx="30" ry="35" fill="#ffeb3b"/>
-      <path d="M50 35 L40 10 L50 25 L60 10 Z" fill="#4caf50"/>
-      <path d="M50 35 L30 15 L45 30 L50 15 L55 30 L70 15 Z" fill="#388e3c"/>
-      <path d="M30 50 L70 50 M30 65 L70 65 M30 80 L70 80 M40 40 L40 90 M60 40 L60 90" stroke="#fbc02d" stroke-width="1"/>
-      <circle cx="40" cy="60" r="4"/>
-      <circle cx="60" cy="60" r="4"/>
-      <path d="M45 70 Q50 75 55 70" stroke="black" fill="none" stroke-width="2"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="0" width="2" height="3" fill="#00aa33"/>
+      <rect x="5" y="0" width="2" height="4" fill="#00cc44"/>
+      <rect x="8" y="0" width="2" height="3" fill="#00aa33"/>
+      <rect x="1" y="3" width="10" height="7" fill="#ffdd00"/>
+      <rect x="2" y="10" width="8" height="1" fill="#ffdd00"/>
+      <rect x="3" y="11" width="6" height="1" fill="#eebb00"/>
+      <rect x="1" y="5" width="10" height="1" fill="#ccaa00"/>
+      <rect x="1" y="7" width="10" height="1" fill="#ccaa00"/>
+      <rect x="3" y="3" width="1" height="8" fill="#ccaa00"/>
+      <rect x="6" y="3" width="1" height="8" fill="#ccaa00"/>
+      <rect x="9" y="3" width="1" height="8" fill="#ccaa00"/>
     </svg>`;
   }
 
   private melonSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="55" r="40" fill="#aed581"/>
-      <path d="M50 15 Q40 5 50 0 Q60 5 50 15" fill="none" stroke="#558b2f" stroke-width="3"/>
-      <path d="M20 55 Q50 45 80 55 M25 40 Q50 30 75 40 M25 70 Q50 60 75 70" stroke="#f1f8e9" stroke-width="1.5" fill="none" opacity="0.6"/>
-      <circle cx="40" cy="50" r="5"/>
-      <circle cx="60" cy="50" r="5"/>
-      <path d="M45 65 Q50 70 55 65" stroke="black" fill="none" stroke-width="2.5"/>
+    return `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="0" width="2" height="1" fill="#3d2000"/>
+      <rect x="1" y="1" width="10" height="2" fill="#99cc66"/>
+      <rect x="0" y="3" width="12" height="6" fill="#99cc66"/>
+      <rect x="1" y="9" width="10" height="2" fill="#99cc66"/>
+      <rect x="3" y="11" width="6" height="1" fill="#77aa44"/>
+      <rect x="0" y="4" width="12" height="1" fill="#bbee88"/>
+      <rect x="0" y="7" width="12" height="1" fill="#bbee88"/>
+      <rect x="2" y="1" width="1" height="10" fill="#bbee88"/>
+      <rect x="5" y="1" width="1" height="10" fill="#aabb77"/>
+      <rect x="9" y="1" width="1" height="10" fill="#bbee88"/>
+      <rect x="1" y="2" width="2" height="2" fill="#ccee99"/>
     </svg>`;
   }
 
   private watermelonSVG(): string {
-    return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="45" fill="#2e7d32"/>
-      <path d="M30 10 Q40 50 30 90 M50 5 Q60 50 50 95 M70 10 Q80 50 70 90" stroke="#1b5e20" stroke-width="8" fill="none"/>
-      <circle cx="40" cy="45" r="6"/>
-      <circle cx="60" cy="45" r="6"/>
-      <path d="M42 65 Q50 75 58 65" stroke="black" fill="none" stroke-width="3"/>
-      <circle cx="35" cy="35" r="10" fill="white" opacity="0.1"/>
+    return `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="0" width="8" height="1" fill="#005500"/>
+      <rect x="2" y="1" width="12" height="2" fill="#007700"/>
+      <rect x="1" y="3" width="14" height="10" fill="#009900"/>
+      <rect x="2" y="13" width="12" height="2" fill="#007700"/>
+      <rect x="4" y="15" width="8" height="1" fill="#005500"/>
+      <rect x="2" y="4" width="12" height="8" fill="#ff1155"/>
+      <rect x="1" y="5" width="1" height="6" fill="#ff1155"/>
+      <rect x="14" y="5" width="1" height="6" fill="#ff1155"/>
+      <rect x="3" y="1" width="2" height="3" fill="#00bb00"/>
+      <rect x="7" y="1" width="2" height="3" fill="#00aa00"/>
+      <rect x="11" y="1" width="2" height="3" fill="#00bb00"/>
+      <rect x="4" y="7" width="2" height="2" fill="#111111"/>
+      <rect x="8" y="6" width="2" height="2" fill="#111111"/>
+      <rect x="11" y="9" width="2" height="2" fill="#111111"/>
+      <rect x="2" y="4" width="2" height="2" fill="#ff4477"/>
     </svg>`;
   }
 
@@ -170,6 +212,7 @@ export class FruitSVG {
     const svg = this.getSVGForLevel(level);
     const img = new Image();
     img.onload = () => {
+      ctx.imageSmoothingEnabled = false;
       ctx.drawImage(img, 0, 0, this.size, this.size);
     };
     img.src = 'data:image/svg+xml;base64,' + btoa(svg);
