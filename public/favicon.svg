@@ -1,7 +1,13 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <path d="M50 32 Q50 12 34 18 M50 32 Q50 12 66 18" stroke="#5d4037" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <circle cx="34" cy="58" r="23" fill="#ff5252"/>
-  <circle cx="64" cy="60" r="22" fill="#d32f2f"/>
-  <circle cx="26" cy="50" r="7" fill="white" opacity="0.35"/>
-  <circle cx="56" cy="52" r="6" fill="white" opacity="0.3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="64" height="64" shape-rendering="crispEdges">
+  <rect x="4" y="0" width="1" height="3" fill="#3d2000"/>
+  <rect x="7" y="0" width="1" height="3" fill="#3d2000"/>
+  <rect x="3" y="1" width="4" height="1" fill="#3d2000"/>
+  <rect x="2" y="4" width="1" height="4" fill="#ff0055"/>
+  <rect x="3" y="3" width="2" height="6" fill="#ff0055"/>
+  <rect x="5" y="4" width="1" height="4" fill="#ff0055"/>
+  <rect x="6" y="4" width="1" height="4" fill="#cc0044"/>
+  <rect x="7" y="3" width="2" height="6" fill="#cc0044"/>
+  <rect x="9" y="4" width="1" height="4" fill="#cc0044"/>
+  <rect x="3" y="4" width="1" height="1" fill="#ff6688"/>
+  <rect x="7" y="4" width="1" height="1" fill="#ff6688"/>
 </svg>
