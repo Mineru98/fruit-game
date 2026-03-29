@@ -173,17 +173,19 @@ export default function Game() {
       setGameOver(gameState.isGameOver);
 
       // Render background
-      ctx.fillStyle = '#f5f5f5';
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       // Spawn line
-      ctx.strokeStyle = 'rgba(255,0,0,0.3)';
-      ctx.setLineDash([5, 5]);
+      ctx.strokeStyle = 'rgba(255,0,85,0.5)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
       ctx.beginPath();
       ctx.moveTo(0, SPAWN_Y);
       ctx.lineTo(CANVAS_WIDTH, SPAWN_Y);
       ctx.stroke();
       ctx.setLineDash([]);
+      ctx.lineWidth = 1;
 
       // Draw next fruit preview
       if (!gameState.isGameOver) {
