@@ -22,7 +22,6 @@ Implements the physics engine, collision detection, and game mechanics from the 
 - **Rendering**: HTML5 Canvas 2D
 - **Physics**: Custom 2D physics engine (gravity, friction, vector-based collision response)
 - **Language**: JavaScript ES6+
-- **Testing**: Jest + Babel
 - **Styling**: CSS3 with responsive layout
 
 ## Installation & Running
