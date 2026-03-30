@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <rect width="800" height="350" fill="#0a0a1a"/>
+  <text x="400" y="35" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="18" font-weight="bold">Pixel Art Fruits (11 Levels)</text>
+  <!-- Cherry LV1 -->
+  <g transform="translate(40,60)">
+    <rect x="10" y="0" width="4" height="4" fill="#663300"/>
+    <rect x="14" y="0" width="4" height="4" fill="#663300"/>
+    <rect x="6" y="4" width="4" height="4" fill="#ff0055"/>
+    <rect x="10" y="4" width="4" height="4" fill="#ff3377"/>
+    <rect x="14" y="4" width="4" height="4" fill="#ff0055"/>
+    <rect x="18" y="4" width="4" height="4" fill="#ff0055"/>
+    <rect x="6" y="8" width="4" height="4" fill="#ff0055"/>
+    <rect x="10" y="8" width="4" height="4" fill="#ff0055"/>
+    <rect x="14" y="8" width="4" height="4" fill="#ff0055"/>
+    <rect x="18" y="8" width="4" height="4" fill="#ff0055"/>
+    <text x="12" y="30" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="8">LV1</text>
+    <text x="12" y="42" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Cherry</text>
+  </g>
+  <!-- Strawberry LV2 -->
+  <g transform="translate(110,60)">
+    <rect x="10" y="0" width="4" height="4" fill="#00aa00"/>
+    <rect x="6" y="0" width="4" height="4" fill="#00aa00"/>
+    <rect x="14" y="0" width="4" height="4" fill="#00aa00"/>
+    <rect x="6" y="4" width="4" height="4" fill="#ff0055"/>
+    <rect x="10" y="4" width="4" height="4" fill="#ff3377"/>
+    <rect x="14" y="4" width="4" height="4" fill="#ff0055"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ff0055"/>
+    <rect x="8" y="8" width="4" height="4" fill="#ffcc00"/>
+    <rect x="12" y="8" width="4" height="4" fill="#ff0055"/>
+    <rect x="16" y="8" width="4" height="4" fill="#ffcc00"/>
+    <rect x="8" y="12" width="4" height="4" fill="#ff0055"/>
+    <rect x="12" y="12" width="4" height="4" fill="#ff0055"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="8">LV2</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Strawberry</text>
+  </g>
+  <!-- Grape LV3 -->
+  <g transform="translate(180,60)">
+    <rect x="10" y="0" width="4" height="4" fill="#008800"/>
+    <rect x="8" y="4" width="4" height="4" fill="#cc00ff"/>
+    <rect x="12" y="4" width="4" height="4" fill="#dd44ff"/>
+    <rect x="4" y="8" width="4" height="4" fill="#cc00ff"/>
+    <rect x="8" y="8" width="4" height="4" fill="#dd44ff"/>
+    <rect x="12" y="8" width="4" height="4" fill="#cc00ff"/>
+    <rect x="16" y="8" width="4" height="4" fill="#dd44ff"/>
+    <rect x="6" y="12" width="4" height="4" fill="#cc00ff"/>
+    <rect x="10" y="12" width="4" height="4" fill="#dd44ff"/>
+    <rect x="14" y="12" width="4" height="4" fill="#cc00ff"/>
+    <text x="12" y="34" text-anchor="middle" fill="#cc00ff" font-family="monospace" font-size="8">LV3</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Grape</text>
+  </g>
+  <!-- Dekopon LV4 -->
+  <g transform="translate(250,60)">
+    <rect x="10" y="0" width="4" height="4" fill="#ff9900"/>
+    <rect x="6" y="4" width="4" height="4" fill="#ff9900"/>
+    <rect x="10" y="4" width="4" height="4" fill="#ffbb44"/>
+    <rect x="14" y="4" width="4" height="4" fill="#ff9900"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ff9900"/>
+    <rect x="8" y="8" width="4" height="4" fill="#ffbb44"/>
+    <rect x="12" y="8" width="4" height="4" fill="#ff9900"/>
+    <rect x="16" y="8" width="4" height="4" fill="#ff9900"/>
+    <rect x="6" y="12" width="4" height="4" fill="#ff9900"/>
+    <rect x="10" y="12" width="4" height="4" fill="#ff9900"/>
+    <rect x="14" y="12" width="4" height="4" fill="#ff9900"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ff9900" font-family="monospace" font-size="8">LV4</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Dekopon</text>
+  </g>
+  <!-- Persimmon LV5 -->
+  <g transform="translate(320,60)">
+    <rect x="6" y="0" width="4" height="4" fill="#008800"/>
+    <rect x="10" y="0" width="4" height="4" fill="#008800"/>
+    <rect x="14" y="0" width="4" height="4" fill="#008800"/>
+    <rect x="4" y="4" width="4" height="4" fill="#ff8800"/>
+    <rect x="8" y="4" width="4" height="4" fill="#ffaa44"/>
+    <rect x="12" y="4" width="4" height="4" fill="#ff8800"/>
+    <rect x="16" y="4" width="4" height="4" fill="#ff8800"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ff8800"/>
+    <rect x="8" y="8" width="4" height="4" fill="#ff8800"/>
+    <rect x="12" y="8" width="4" height="4" fill="#ffaa44"/>
+    <rect x="16" y="8" width="4" height="4" fill="#ff8800"/>
+    <rect x="6" y="12" width="4" height="4" fill="#ff8800"/>
+    <rect x="10" y="12" width="4" height="4" fill="#ff8800"/>
+    <rect x="14" y="12" width="4" height="4" fill="#ff8800"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ff8800" font-family="monospace" font-size="8">LV5</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Persimmon</text>
+  </g>
+  <!-- Apple LV6 -->
+  <g transform="translate(390,60)">
+    <rect x="10" y="0" width="4" height="4" fill="#663300"/>
+    <rect x="14" y="0" width="4" height="4" fill="#00aa00"/>
+    <rect x="4" y="4" width="4" height="4" fill="#ee1111"/>
+    <rect x="8" y="4" width="4" height="4" fill="#ff4444"/>
+    <rect x="12" y="4" width="4" height="4" fill="#ee1111"/>
+    <rect x="16" y="4" width="4" height="4" fill="#ee1111"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ee1111"/>
+    <rect x="8" y="8" width="4" height="4" fill="#ee1111"/>
+    <rect x="12" y="8" width="4" height="4" fill="#ff4444"/>
+    <rect x="16" y="8" width="4" height="4" fill="#ee1111"/>
+    <rect x="6" y="12" width="4" height="4" fill="#ee1111"/>
+    <rect x="10" y="12" width="4" height="4" fill="#ee1111"/>
+    <rect x="14" y="12" width="4" height="4" fill="#ee1111"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ee1111" font-family="monospace" font-size="8">LV6</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Apple</text>
+  </g>
+  <!-- Pear LV7 -->
+  <g transform="translate(460,60)">
+    <rect x="10" y="0" width="4" height="4" fill="#663300"/>
+    <rect x="8" y="4" width="4" height="4" fill="#ccdd22"/>
+    <rect x="12" y="4" width="4" height="4" fill="#ddee44"/>
+    <rect x="6" y="8" width="4" height="4" fill="#ccdd22"/>
+    <rect x="10" y="8" width="4" height="4" fill="#ddee44"/>
+    <rect x="14" y="8" width="4" height="4" fill="#ccdd22"/>
+    <rect x="4" y="12" width="4" height="4" fill="#ccdd22"/>
+    <rect x="8" y="12" width="4" height="4" fill="#ccdd22"/>
+    <rect x="12" y="12" width="4" height="4" fill="#ddee44"/>
+    <rect x="16" y="12" width="4" height="4" fill="#ccdd22"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ccdd22" font-family="monospace" font-size="8">LV7</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Pear</text>
+  </g>
+  <!-- Peach LV8 -->
+  <g transform="translate(530,60)">
+    <rect x="6" y="4" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="10" y="4" width="4" height="4" fill="#ffcccc"/>
+    <rect x="14" y="4" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="8" y="8" width="4" height="4" fill="#ffcccc"/>
+    <rect x="10" y="8" width="4" height="4" fill="#cc6666"/>
+    <rect x="12" y="8" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="16" y="8" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="6" y="12" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="10" y="12" width="4" height="4" fill="#ffaaaa"/>
+    <rect x="14" y="12" width="4" height="4" fill="#ffaaaa"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ffaaaa" font-family="monospace" font-size="8">LV8</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Peach</text>
+  </g>
+  <!-- Pineapple LV9 -->
+  <g transform="translate(600,60)">
+    <rect x="8" y="0" width="4" height="4" fill="#00aa00"/>
+    <rect x="12" y="0" width="4" height="4" fill="#00aa00"/>
+    <rect x="6" y="4" width="4" height="4" fill="#00aa00"/>
+    <rect x="10" y="4" width="4" height="4" fill="#00cc00"/>
+    <rect x="14" y="4" width="4" height="4" fill="#00aa00"/>
+    <rect x="6" y="8" width="4" height="4" fill="#ffdd00"/>
+    <rect x="10" y="8" width="4" height="4" fill="#ffee44"/>
+    <rect x="14" y="8" width="4" height="4" fill="#ffdd00"/>
+    <rect x="6" y="12" width="4" height="4" fill="#ffdd00"/>
+    <rect x="10" y="12" width="4" height="4" fill="#ffdd00"/>
+    <rect x="14" y="12" width="4" height="4" fill="#ffee44"/>
+    <text x="12" y="34" text-anchor="middle" fill="#ffdd00" font-family="monospace" font-size="8">LV9</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Pineapple</text>
+  </g>
+  <!-- Melon LV10 -->
+  <g transform="translate(670,60)">
+    <rect x="6" y="4" width="4" height="4" fill="#99cc66"/>
+    <rect x="10" y="4" width="4" height="4" fill="#aadd77"/>
+    <rect x="14" y="4" width="4" height="4" fill="#99cc66"/>
+    <rect x="4" y="8" width="4" height="4" fill="#99cc66"/>
+    <rect x="8" y="8" width="4" height="4" fill="#77aa44"/>
+    <rect x="12" y="8" width="4" height="4" fill="#aadd77"/>
+    <rect x="16" y="8" width="4" height="4" fill="#99cc66"/>
+    <rect x="6" y="12" width="4" height="4" fill="#99cc66"/>
+    <rect x="10" y="12" width="4" height="4" fill="#aadd77"/>
+    <rect x="14" y="12" width="4" height="4" fill="#99cc66"/>
+    <text x="12" y="34" text-anchor="middle" fill="#99cc66" font-family="monospace" font-size="8">LV10</text>
+    <text x="12" y="46" text-anchor="middle" fill="#888" font-family="monospace" font-size="7">Melon</text>
+  </g>
+  <!-- Watermelon LV11 (larger) -->
+  <g transform="translate(350,170)">
+    <rect x="8" y="0" width="4" height="4" fill="#009900"/>
+    <rect x="12" y="0" width="4" height="4" fill="#009900"/>
+    <rect x="16" y="0" width="4" height="4" fill="#00bb00"/>
+    <rect x="20" y="0" width="4" height="4" fill="#009900"/>
+    <rect x="4" y="4" width="4" height="4" fill="#009900"/>
+    <rect x="8" y="4" width="4" height="4" fill="#00bb00"/>
+    <rect x="12" y="4" width="4" height="4" fill="#009900"/>
+    <rect x="16" y="4" width="4" height="4" fill="#009900"/>
+    <rect x="20" y="4" width="4" height="4" fill="#00bb00"/>
+    <rect x="24" y="4" width="4" height="4" fill="#009900"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ff1155"/>
+    <rect x="8" y="8" width="4" height="4" fill="#ff4477"/>
+    <rect x="12" y="8" width="4" height="4" fill="#ff1155"/>
+    <rect x="16" y="8" width="4" height="4" fill="#ff1155"/>
+    <rect x="20" y="8" width="4" height="4" fill="#ff4477"/>
+    <rect x="24" y="8" width="4" height="4" fill="#ff1155"/>
+    <rect x="4" y="12" width="4" height="4" fill="#ff1155"/>
+    <rect x="8" y="12" width="4" height="4" fill="#111111"/>
+    <rect x="12" y="12" width="4" height="4" fill="#ff4477"/>
+    <rect x="16" y="12" width="4" height="4" fill="#111111"/>
+    <rect x="20" y="12" width="4" height="4" fill="#ff1155"/>
+    <rect x="24" y="12" width="4" height="4" fill="#ff4477"/>
+    <rect x="8" y="16" width="4" height="4" fill="#ff1155"/>
+    <rect x="12" y="16" width="4" height="4" fill="#ff1155"/>
+    <rect x="16" y="16" width="4" height="4" fill="#ff4477"/>
+    <rect x="20" y="16" width="4" height="4" fill="#ff1155"/>
+    <text x="16" y="40" text-anchor="middle" fill="#009900" font-family="monospace" font-size="10" font-weight="bold">LV11 Watermelon</text>
+  </g>
+  <!-- Label -->
+  <text x="400" y="320" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="10">All fruits rendered with SVG &lt;rect&gt; based pixel art + imageSmoothingEnabled=false</text>
+</svg>

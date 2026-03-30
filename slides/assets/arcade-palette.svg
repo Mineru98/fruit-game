@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <filter id="ga">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="350" fill="#0a0a1a"/>
+  <text x="400" y="40" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="20" font-weight="bold">Arcade Color Palette</text>
+  <!-- Color swatches -->
+  <g transform="translate(60,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#0a0a1a" stroke="#555" stroke-width="1"/>
+    <text x="40" y="105" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="8">Background</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#0a0a1a</text>
+  </g>
+  <g transform="translate(160,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#000000" stroke="#555" stroke-width="1"/>
+    <text x="40" y="105" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="8">Canvas</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#000000</text>
+  </g>
+  <g transform="translate(260,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#FFE000" filter="url(#ga)"/>
+    <text x="40" y="105" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="8">Title</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#FFE000</text>
+  </g>
+  <g transform="translate(360,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#00ffff" filter="url(#ga)"/>
+    <text x="40" y="105" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="8">Neon Cyan</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#00ffff</text>
+  </g>
+  <g transform="translate(460,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#ff00ff" filter="url(#ga)"/>
+    <text x="40" y="105" text-anchor="middle" fill="#ff00ff" font-family="monospace" font-size="8">Neon Pink</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#ff00ff</text>
+  </g>
+  <g transform="translate(560,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#ff0055" filter="url(#ga)"/>
+    <text x="40" y="105" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="8">Spawn Red</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#ff0055</text>
+  </g>
+  <g transform="translate(660,70)">
+    <rect x="0" y="0" width="80" height="80" rx="8" fill="#ffffff"/>
+    <text x="40" y="105" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="8">Score</text>
+    <text x="40" y="118" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">#ffffff</text>
+  </g>
+  <!-- Arcade UI preview -->
+  <rect x="200" y="200" width="400" height="120" rx="8" fill="#000" stroke="#00ffff" stroke-width="2" filter="url(#ga)"/>
+  <text x="400" y="230" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="14" font-weight="bold" filter="url(#ga)">FRUIT GAME</text>
+  <text x="280" y="260" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="8">1UP</text>
+  <text x="400" y="260" text-anchor="middle" fill="#ff00ff" font-family="monospace" font-size="8">HI SCORE</text>
+  <text x="520" y="260" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="8">LEVEL</text>
+  <text x="280" y="280" text-anchor="middle" fill="#fff" font-family="monospace" font-size="12">08640</text>
+  <text x="400" y="280" text-anchor="middle" fill="#fff" font-family="monospace" font-size="12">99999</text>
+  <text x="520" y="280" text-anchor="middle" fill="#fff" font-family="monospace" font-size="12">01</text>
+  <text x="400" y="305" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">Press Start 2P font family</text>
+</svg>

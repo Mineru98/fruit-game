@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <marker id="arr3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00ffff"/>
+    </marker>
+    <filter id="g3">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="450" fill="#0a0a1a"/>
+  <text x="400" y="40" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="20" font-weight="bold">Technology Evolution</text>
+  <!-- Timeline line -->
+  <line x1="80" y1="230" x2="720" y2="230" stroke="#333" stroke-width="2"/>
+  <!-- Session 1 -->
+  <circle cx="120" cy="230" r="8" fill="#ff0055" filter="url(#g3)"/>
+  <rect x="70" y="100" width="120" height="100" rx="8" fill="none" stroke="#ff0055" stroke-width="1.5"/>
+  <text x="130" y="120" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="11" font-weight="bold">Session 1</text>
+  <text x="130" y="140" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Vanilla JS</text>
+  <text x="130" y="155" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Canvas 2D</text>
+  <text x="130" y="170" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Jest (51)</text>
+  <text x="130" y="185" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Custom Physics</text>
+  <line x1="120" y1="200" x2="120" y2="222" stroke="#ff0055" stroke-width="1"/>
+  <!-- Session 3 -->
+  <circle cx="280" cy="230" r="8" fill="#00ff88" filter="url(#g3)"/>
+  <rect x="220" y="260" width="130" height="110" rx="8" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+  <text x="285" y="283" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="11" font-weight="bold">Session 3</text>
+  <text x="285" y="303" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">TypeScript</text>
+  <text x="285" y="318" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">React 18</text>
+  <text x="285" y="333" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Vite</text>
+  <text x="285" y="348" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Cannon.js</text>
+  <text x="285" y="363" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">SVG Fruits</text>
+  <line x1="280" y1="238" x2="280" y2="255" stroke="#00ff88" stroke-width="1"/>
+  <!-- Session 6 -->
+  <circle cx="440" cy="230" r="8" fill="#ff9900" filter="url(#g3)"/>
+  <rect x="380" y="100" width="130" height="100" rx="8" fill="none" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="445" y="120" text-anchor="middle" fill="#ff9900" font-family="monospace" font-size="11" font-weight="bold">Session 6</text>
+  <text x="445" y="140" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Mobile Touch</text>
+  <text x="445" y="155" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Responsive</text>
+  <text x="445" y="170" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Mouse Click</text>
+  <text x="445" y="185" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Favicon</text>
+  <line x1="440" y1="200" x2="440" y2="222" stroke="#ff9900" stroke-width="1"/>
+  <!-- Session 9 -->
+  <circle cx="600" cy="230" r="8" fill="#cc00ff" filter="url(#g3)"/>
+  <rect x="535" y="260" width="140" height="110" rx="8" fill="none" stroke="#cc00ff" stroke-width="1.5"/>
+  <text x="605" y="283" text-anchor="middle" fill="#cc00ff" font-family="monospace" font-size="11" font-weight="bold">Session 9-10</text>
+  <text x="605" y="303" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Arcade Theme</text>
+  <text x="605" y="318" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Neon Glow</text>
+  <text x="605" y="333" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Pixel Art SVG</text>
+  <text x="605" y="348" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Press Start 2P</text>
+  <text x="605" y="363" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">Sync Render</text>
+  <line x1="600" y1="238" x2="600" y2="255" stroke="#cc00ff" stroke-width="1"/>
+  <!-- Arrows on timeline -->
+  <line x1="128" y1="230" x2="270" y2="230" stroke="#00ffff" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="288" y1="230" x2="430" y2="230" stroke="#00ffff" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="448" y1="230" x2="590" y2="230" stroke="#00ffff" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <!-- Dates -->
+  <text x="120" y="420" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">3/29 AM</text>
+  <text x="280" y="420" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">3/29 PM</text>
+  <text x="440" y="420" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">3/30 AM</text>
+  <text x="600" y="420" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">3/30 PM</text>
+</svg>

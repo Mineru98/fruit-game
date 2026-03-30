@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <filter id="gt">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="450" fill="#0a0a1a"/>
+  <text x="400" y="40" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">Claude Code Tips for Game Devs</text>
+  <!-- Tip 1 -->
+  <g transform="translate(40,70)">
+    <rect x="0" y="0" width="340" height="75" rx="8" fill="none" stroke="#ff0055" stroke-width="2"/>
+    <text x="15" y="25" fill="#ff0055" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">01</text>
+    <text x="55" y="25" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">Plan Before You Build</text>
+    <text x="55" y="45" fill="#888" font-family="monospace" font-size="9">writing-plans creates</text>
+    <text x="55" y="58" fill="#888" font-family="monospace" font-size="9">step-by-step execution plans</text>
+  </g>
+  <!-- Tip 2 -->
+  <g transform="translate(420,70)">
+    <rect x="0" y="0" width="340" height="75" rx="8" fill="none" stroke="#ff9900" stroke-width="2"/>
+    <text x="15" y="25" fill="#ff9900" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">02</text>
+    <text x="55" y="25" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">Delegate to Agents</text>
+    <text x="55" y="45" fill="#888" font-family="monospace" font-size="9">executor, architect, designer</text>
+    <text x="55" y="58" fill="#888" font-family="monospace" font-size="9">work in parallel contexts</text>
+  </g>
+  <!-- Tip 3 -->
+  <g transform="translate(40,170)">
+    <rect x="0" y="0" width="340" height="75" rx="8" fill="none" stroke="#00ff88" stroke-width="2"/>
+    <text x="15" y="25" fill="#00ff88" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">03</text>
+    <text x="55" y="25" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">Debug with Evidence</text>
+    <text x="55" y="45" fill="#888" font-family="monospace" font-size="9">systematic-debugging traces</text>
+    <text x="55" y="58" fill="#888" font-family="monospace" font-size="9">root cause, not symptoms</text>
+  </g>
+  <!-- Tip 4 -->
+  <g transform="translate(420,170)">
+    <rect x="0" y="0" width="340" height="75" rx="8" fill="none" stroke="#cc00ff" stroke-width="2"/>
+    <text x="15" y="25" fill="#cc00ff" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">04</text>
+    <text x="55" y="25" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">Multi-AI Collaboration</text>
+    <text x="55" y="45" fill="#888" font-family="monospace" font-size="9">Gemini for art, Claude for code</text>
+    <text x="55" y="58" fill="#888" font-family="monospace" font-size="9">each AI's strength matters</text>
+  </g>
+  <!-- Tip 5 -->
+  <g transform="translate(40,270)">
+    <rect x="0" y="0" width="340" height="75" rx="8" fill="none" stroke="#00ffff" stroke-width="2"/>
+    <text x="15" y="25" fill="#00ffff" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">05</text>
+    <text x="55" y="25" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">Iterate Naturally</text>
+    <text x="55" y="45" fill="#888" font-family="monospace" font-size="9">Talk to AI like a teammate</text>
+    <text x="55" y="58" fill="#888" font-family="monospace" font-size="9">"Why isn't this working?"</text>
+  </g>
+  <!-- Tip 6 -->
+  <g transform="translate(420,270)">
+    <rect x="0" y="0" width="340" height="75" rx="8" fill="none" stroke="#ff00ff" stroke-width="2"/>
+    <text x="15" y="25" fill="#ff00ff" font-family="monospace" font-size="20" font-weight="bold" filter="url(#gt)">06</text>
+    <text x="55" y="25" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">Review Everything</text>
+    <text x="55" y="45" fill="#888" font-family="monospace" font-size="9">code-reviewer catches</text>
+    <text x="55" y="58" fill="#888" font-family="monospace" font-size="9">what you might miss</text>
+  </g>
+  <!-- Bottom message -->
+  <text x="400" y="400" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="14" font-weight="bold" filter="url(#gt)">You don't need to know game dev.</text>
+  <text x="400" y="425" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="14" font-weight="bold" filter="url(#gt)">You need to know how to collaborate with AI.</text>
+</svg>
