@@ -1,5 +1,3 @@
-그럼 이제 이 내용들을 정리해서 하나의 전체 스토리 라인을 가진 문서로 통합을 시켜보자.
-
 ## 바이브 코딩의 등장
 
 1. 저는 25년 2월 안드레 카파시([인물 이미지](https://i.namu.wiki/i/aqTQqNfkCQWNFvaznm3e538qAruufFOtsOJJ4jdvnaDSc3u69d-DaHkBocYFuXHNPvNvh9qGSPLTAbCXo6jlWyZz3uCXcyGhGvNkcmHazLWAUbkpFqBbOWsQ8U_JywCjDnBrO7apiRKo4hF1TPfAmg.webp))가 세계 최초로 바이브 코딩이라는 용어를 사용한 트위터 글을 읽고 이런 생각을 했습니다. [트위터 출처 링크](https://x.com/karpathy/status/1886192184808149383)
