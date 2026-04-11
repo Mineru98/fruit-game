@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./theme.css">
+  <title>39. 버그 사례 2: 과일은 사라졌는데 물리 바디는 남아 있었습니다</title>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="header">
+    <div>
+      <div class="eyebrow">Bug 2</div>
+      <h1 class="title">버그 사례 2: 과일은 사라졌는데 물리 바디는 남아 있었습니다</h1>
+      <p class="subtitle">CollisionHandler와 physics layer 사이의 불일치가 만든 전형적인 계층 경계 버그였습니다.</p>
+    </div>
+    <div class="page">39</div>
+  </div>
+  <main class="content">
+      <div class="compare">
+        <div class="bad">
+          <h3>Before</h3>
+          <ul>
+            <li>데이터만 제거</li>
+            <li>화면상으로는 합쳐진 것처럼 보임</li>
+            <li>하지만 physics body가 남아서 이상 동작 발생</li>
+          </ul>
+        </div>
+        <div class="good">
+          <h3>After</h3>
+          <ul>
+            <li>물리와 데이터를 함께 제거</li>
+            <li>경계가 맞아 떨어지도록 수정</li>
+            <li>겉보기 수정이 아니라 구조 수정이 됨</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  
+  <div class="footer">
+    <div>임근석 · <strong>쓸모랩 · 우리기획</strong></div>
+    <div>ITERATION · 2026년 4월 17일</div>
+  </div>
+
+</body>
+</html>
