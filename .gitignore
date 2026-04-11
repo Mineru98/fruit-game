@@ -4,6 +4,7 @@ dist/
 *.log
 npm-debug.log*
 .omc
+.omx
 test-results
 playwright-report
 .playwright-cli
