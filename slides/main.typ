@@ -31,11 +31,11 @@
 )
 
 // ── Retro Font & Style ──────────────────────────────────
-#set text(font: "Jua", size: 20pt, fill: rgb("#ffffff"))
+#set text(font: "Pretendard", size: 20pt, fill: rgb("#ffffff"))
 #show raw: set text(font: "Menlo", size: 14pt, fill: rgb("#ffcc66"))
-#show heading.where(level: 1): set text(fill: rgb("#FFE000"), font: "Jua", size: 32pt)
-#show heading.where(level: 2): set text(fill: rgb("#00ffff"), font: "Jua", size: 26pt)
-#show heading.where(level: 3): set text(fill: rgb("#ff44ff"), font: "Jua", size: 22pt)
+#show heading.where(level: 1): set text(fill: rgb("#FFE000"), font: "Pretendard", size: 32pt)
+#show heading.where(level: 2): set text(fill: rgb("#00ffff"), font: "Pretendard", size: 26pt)
+#show heading.where(level: 3): set text(fill: rgb("#ff44ff"), font: "Pretendard", size: 22pt)
 #show strong: set text(fill: rgb("#00ff88"))
 #show link: set text(fill: rgb("#00bfff"))
 
@@ -46,17 +46,17 @@
 #slide[
   #v(1fr)
   #align(center)[
-    #text(size: 48pt, fill: rgb("#FFE000"), weight: "bold", font: "Jua")[바이브코딩으로 게임 만들기]
+    #text(size: 48pt, fill: rgb("#FFE000"), weight: "bold", font: "Pretendard")[바이브코딩으로 게임 만들기]
     #v(0.3em)
-    #text(size: 24pt, fill: rgb("#00ffff"), font: "Jua")[웹 개발자의 과일 게임 개발 여정기]
+    #text(size: 24pt, fill: rgb("#00ffff"), font: "Pretendard")[웹 개발자의 과일 게임 개발 여정기]
     #v(1.5em)
     #line(length: 60%, stroke: 2pt + rgb("#FFE000"))
     #v(1em)
-    #text(size: 20pt, fill: rgb("#ffffff"), font: "Jua")[임근석]
+    #text(size: 20pt, fill: rgb("#ffffff"), font: "Pretendard")[임근석]
     #h(1em)
-    #text(size: 16pt, fill: rgb("#ff44ff"), font: "Jua")[쓸모랩 대표]
+    #text(size: 16pt, fill: rgb("#ff44ff"), font: "Pretendard")[쓸모랩 대표]
     #v(0.5em)
-    #text(size: 16pt, fill: rgb("#aabbcc"), font: "Jua")[2026년 4월 17일 | 게임 개발자를 위한 Claude Code 꿀팁 | 40분]
+    #text(size: 16pt, fill: rgb("#aabbcc"), font: "Pretendard")[2026년 4월 17일 | 게임 개발자를 위한 Claude Code 꿀팁 | 40분]
   ]
   #v(1fr)
 ]
