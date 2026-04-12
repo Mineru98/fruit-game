@@ -28,6 +28,270 @@ const deckMeta = {
   date: '2026년 4월 17일',
 };
 
+const customSvgAssets = {
+  'vibe-signal.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#05070d"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0%" stop-color="#4f7dff"/>
+      <stop offset="100%" stop-color="#67d5ff"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 18 -8"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g stroke="rgba(255,255,255,0.08)" fill="none">
+    <path d="M0 160H1280"/>
+    <path d="M0 360H1280"/>
+    <path d="M0 560H1280"/>
+    <path d="M180 0V720"/>
+    <path d="M500 0V720"/>
+    <path d="M820 0V720"/>
+    <path d="M1140 0V720"/>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M140 530C300 520 360 360 470 345C575 330 593 450 710 450C830 450 875 205 1030 200C1125 197 1180 250 1210 280" fill="none" stroke="url(#line)" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g fill="#4f7dff">
+    <circle cx="470" cy="345" r="16"/>
+    <circle cx="710" cy="450" r="16"/>
+    <circle cx="1030" cy="200" r="16"/>
+  </g>
+  <g fill="#f5f7ff" font-family="Pretendard, sans-serif">
+    <text x="138" y="580" font-size="26" opacity="0.8">2025.02</text>
+    <text x="430" y="300" font-size="28" font-weight="700">Karpathy tweet</text>
+    <text x="670" y="500" font-size="28" font-weight="700">Vibe coding practice</text>
+    <text x="935" y="160" font-size="28" font-weight="700">Game project</text>
+  </g>
+</svg>`,
+  'skills-assembly-line.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0%" stop-color="#4f7dff"/>
+      <stop offset="100%" stop-color="#67d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g fill="none" stroke="rgba(122,154,255,0.18)">
+    <rect x="70" y="120" width="1140" height="460" rx="30"/>
+    <path d="M160 350H1120" stroke-width="6"/>
+  </g>
+  <g font-family="Pretendard, sans-serif">
+    <g>
+      <rect x="120" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="145" y="255" fill="#86a7ff" font-size="22">STEP 1</text>
+      <text x="145" y="305" fill="#f5f7ff" font-size="34" font-weight="700">기획</text>
+      <text x="145" y="340" fill="#9aa7c7" font-size="18">장르 / 목표 / 범위</text>
+    </g>
+    <g>
+      <rect x="330" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="355" y="255" fill="#86a7ff" font-size="22">STEP 2</text>
+      <text x="355" y="305" fill="#f5f7ff" font-size="34" font-weight="700">설계</text>
+      <text x="355" y="340" fill="#9aa7c7" font-size="18">문서 / 구조 / 역할</text>
+    </g>
+    <g>
+      <rect x="540" y="210" width="200" height="160" rx="22" fill="#13233d" stroke="#4f7dff"/>
+      <text x="565" y="255" fill="#86a7ff" font-size="22">STEP 3</text>
+      <text x="565" y="305" fill="#f5f7ff" font-size="34" font-weight="700">SKILLS</text>
+      <text x="565" y="340" fill="#9aa7c7" font-size="18">문서화된 실행 방식</text>
+    </g>
+    <g>
+      <rect x="790" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="815" y="255" fill="#86a7ff" font-size="22">STEP 4</text>
+      <text x="815" y="305" fill="#f5f7ff" font-size="34" font-weight="700">구현</text>
+      <text x="815" y="340" fill="#9aa7c7" font-size="18">병렬 / 자동화</text>
+    </g>
+    <g>
+      <rect x="1000" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="1025" y="255" fill="#86a7ff" font-size="22">STEP 5</text>
+      <text x="1025" y="305" fill="#f5f7ff" font-size="34" font-weight="700">검증</text>
+      <text x="1025" y="340" fill="#9aa7c7" font-size="18">리뷰 / 테스트</text>
+    </g>
+  </g>
+  <g stroke="url(#g1)" stroke-width="6" fill="none" stroke-linecap="round">
+    <path d="M280 290H330"/>
+    <path d="M490 290H540"/>
+    <path d="M740 290H790"/>
+    <path d="M950 290H1000"/>
+  </g>
+</svg>`,
+  'claude-components-board.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="440" y="220" width="400" height="220" rx="32" fill="#142440" stroke="#4f7dff" stroke-width="4"/>
+    <text x="640" y="290" text-anchor="middle" font-size="50" fill="#f5f7ff" font-weight="800">Claude Code</text>
+    <text x="640" y="340" text-anchor="middle" font-size="24" fill="#9aa7c7">한 명의 AI가 아니라 작업 시스템</text>
+    <g fill="#121d30" stroke="rgba(122,154,255,0.25)">
+      <rect x="80" y="120" width="250" height="120" rx="24"/>
+      <rect x="80" y="300" width="250" height="120" rx="24"/>
+      <rect x="80" y="480" width="250" height="120" rx="24"/>
+      <rect x="950" y="120" width="250" height="120" rx="24"/>
+      <rect x="950" y="300" width="250" height="120" rx="24"/>
+      <rect x="950" y="480" width="250" height="120" rx="24"/>
+    </g>
+    <g fill="#f5f7ff" font-size="32" font-weight="700">
+      <text x="120" y="190">CLAUDE.md</text>
+      <text x="120" y="370">MCP</text>
+      <text x="120" y="550">Hooks</text>
+      <text x="985" y="190">Subagents</text>
+      <text x="985" y="370">Skills</text>
+      <text x="985" y="550">Agent Teams</text>
+    </g>
+    <g fill="#9aa7c7" font-size="18">
+      <text x="120" y="220">기준과 기억 유지</text>
+      <text x="120" y="400">외부 도구 연결</text>
+      <text x="120" y="580">자동 개입 지점</text>
+      <text x="985" y="220">역할 분리</text>
+      <text x="985" y="400">재사용 워크플로우</text>
+      <text x="985" y="580">다중 에이전트 협업</text>
+    </g>
+  </g>
+  <g stroke="#67d5ff" stroke-width="4" opacity="0.8">
+    <path d="M330 180H440"/>
+    <path d="M330 360H440"/>
+    <path d="M330 540H440"/>
+    <path d="M840 180H950"/>
+    <path d="M840 360H950"/>
+    <path d="M840 540H950"/>
+  </g>
+</svg>`,
+  'problem-scope-ladder.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <text x="120" y="120" fill="#f5f7ff" font-size="52" font-weight="800">Problem scope ladder</text>
+    <text x="120" y="165" fill="#9aa7c7" font-size="24">문제가 클수록 AI가 못하는 게 아니라, 내가 제대로 지시하지 못할 확률이 커집니다.</text>
+    <g>
+      <rect x="160" y="460" width="280" height="120" rx="20" fill="#101927" stroke="rgba(122,154,255,0.18)"/>
+      <text x="195" y="525" fill="#f5f7ff" font-size="34" font-weight="700">과일 게임</text>
+      <text x="195" y="560" fill="#71f5b1" font-size="20">성공 가능한 적정 범위</text>
+    </g>
+    <g>
+      <rect x="520" y="320" width="280" height="170" rx="20" fill="#1b1620" stroke="rgba(255,107,107,0.28)"/>
+      <text x="555" y="385" fill="#f5f7ff" font-size="34" font-weight="700">다크소울</text>
+      <text x="555" y="420" fill="#ff6b6b" font-size="20">엔진 / 물리 / 시스템 과대</text>
+    </g>
+    <g>
+      <rect x="880" y="180" width="280" height="220" rx="20" fill="#1b1620" stroke="rgba(255,107,107,0.28)"/>
+      <text x="915" y="245" fill="#f5f7ff" font-size="34" font-weight="700">마인크래프트</text>
+      <text x="915" y="280" fill="#ff6b6b" font-size="20">스코프가 제품 수준</text>
+      <text x="915" y="312" fill="#9aa7c7" font-size="18">월드 · 렌더링 · 상호작용 · 컨텐츠</text>
+    </g>
+    <path d="M260 420L620 280L980 140" stroke="#67d5ff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <g fill="#67d5ff">
+      <circle cx="260" cy="420" r="12"/>
+      <circle cx="620" cy="280" r="12"/>
+      <circle cx="980" cy="140" r="12"/>
+    </g>
+  </g>
+</svg>`,
+  'fruit-architecture.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="140" y="170" width="1000" height="380" rx="30" fill="#0d1321" stroke="rgba(122,154,255,0.18)"/>
+    <rect x="200" y="240" width="190" height="240" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.28)"/>
+    <rect x="430" y="240" width="190" height="240" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.28)"/>
+    <rect x="660" y="240" width="190" height="240" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.28)"/>
+    <rect x="890" y="240" width="190" height="240" rx="22" fill="#13233d" stroke="#4f7dff" stroke-width="3"/>
+    <text x="240" y="295" fill="#86a7ff" font-size="22">INPUT</text>
+    <text x="240" y="345" fill="#f5f7ff" font-size="34" font-weight="700">InputHandler</text>
+    <text x="240" y="385" fill="#9aa7c7" font-size="18">키보드 / 터치 / 마우스</text>
+    <text x="470" y="295" fill="#86a7ff" font-size="22">STATE</text>
+    <text x="470" y="345" fill="#f5f7ff" font-size="34" font-weight="700">GameState</text>
+    <text x="470" y="385" fill="#9aa7c7" font-size="18">점수 / 스폰 / 게임오버</text>
+    <text x="700" y="295" fill="#86a7ff" font-size="22">PHYSICS</text>
+    <text x="700" y="345" fill="#f5f7ff" font-size="34" font-weight="700">Physics</text>
+    <text x="700" y="385" fill="#9aa7c7" font-size="18">중력 / 마찰 / 충돌</text>
+    <text x="930" y="295" fill="#86a7ff" font-size="22">RENDER</text>
+    <text x="930" y="345" fill="#f5f7ff" font-size="34" font-weight="700">Game + UI</text>
+    <text x="930" y="385" fill="#9aa7c7" font-size="18">Canvas / SVG / HUD</text>
+  </g>
+  <g stroke="#67d5ff" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M390 360H430"/>
+    <path d="M620 360H660"/>
+    <path d="M850 360H890"/>
+  </g>
+</svg>`,
+  'feedback-loop.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <circle cx="640" cy="360" r="190" fill="none" stroke="rgba(122,154,255,0.2)" stroke-width="22"/>
+    <circle cx="640" cy="360" r="190" fill="none" stroke="#4f7dff" stroke-width="18" stroke-dasharray="250 1000" transform="rotate(-90 640 360)"/>
+    <rect x="530" y="300" width="220" height="120" rx="26" fill="#13233d" stroke="#4f7dff" stroke-width="3"/>
+    <text x="640" y="355" text-anchor="middle" fill="#f5f7ff" font-size="40" font-weight="800">ITERATE</text>
+    <text x="640" y="388" text-anchor="middle" fill="#9aa7c7" font-size="18">테스트 -> 피드백 -> 수정</text>
+    <g fill="#121d30" stroke="rgba(122,154,255,0.24)">
+      <rect x="160" y="110" width="220" height="96" rx="22"/>
+      <rect x="905" y="110" width="220" height="96" rx="22"/>
+      <rect x="905" y="515" width="220" height="96" rx="22"/>
+      <rect x="160" y="515" width="220" height="96" rx="22"/>
+    </g>
+    <g fill="#f5f7ff" font-size="28" font-weight="700">
+      <text x="195" y="168">Play test</text>
+      <text x="943" y="168">Bug trace</text>
+      <text x="944" y="573">Design polish</text>
+      <text x="195" y="573">Browser verify</text>
+    </g>
+  </g>
+</svg>`,
+  'harness-blueprint.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="420" y="210" width="440" height="300" rx="34" fill="#13233d" stroke="#4f7dff" stroke-width="4"/>
+    <text x="640" y="300" text-anchor="middle" font-size="58" fill="#f5f7ff" font-weight="900">HARNESS</text>
+    <text x="640" y="348" text-anchor="middle" font-size="24" fill="#9aa7c7">계획 · 위임 · 검증 · 반복</text>
+    <g fill="#121d30" stroke="rgba(122,154,255,0.26)">
+      <rect x="120" y="150" width="220" height="110" rx="24"/>
+      <rect x="120" y="460" width="220" height="110" rx="24"/>
+      <rect x="940" y="150" width="220" height="110" rx="24"/>
+      <rect x="940" y="460" width="220" height="110" rx="24"/>
+    </g>
+    <g fill="#f5f7ff" font-size="28" font-weight="700">
+      <text x="155" y="212">문서화</text>
+      <text x="155" y="522">브라우저 검증</text>
+      <text x="975" y="212">서브 에이전트</text>
+      <text x="975" y="522">리뷰 루프</text>
+    </g>
+  </g>
+  <g stroke="#67d5ff" stroke-width="6" fill="none" stroke-linecap="round">
+    <path d="M340 205H420"/>
+    <path d="M340 515H420"/>
+    <path d="M860 205H940"/>
+    <path d="M860 515H940"/>
+  </g>
+</svg>`,
+  'role-shift.svg': `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="120" y="180" width="420" height="340" rx="28" fill="#151820" stroke="rgba(255,107,107,0.3)"/>
+    <rect x="740" y="180" width="420" height="340" rx="28" fill="#13233d" stroke="#4f7dff"/>
+    <text x="180" y="250" fill="#ff6b6b" font-size="24">OLD HAND POSITION</text>
+    <text x="180" y="325" fill="#f5f7ff" font-size="52" font-weight="900">Code typing</text>
+    <text x="180" y="382" fill="#9aa7c7" font-size="24">구현 세부에 손이 머문다</text>
+    <text x="800" y="250" fill="#86a7ff" font-size="24">NEW HAND POSITION</text>
+    <text x="800" y="325" fill="#f5f7ff" font-size="52" font-weight="900">System design</text>
+    <text x="800" y="382" fill="#9aa7c7" font-size="24">문서 · 검증 · 오케스트레이션</text>
+    <text x="600" y="372" fill="#67d5ff" font-size="84" font-weight="900">→</text>
+  </g>
+</svg>`,
+};
+
 const themeCss = `
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
@@ -77,6 +341,7 @@ body::before {
   background-size: 14px 14px;
   opacity: 0.35;
   pointer-events: none;
+  animation: gridDrift 18s linear infinite;
 }
 .header {
   display: flex;
@@ -171,6 +436,12 @@ body::before {
   border-radius: 14px;
   padding: 12px 14px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.24);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.28);
+  border-color: rgba(103,213,255,0.32);
 }
 .card h3 {
   font-size: 15px;
@@ -203,6 +474,16 @@ body::before {
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(15,22,37,0.98), rgba(10,14,24,0.98));
   border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.metric::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.05) 48%, transparent 55%);
+  transform: translateX(-120%);
+  animation: sheen 6s ease-in-out infinite;
 }
 .metric .label {
   color: var(--muted);
@@ -248,6 +529,7 @@ body::before {
   letter-spacing: -0.04em;
   font-weight: 900;
   max-width: 600px;
+  text-shadow: 0 0 16px rgba(79,125,255,0.18);
 }
 .divider .desc {
   margin-top: 10px;
@@ -264,6 +546,9 @@ body::before {
   border: 1px solid var(--line);
   background: #02040a;
   box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+}
+.image-frame.pulse, .video-frame.pulse {
+  animation: softPulse 4.2s ease-in-out infinite;
 }
 .image-frame img, .video-frame video {
   width: 100%;
@@ -409,6 +694,138 @@ body::before {
 }
 .hero-statement .accent { color: var(--cyan); }
 .hero-statement .accent2 { color: var(--primary-soft); }
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 14px;
+  height: 100%;
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-svg-card {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
+.hero-svg-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.chip-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(122,154,255,0.22);
+  background: rgba(255,255,255,0.03);
+  font-size: 9px;
+  color: var(--text);
+}
+.chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(103,213,255,0.45);
+  animation: softPulse 2.8s ease-in-out infinite;
+}
+.diagram-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 100%;
+}
+.diagram-panel .text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.diagram-panel .visual-col {
+  min-height: 0;
+}
+.visual-card {
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+}
+.visual-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.visual-card.contain img { object-fit: contain; }
+.floating-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(79,125,255,0.14);
+  border: 1px solid rgba(79,125,255,0.3);
+  color: #dfe6ff;
+  font-size: 9px;
+  animation: floatY 4.2s ease-in-out infinite;
+}
+.stage-ribbon {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.stage-ribbon span {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+  position: relative;
+}
+.stage-ribbon span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--primary), var(--cyan));
+  transform-origin: left center;
+  animation: fillGrow 3.2s ease-in-out infinite;
+}
+@keyframes gridDrift {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-6px, -4px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 10px 24px rgba(0,0,0,0.28), 0 0 0 rgba(79,125,255,0.0); }
+  50% { box-shadow: 0 10px 24px rgba(0,0,0,0.28), 0 0 22px rgba(79,125,255,0.18); }
+}
+@keyframes sheen {
+  0%, 100% { transform: translateX(-120%); }
+  50% { transform: translateX(120%); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes fillGrow {
+  0%, 100% { transform: scaleX(0.28); opacity: 0.75; }
+  50% { transform: scaleX(1); opacity: 1; }
+}
 .architecture {
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
@@ -694,12 +1111,21 @@ const slides = [
     title: '40분 동안 따라갈 흐름',
     subtitle: '도구 설명보다 먼저, 왜 이 이야기가 시작됐는지부터 갑니다.',
     content: `
-      <div class="timeline">
-        <div class="step"><div class="num">01</div><div class="name">바이브 코딩의 등장</div><p>카파시 트윗과 초기 실험, 문서화의 중요성을 느낀 계기</p></div>
-        <div class="step"><div class="num">02</div><div class="name">SKILLS와 구조화</div><p>워크플로우를 문서화된 실행 단위로 바꾸는 방식</p></div>
-        <div class="step"><div class="num">03</div><div class="name">Claude Code 구성 요소</div><p>메모리, MCP, hooks, subagents, teams를 보는 관점</p></div>
-        <div class="step"><div class="num">04</div><div class="name">과일 게임 사례</div><p>실패, 전환점, 구현, 디버깅, 리디자인까지의 실제 여정</p></div>
-        <div class="step"><div class="num">05</div><div class="name">Harness Engineering</div><p>왜 긴 프로젝트는 생성보다 운영 방식 설계가 중요한가</p></div>
+      <div class="hero-visual">
+        <div class="hero-copy">
+          <div class="floating-badge">PART MAP</div>
+          <div class="timeline">
+            <div class="step"><div class="num">01</div><div class="name">바이브 코딩의 등장</div><p>카파시 트윗과 초기 실험</p></div>
+            <div class="step"><div class="num">02</div><div class="name">SKILLS와 구조화</div><p>문서화된 실행 흐름</p></div>
+            <div class="step"><div class="num">03</div><div class="name">Claude Code</div><p>구성 요소와 조합</p></div>
+            <div class="step"><div class="num">04</div><div class="name">과일 게임 사례</div><p>실패와 성공의 전환점</p></div>
+            <div class="step"><div class="num">05</div><div class="name">Harness</div><p>운영 방식 설계</p></div>
+          </div>
+          <div class="stage-ribbon"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="hero-svg-card">
+          <img src="./assets/vibe-signal.svg" alt="presentation storyline signal graphic">
+        </div>
       </div>
     `
   })},
@@ -864,13 +1290,22 @@ const slides = [
     title: '문서화는 AI에게 주는 기억 장치이자 실행 기준입니다',
     subtitle: '사람에게도 중요하지만, 컨텍스트가 쉽게 흔들리는 에이전트에게는 더 중요합니다.',
     content: `
-      <div class="grid-3">
-        <div class="card"><h3>목표 고정</h3><p>무엇을 만들지, 어떤 제약이 있는지, 어떤 결과가 합격인지 명확히 남긴다.</p></div>
-        <div class="card"><h3>작업 분리</h3><p>기획, 설계, 구현, 테스트를 한 뭉치로 하지 않고 순차 단계로 나눈다.</p></div>
-        <div class="card"><h3>검증 가능성</h3><p>“괜찮아 보인다”가 아니라 “기준을 통과했다”로 대화 수준을 올린다.</p></div>
+      <div class="diagram-panel">
+        <div class="text-col">
+          <div class="chip-strip">
+            <span class="chip">목표 고정</span>
+            <span class="chip">작업 분리</span>
+            <span class="chip">검증 가능성</span>
+          </div>
+          <div class="card"><h3>왜 문서가 먼저인가</h3><p>문서가 없으면 AI는 매 턴마다 목표를 다시 해석합니다. 문서가 있으면 같은 기준을 보고 계속 앞으로 나아갑니다.</p></div>
+          <div class="callout"><p>문서화는 AI를 위한 친절한 설명이 아니라, 긴 프로젝트를 버티게 하는 상태 관리 방식입니다.</p></div>
+        </div>
+        <div class="visual-col">
+          <div class="visual-card contain pulse">
+            <img src="./assets/skills-assembly-line.svg" alt="documentation and skills assembly line">
+          </div>
+        </div>
       </div>
-      <div class="spacer-12"></div>
-      <div class="callout"><p>문서화는 AI를 위한 친절한 설명이 아니라, 긴 프로젝트를 버티게 하는 상태 관리 방식입니다.</p></div>
     `
   })},
   { page: 12, file: 'slide-12.html', html: wrap({
@@ -979,13 +1414,23 @@ const slides = [
     title: 'Claude Code의 핵심 구성 요소 한 장 요약',
     subtitle: '이 발표의 관점에서 중요한 건 개념 암기가 아니라, 어디에 어떻게 써야 하는지입니다.',
     content: `
-      <div class="matrix">
-        <div class="cell"><h4>CLAUDE.md / Memory</h4><p>세션이 달라도 흔들리지 않는 기준과 맥락</p></div>
-        <div class="cell"><h4>MCP</h4><p>외부 지식, 도구, 서비스와 연결하는 입출력 포트</p></div>
-        <div class="cell"><h4>Hooks</h4><p>작업 전후에 정책과 자동 개입을 걸 수 있는 안전 장치</p></div>
-        <div class="cell"><h4>Subagents</h4><p>설계, 구현, 디버깅, 리뷰 역할을 분리하는 핵심 실행 단위</p></div>
-        <div class="cell"><h4>Skills</h4><p>문서화된 워크플로우를 재사용 가능한 실행 방식으로 만든 것</p></div>
-        <div class="cell"><h4>Agent Teams</h4><p>서로 피드백하는 다중 에이전트 협업 구조</p></div>
+      <div class="diagram-panel">
+        <div class="visual-col">
+          <div class="visual-card contain pulse">
+            <img src="./assets/claude-components-board.svg" alt="Claude Code components board">
+          </div>
+        </div>
+        <div class="text-col">
+          <div class="card"><h3>핵심 해석</h3><p>이 발표의 관점에서 중요한 건 개념 암기가 아니라, 어디에 어떤 역할을 맡겨야 긴 프로젝트가 흔들리지 않는지입니다.</p></div>
+          <div class="chip-strip">
+            <span class="chip">Memory</span>
+            <span class="chip">MCP</span>
+            <span class="chip">Hooks</span>
+            <span class="chip">Subagents</span>
+            <span class="chip">Skills</span>
+            <span class="chip">Teams</span>
+          </div>
+        </div>
       </div>
     `
   })},
@@ -1193,10 +1638,16 @@ const slides = [
     title: '왜 실패했는가: 문제를 너무 크게 잡았고, 물리 키워드를 몰랐기 때문',
     subtitle: '게임 개발에서 AI를 잘 쓰려면, 적어도 무엇을 물어봐야 하는지는 알아야 합니다.',
     content: `
-      <div class="grid-3">
-        <div class="card"><h3>도메인 이해 부족</h3><p>물리 엔진, 그래픽 엔진, 장르별 구현 포인트를 충분히 모르는 상태였습니다.</p></div>
-        <div class="card"><h3>스코프 과대</h3><p>다크소울과 마인크래프트는 학습용이 아니라 거대한 제품 범위였습니다.</p></div>
-        <div class="card"><h3>지시 불명확</h3><p>좋은 결과는 좋은 모델만이 아니라, 좋은 문제 정의에서 나옵니다.</p></div>
+      <div class="diagram-panel">
+        <div class="text-col">
+          <div class="card"><h3>실패 이유 3개</h3><ul><li>도메인 이해 부족</li><li>스코프 과대</li><li>지시 불명확</li></ul></div>
+          <div class="callout"><p>좋은 결과는 좋은 모델만이 아니라, 좋은 문제 정의에서 나옵니다.</p></div>
+        </div>
+        <div class="visual-col">
+          <div class="visual-card contain">
+            <img src="./assets/problem-scope-ladder.svg" alt="problem scope ladder">
+          </div>
+        </div>
       </div>
     `
   })},
@@ -1235,23 +1686,32 @@ const slides = [
     title: '진짜 바이브 코딩은 “과일 게임 만들어줘”가 아니었습니다',
     subtitle: '먼저 기획 문서를 만들고, 그 문서를 기준으로 첫 구현을 시켰습니다.',
     content: `
-      <div class="architecture">
-        <div class="arch-box">
-          <h3>Before</h3>
-          <ul>
-            <li>막연한 한 줄 요청</li>
-            <li>도메인 이해 부족</li>
-            <li>큰 문제를 그대로 던짐</li>
-          </ul>
+      <div class="diagram-panel">
+        <div class="text-col">
+          <div class="architecture">
+            <div class="arch-box">
+              <h3>Before</h3>
+              <ul>
+                <li>막연한 한 줄 요청</li>
+                <li>도메인 이해 부족</li>
+                <li>큰 문제를 그대로 던짐</li>
+              </ul>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-box">
+              <h3>After</h3>
+              <ul>
+                <li>게임 메커닉 가이드 문서</li>
+                <li>역할 분리된 첫 구현</li>
+                <li>검증 기준 포함</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-box">
-          <h3>After</h3>
-          <ul>
-            <li>게임 메커닉 가이드 문서 작성</li>
-            <li>역할 분리된 첫 구현 지시</li>
-            <li>검증 기준까지 같이 정의</li>
-          </ul>
+        <div class="visual-col">
+          <div class="visual-card contain">
+            <img src="./assets/fruit-architecture.svg" alt="fruit game architecture system">
+          </div>
         </div>
       </div>
     `
@@ -1374,11 +1834,22 @@ const slides = [
     title: '이후 흐름은 거의 사람 팀이 만드는 것과 비슷했습니다',
     subtitle: '플레이 테스트를 붙이고, 문제를 발견하고, 다시 문장으로 피드백해 수정하는 루프가 계속 반복됐습니다.',
     content: `
-      <div class="image-frame image-contain" style="height:190px;">
-        <img src="./assets/dev-cycle.svg" alt="Development cycle">
+      <div class="diagram-panel">
+        <div class="visual-col">
+          <div class="visual-card contain pulse">
+            <img src="./assets/feedback-loop.svg" alt="feedback loop">
+          </div>
+        </div>
+        <div class="text-col">
+          <div class="card"><h3>이 장면이 말하는 것</h3><p>핵심은 AI가 완벽한 답을 한 번에 낸 것이 아니라, 사람처럼 여러 차례 테스트하고 피드백을 먹이며 점점 더 완성도 높은 방향으로 밀어붙였다는 점입니다.</p></div>
+          <div class="chip-strip">
+            <span class="chip">Play test</span>
+            <span class="chip">Bug trace</span>
+            <span class="chip">Design polish</span>
+            <span class="chip">Browser verify</span>
+          </div>
+        </div>
       </div>
-      <div class="spacer-8"></div>
-      <div class="callout"><p>핵심은 AI가 완벽한 답을 한 번에 낸 것이 아니라, 사람처럼 여러 차례 테스트하고 피드백을 먹이며 점점 더 완성도 높은 방향으로 밀어붙였다는 점입니다.</p></div>
     `
   })},
   { page: 38, file: 'slide-38.html', html: wrap({
@@ -1636,18 +2107,18 @@ const slides = [
     title: 'Harness Engineering이란 무엇인가',
     subtitle: '모델에게 말을 잘 거는 기술만이 아니라, 모델이 일하는 환경과 검증 루프를 함께 설계하는 방식입니다.',
     content: `
-      <div class="grid-2">
-        <div class="card">
-          <h3>짧은 정의</h3>
-          <p class="quote" style="font-size:18pt;">프롬프트를 잘 쓰는 것<br>+<br>Claude Code가 잘 일하도록 <span class="accent">작업 환경을 설계하는 것</span></p>
+      <div class="diagram-panel">
+        <div class="visual-col">
+          <div class="visual-card contain pulse">
+            <img src="./assets/harness-blueprint.svg" alt="harness blueprint">
+          </div>
         </div>
-        <div class="card">
-          <h3>왜 중요한가</h3>
-          <ul>
-            <li>긴 작업에서는 컨텍스트가 길어질수록 방향을 잃기 쉽다.</li>
-            <li>생성과 검증을 분리하지 않으면 자기 결과에 관대해진다.</li>
-            <li>좋은 결과는 좋은 모델에서만이 아니라 좋은 harness에서 나온다.</li>
-          </ul>
+        <div class="text-col">
+          <div class="card">
+            <h3>짧은 정의</h3>
+            <p class="quote" style="font-size:16px;">프롬프트를 잘 쓰는 것<br>+<br>Claude Code가 잘 일하도록 <span class="accent">작업 환경을 설계하는 것</span></p>
+          </div>
+          <div class="callout"><p>좋은 결과는 좋은 모델에서만이 아니라 좋은 harness에서 나옵니다.</p></div>
         </div>
       </div>
     `
@@ -1686,13 +2157,22 @@ const slides = [
     title: 'Claude Code를 “천재 개발자”보다 “잘 세팅된 오락실 기판”으로 보는 편이 맞습니다',
     subtitle: '현재 발표의 레트로 아케이드 톤과도 잘 맞는 비유입니다.',
     content: `
-      <div class="matrix">
-        <div class="cell"><h4>Model = CPU</h4><p>중앙에서 추론하지만 혼자서 모든 것을 보장하진 않는다.</p></div>
-        <div class="cell"><h4>Plans = 회로도</h4><p>작업의 방향과 연결 관계를 먼저 정리한다.</p></div>
-        <div class="cell"><h4>Subagents = 모듈 보드</h4><p>역할별로 다른 처리 회로가 붙는다.</p></div>
-        <div class="cell"><h4>MCP / Tools = 입출력 포트</h4><p>외부 세계와 닿게 만드는 연결 지점</p></div>
-        <div class="cell"><h4>Playwright = 테스트 장비</h4><p>실행 환경에서 실제로 확인하는 계측기</p></div>
-        <div class="cell"><h4>Review loop = 진단 모니터</h4><p>이상 징후를 다시 구조 문제로 연결</p></div>
+      <div class="diagram-panel">
+        <div class="visual-col">
+          <div class="visual-card contain">
+            <img src="./assets/harness-blueprint.svg" alt="arcade board metaphor">
+          </div>
+        </div>
+        <div class="text-col">
+          <div class="matrix">
+            <div class="cell"><h4>Model = CPU</h4><p>중앙에서 추론하지만 혼자서 모든 것을 보장하진 않는다.</p></div>
+            <div class="cell"><h4>Plans = 회로도</h4><p>작업의 방향과 연결 관계를 먼저 정리한다.</p></div>
+            <div class="cell"><h4>Subagents = 모듈 보드</h4><p>역할별로 다른 처리 회로가 붙는다.</p></div>
+            <div class="cell"><h4>MCP / Tools = 포트</h4><p>외부 세계와 닿게 만드는 연결 지점</p></div>
+            <div class="cell"><h4>Playwright = 테스트 장비</h4><p>실행 환경에서 실제로 확인하는 계측기</p></div>
+            <div class="cell"><h4>Review loop = 진단 모니터</h4><p>이상 징후를 다시 구조 문제로 연결</p></div>
+          </div>
+        </div>
       </div>
     `
   })},
@@ -1720,13 +2200,21 @@ const slides = [
     title: '핵심은 생성과 검증을 분리하는 것입니다',
     subtitle: '긴 개발 작업에서 planner, generator, evaluator를 분리하면 자기합리화를 막을 수 있습니다.',
     content: `
-      <div class="grid-3">
-        <div class="card"><h3>Planner</h3><p>스펙, 제약, 완료 조건, 우선순위를 정리합니다.</p></div>
-        <div class="card"><h3>Generator</h3><p>실제 구현과 수정, 디자인 반영을 수행합니다.</p></div>
-        <div class="card"><h3>Evaluator</h3><p>브라우저 실행, 코드 리뷰, 사용자 관점 검증을 수행합니다.</p></div>
+      <div class="diagram-panel">
+        <div class="visual-col">
+          <div class="visual-card contain pulse">
+            <img src="./assets/harness-blueprint.svg" alt="planner generator evaluator split">
+          </div>
+        </div>
+        <div class="text-col">
+          <div class="grid-3">
+            <div class="card"><h3>Planner</h3><p>스펙, 제약, 완료 조건, 우선순위 정리</p></div>
+            <div class="card"><h3>Generator</h3><p>실제 구현과 수정, 디자인 반영</p></div>
+            <div class="card"><h3>Evaluator</h3><p>브라우저 실행, 코드 리뷰, 사용자 관점 검증</p></div>
+          </div>
+          <div class="callout"><p>한 명의 AI에게 처음부터 끝까지 맡기면, 길어질수록 방향을 잃거나 자기 결과를 과대평가하기 쉽습니다. 그래서 역할 분리가 필수입니다.</p></div>
+        </div>
       </div>
-      <div class="spacer-12"></div>
-      <div class="callout"><p>한 명의 AI에게 처음부터 끝까지 맡기면, 길어질수록 방향을 잃거나 자기 결과를 과대평가하기 쉽습니다. 그래서 역할 분리가 필수입니다.</p></div>
     `
   })},
   { page: 55, file: 'slide-55.html', html: wrap({
@@ -1736,22 +2224,31 @@ const slides = [
     title: '그래서 바이브 코딩에서 손이 가야 하는 위치가 바뀝니다',
     subtitle: '핵심은 손을 안 대는 게 아니라, 손이 키보드 코드 입력에서 문서와 검증, 오케스트레이션으로 이동한다는 점입니다.',
     content: `
-      <div class="compare">
-        <div class="bad">
-          <h3>예전의 손</h3>
-          <ul>
-            <li>코드를 직접 친다</li>
-            <li>구현 세부를 직접 관리한다</li>
-            <li>테스트와 리뷰도 같은 머리로 처리한다</li>
-          </ul>
+      <div class="diagram-panel">
+        <div class="visual-col">
+          <div class="visual-card contain pulse">
+            <img src="./assets/role-shift.svg" alt="role shift from coding to system design">
+          </div>
         </div>
-        <div class="good">
-          <h3>지금의 손</h3>
-          <ul>
-            <li>문서를 만든다</li>
-            <li>검증 기준을 정한다</li>
-            <li>역할을 나누고 작업을 오케스트레이션한다</li>
-          </ul>
+        <div class="text-col">
+          <div class="compare">
+            <div class="bad">
+              <h3>예전의 손</h3>
+              <ul>
+                <li>코드를 직접 친다</li>
+                <li>구현 세부를 직접 관리한다</li>
+                <li>테스트와 리뷰도 같은 머리로 처리한다</li>
+              </ul>
+            </div>
+            <div class="good">
+              <h3>지금의 손</h3>
+              <ul>
+                <li>문서를 만든다</li>
+                <li>검증 기준을 정한다</li>
+                <li>역할을 나누고 작업을 오케스트레이션한다</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     `
@@ -2036,6 +2533,10 @@ async function main() {
 
   for (const [from, to] of assetsToCopy) {
     await copyFile(path.join(root, from), path.join(assetsDir, to));
+  }
+
+  for (const [filename, svg] of Object.entries(customSvgAssets)) {
+    await writeFile(path.join(assetsDir, filename), svg.trim(), 'utf8');
   }
 }
 
