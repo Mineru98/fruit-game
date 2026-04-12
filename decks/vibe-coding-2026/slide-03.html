@@ -12,25 +12,80 @@
     <div>
       <div class="eyebrow">Agenda</div>
       <h1 class="title">40분 동안 따라갈 흐름</h1>
-      <p class="subtitle">도구 설명보다 먼저, 왜 이 이야기가 시작됐는지부터 갑니다.</p>
+      <p class="subtitle">도구 설명보다 먼저, 왜 이 이야기가 필요한지부터 갑니다.</p>
     </div>
     <div class="page">03</div>
   </div>
   <main class="content">
-      <div class="hero-visual">
-        <div class="hero-copy">
-          <div class="floating-badge">PART MAP</div>
-          <div class="timeline">
-            <div class="step"><div class="num">01</div><div class="name">바이브 코딩의 등장</div><p>카파시 트윗과 초기 실험</p></div>
-            <div class="step"><div class="num">02</div><div class="name">SKILLS와 구조화</div><p>문서화된 실행 흐름</p></div>
-            <div class="step"><div class="num">03</div><div class="name">Claude Code</div><p>구성 요소와 조합</p></div>
-            <div class="step"><div class="num">04</div><div class="name">과일 게임 사례</div><p>실패와 성공의 전환점</p></div>
-            <div class="step"><div class="num">05</div><div class="name">Harness</div><p>운영 방식 설계</p></div>
+      <div class="stack" style="height:100%; gap:8px;">
+        <div class="card" style="padding:10px 12px; display:grid; grid-template-columns: 128px 1fr 128px; align-items:center; gap:12px;">
+          <div>
+            <div class="small-note" style="letter-spacing:0.16em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Story spine</div>
+            <p style="font-size:10px; line-height:1.45; color:var(--muted);">배경에서 시작해 운영 방식으로 수렴합니다.</p>
           </div>
-          <div class="stage-ribbon"><span></span><span></span><span></span><span></span><span></span></div>
+          <div style="display:grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items:center; gap:8px;">
+            <div style="padding:6px 8px; border-radius:12px; border:1px solid var(--line); background:rgba(79,125,255,0.08); text-align:center;">
+              <div style="font-size:8px; color:var(--primary-soft); margin-bottom:2px;">계기</div>
+              <div style="font-size:10px; font-weight:700;">Karpathy</div>
+            </div>
+            <div style="color:var(--cyan); font-size:14px; font-weight:800;">→</div>
+            <div style="padding:6px 8px; border-radius:12px; border:1px solid var(--line); background:rgba(79,125,255,0.08); text-align:center;">
+              <div style="font-size:8px; color:var(--primary-soft); margin-bottom:2px;">실험</div>
+              <div style="font-size:10px; font-weight:700;">게임 제작</div>
+            </div>
+            <div style="color:var(--cyan); font-size:14px; font-weight:800;">→</div>
+            <div style="padding:6px 8px; border-radius:12px; border:1px solid var(--line); background:rgba(79,125,255,0.08); text-align:center;">
+              <div style="font-size:8px; color:var(--primary-soft); margin-bottom:2px;">귀결</div>
+              <div style="font-size:10px; font-weight:700;">Harness</div>
+            </div>
+          </div>
+          <div class="badge-row" style="justify-content:flex-end;">
+            <span class="badge">Opening</span>
+            <span class="badge">5 Parts</span>
+          </div>
         </div>
-        <div class="hero-svg-card">
-          <img src="./assets/vibe-signal.svg" alt="presentation storyline signal graphic">
+        <div class="card" style="flex:1; min-height:0; padding:12px; display:flex; flex-direction:column; gap:10px;">
+          <div class="floating-badge">PART MAP</div>
+          <div style="display:grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap:8px; flex:1; min-height:0;">
+            <div class="step" style="padding:12px 10px; display:flex; flex-direction:column; justify-content:space-between; min-height:0;">
+              <div>
+                <div class="num">01</div>
+                <div class="name">바이브 코딩</div>
+              </div>
+              <p>카파시 트윗과 초기 실험</p>
+            </div>
+            <div class="step" style="padding:12px 10px; display:flex; flex-direction:column; justify-content:space-between; min-height:0;">
+              <div>
+                <div class="num">02</div>
+                <div class="name">Skills</div>
+              </div>
+              <p>문서화된 실행 흐름</p>
+            </div>
+            <div class="step" style="padding:12px 10px; display:flex; flex-direction:column; justify-content:space-between; min-height:0;">
+              <div>
+                <div class="num">03</div>
+                <div class="name">Claude Code</div>
+              </div>
+              <p>구성 요소와 조합</p>
+            </div>
+            <div class="step" style="padding:12px 10px; display:flex; flex-direction:column; justify-content:space-between; min-height:0;">
+              <div>
+                <div class="num">04</div>
+                <div class="name">과일 게임</div>
+              </div>
+              <p>실패와 성공의 전환점</p>
+            </div>
+            <div class="step" style="padding:12px 10px; display:flex; flex-direction:column; justify-content:space-between; min-height:0;">
+              <div>
+                <div class="num">05</div>
+                <div class="name">Harness</div>
+              </div>
+              <p>운영 방식 설계</p>
+            </div>
+          </div>
+          <div class="callout" style="padding:8px 10px;">
+            <p style="font-size:9px; line-height:1.4;">핵심은 위쪽의 계기를 보고, 아래 5개 파트를 따라가며 “왜 시작됐고 어떻게 끝까지 완성됐는가”를 이해하는 것입니다.</p>
+          </div>
         </div>
       </div>
     </main>

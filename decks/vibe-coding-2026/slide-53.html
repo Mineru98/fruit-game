@@ -17,13 +17,21 @@
     <div class="page">53</div>
   </div>
   <main class="content">
-      <div class="process-diagram">
-        <div class="process-step"><h4>Plan</h4><p>기획 문서와 설계 문서를 먼저 만든다</p></div>
-        <div class="process-step"><h4>Build</h4><p>구현 역할에게 문서 기준으로 작업시킨다</p></div>
-        <div class="process-step"><h4>Review</h4><p>code-reviewer와 다른 시각으로 중간 품질 점검</p></div>
-        <div class="process-step"><h4>Run</h4><p>Playwright로 실제 브라우저 동작을 확인</p></div>
-        <div class="process-step"><h4>Debug</h4><p>가설 기반 디버깅으로 원인을 좁혀간다</p></div>
-        <div class="process-step"><h4>Iterate</h4><p>자연어 피드백과 리디자인까지 다시 루프에 넣는다</p></div>
+      <div class="stack" style="gap:8px; height:100%; justify-content:space-between;">
+        <div style="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:8px;">
+          <div class="card" style="min-height: 88px; padding: 10px 10px 11px;"><div style="font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Step 01</div><h3 style="font-size:13px; margin-bottom:5px;">Plan</h3><p style="font-size:9px; line-height:1.42;">기획 문서와 설계 문서를 먼저 만든다</p></div>
+          <div class="card" style="min-height: 88px; padding: 10px 10px 11px;"><div style="font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Step 02</div><h3 style="font-size:13px; margin-bottom:5px;">Build</h3><p style="font-size:9px; line-height:1.42;">구현 역할에게 문서 기준으로 작업시킨다</p></div>
+          <div class="card" style="min-height: 88px; padding: 10px 10px 11px;"><div style="font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Step 03</div><h3 style="font-size:13px; margin-bottom:5px;">Review</h3><p style="font-size:9px; line-height:1.42;">다른 시각으로 중간 품질을 점검한다</p></div>
+        </div>
+        <div class="card" style="padding: 8px 12px; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center;">
+          <div style="font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:var(--primary-soft);">Loop bridge</div>
+          <div style="font-size:12px; line-height:1.4; font-weight:700; color:var(--text);">실행하면서 확인하고, 확인한 결과를 다시 문서로 돌려보낸다</div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:8px;">
+          <div class="card" style="min-height: 88px; padding: 10px 10px 11px;"><div style="font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Step 04</div><h3 style="font-size:13px; margin-bottom:5px;">Run</h3><p style="font-size:9px; line-height:1.42;">Playwright로 실제 브라우저 동작을 확인한다</p></div>
+          <div class="card" style="min-height: 88px; padding: 10px 10px 11px;"><div style="font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Step 05</div><h3 style="font-size:13px; margin-bottom:5px;">Debug</h3><p style="font-size:9px; line-height:1.42;">가설 기반 디버깅으로 원인을 좁혀간다</p></div>
+          <div class="card" style="min-height: 88px; padding: 10px 10px 11px;"><div style="font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:4px;">Step 06</div><h3 style="font-size:13px; margin-bottom:5px;">Iterate</h3><p style="font-size:9px; line-height:1.42;">자연어 피드백과 리디자인까지 다시 루프에 넣는다</p></div>
+        </div>
       </div>
     </main>
   

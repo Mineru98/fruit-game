@@ -12,19 +12,32 @@
     <div>
       <div class="eyebrow">Earlier lesson</div>
       <h1 class="title">Netflix 클론 실험에서 이미 본 패턴</h1>
-      <p class="subtitle">기능 명세를 자세히 적고, 그 문서를 바탕으로 구현 계획서를 만들어 순차 실행했을 때 결과가 가장 안정적이었습니다.</p>
+      <p class="subtitle">기능 명세를 먼저 적고, 그 문서를 바탕으로 구현과 검토를 돌렸을 때 결과가 가장 안정적이었습니다.</p>
     </div>
     <div class="page">12</div>
   </div>
   <main class="content">
-      <div class="process-diagram">
-        <div class="process-step"><h4>Spec</h4><p>무엇을 만들지, 어떤 화면이 필요한지, 완료 조건이 무엇인지 정의</p></div>
-        <div class="process-step"><h4>Plan</h4><p>구현 단위와 우선순위, 파일 구조, 필요한 외부 도구 분해</p></div>
-        <div class="process-step"><h4>Build</h4><p>문서 기준으로 순차 작업. 중간에 목표가 흔들리지 않음</p></div>
-        <div class="process-step"><h4>Review</h4><p>보는 사람 기준으로 다시 검토하고 화면 완성도를 점검</p></div>
-        <div class="process-step"><h4>Fix</h4><p>자연어 피드백을 곧바로 수정 루프로 연결</p></div>
-        <div class="process-step"><h4>Ship</h4><p>결과를 보여줄 수 있는 상태까지 밀어붙임</p></div>
-      </div>
+      <div class="stack" style="height:100%; gap:10px; justify-content:space-between;">
+        <div style="display:grid; grid-template-columns: 1fr 18px 1fr 18px 1fr; gap:6px; align-items:stretch;">
+          <div class="card" style="padding:10px 10px; min-height:0;"><h4>1 · Spec</h4><p>범위, 완료 조건, 화면을 먼저 정의</p></div>
+          <div style="display:flex; align-items:center; justify-content:center; color:var(--cyan); font-size:16px; font-weight:800;">→</div>
+          <div class="card" style="padding:10px 10px; min-height:0;"><h4>2 · Plan</h4><p>구현 단위와 파일 구조를 분해</p></div>
+          <div style="display:flex; align-items:center; justify-content:center; color:var(--cyan); font-size:16px; font-weight:800;">→</div>
+          <div class="card" style="padding:10px 10px; min-height:0;"><h4>3 · Build</h4><p>문서 기준으로 순차 구현</p></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; color:var(--primary-soft); font-size:8px; letter-spacing:0.16em; text-transform:uppercase;">
+          <span style="flex:1; height:1px; background:var(--line);"></span>
+          <span>검토 루프</span>
+          <span style="flex:1; height:1px; background:var(--line);"></span>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 18px 1fr 18px 1fr; gap:6px; align-items:stretch;">
+          <div class="card" style="padding:10px 10px; min-height:0;"><h4>4 · Review</h4><p>보는 사람 기준으로 다시 점검</p></div>
+          <div style="display:flex; align-items:center; justify-content:center; color:var(--cyan); font-size:16px; font-weight:800;">→</div>
+          <div class="card" style="padding:10px 10px; min-height:0;"><h4>5 · Fix</h4><p>피드백을 바로 수정 루프로 연결</p></div>
+          <div style="display:flex; align-items:center; justify-content:center; color:var(--cyan); font-size:16px; font-weight:800;">→</div>
+          <div class="card" style="padding:10px 10px; min-height:0;"><h4>6 · Ship</h4><p>보여줄 수 있는 상태까지 마무리</p></div>
+        </div>
+    </div>
     </main>
   
   <div class="footer">

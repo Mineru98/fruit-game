@@ -4,31 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
-  <title>50. Harness Engineering이란 무엇인가</title>
+  <title>50. Harness Engineering은 환경 설계입니다</title>
 </head>
 <body>
   <div class="noise"></div>
   <div class="header">
     <div>
       <div class="eyebrow">Definition</div>
-      <h1 class="title">Harness Engineering이란 무엇인가</h1>
-      <p class="subtitle">모델에게 말을 잘 거는 기술만이 아니라, 모델이 일하는 환경과 검증 루프를 함께 설계하는 방식입니다.</p>
+      <h1 class="title">Harness Engineering은 환경 설계입니다</h1>
+      <p class="subtitle">모델이 일하는 환경과 검증 루프를 함께 설계하는 방식입니다.</p>
     </div>
     <div class="page">50</div>
   </div>
   <main class="content">
-      <div class="diagram-panel">
-        <div class="visual-col">
-          <div class="visual-card contain pulse">
-            <img src="./assets/harness-blueprint.svg" alt="harness blueprint">
+      <div class="diagram-panel" style="grid-template-columns: 1.18fr 0.82fr; gap: 18px; align-items: center;">
+        <div class="visual-col" style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="visual-card contain pulse" style="min-height: 420px; padding: 12px; display: flex; align-items: center; justify-content: center; overflow: visible;">
+            <img src="./assets/harness-blueprint.svg" alt="harness blueprint" style="width: 100%; max-width: none; transform: scale(1.12); transform-origin: center center;">
           </div>
         </div>
         <div class="text-col">
-          <div class="card">
+          <div class="card" style="min-height: 0;">
             <h3>짧은 정의</h3>
-            <p class="quote" style="font-size:16px;">프롬프트를 잘 쓰는 것<br>+<br>Claude Code가 잘 일하도록 <span class="accent">작업 환경을 설계하는 것</span></p>
+            <p class="quote" style="font-size:17px; line-height:1.34;">프롬프트를 잘 쓰는 것보다,<br>Claude Code가 잘 일하도록 <span class="accent">작업 환경과 검증 루프를 설계하는 것</span></p>
+            <p style="margin-top:10px;">모델 성능은 출발점이고, harness는 결과를 끝까지 지키는 장치입니다.</p>
           </div>
-          <div class="callout"><p>좋은 결과는 좋은 모델에서만이 아니라 좋은 harness에서 나옵니다.</p></div>
+          <div class="callout"><p>좋은 결과는 좋은 모델에서만 나오지 않습니다. 실행 구조와 검증 구조가 같이 맞아야 합니다.</p></div>
         </div>
       </div>
     </main>

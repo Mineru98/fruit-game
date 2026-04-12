@@ -17,25 +17,38 @@
     <div class="page">32</div>
   </div>
   <main class="content">
-      <div class="grid-2">
-        <div class="card">
-          <h3>첫 버전 파일 구조</h3>
-          <ul>
-            <li>Game.js</li>
-            <li>Fruit.js</li>
-            <li>Physics.js</li>
-            <li>CollisionDetector.js</li>
-            <li>GameState.js</li>
-            <li>InputHandler.js</li>
-          </ul>
+      <div class="stack" style="gap: 10px; height: 100%;">
+        <div class="grid-2" style="grid-template-columns: 1.08fr 0.92fr; align-items: stretch;">
+          <div class="card" style="min-height: 188px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3>첫 버전 파일 구조</h3>
+              <p style="font-size: 15px; line-height: 1.45; font-weight: 700; color: var(--text); margin-bottom: 8px;">처음부터 역할이 나뉜 구조로 시작했습니다.</p>
+              <ul>
+                <li>Game.js</li>
+                <li>Fruit.js</li>
+                <li>Physics.js</li>
+                <li>CollisionDetector.js</li>
+                <li>GameState.js</li>
+                <li>InputHandler.js</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card" style="min-height: 188px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3>문서가 명시한 것</h3>
+              <ul>
+                <li>중력과 마찰의 방식</li>
+                <li>중심 거리와 반지름 합으로 충돌 판정</li>
+                <li>겹친 과일을 어떻게 분리할지</li>
+              </ul>
+            </div>
+            <div class="callout" style="margin-top: 12px;">
+              <p>코드가 먼저 구조를 설명할 수 있게 만든 것이, 이 장표의 핵심입니다.</p>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <h3>문서가 명시한 것</h3>
-          <ul>
-            <li>중력과 마찰의 방식</li>
-            <li>중심 거리와 반지름 합으로 충돌 판정</li>
-            <li>겹친 과일을 어떻게 분리할지</li>
-          </ul>
+        <div class="callout" style="text-align: center;">
+          <p>문서를 먼저 쓰니, 구현은 그 구조를 따라가며 자연스럽게 정리됐습니다.</p>
         </div>
       </div>
     </main>

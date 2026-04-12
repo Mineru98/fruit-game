@@ -4,33 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
-  <title>52. Claude Code를 “천재 개발자”보다 “잘 세팅된 오락실 기판”으로 보는 편이 맞습니다</title>
+  <title>52. Claude Code는 잘 세팅된 기판입니다</title>
 </head>
 <body>
   <div class="noise"></div>
   <div class="header">
     <div>
       <div class="eyebrow">Architecture</div>
-      <h1 class="title">Claude Code를 “천재 개발자”보다 “잘 세팅된 오락실 기판”으로 보는 편이 맞습니다</h1>
-      <p class="subtitle">현재 발표의 레트로 아케이드 톤과도 잘 맞는 비유입니다.</p>
+      <h1 class="title">Claude Code는 잘 세팅된 기판입니다</h1>
+      <p class="subtitle">개별 능력보다 배선, 포트, 진단 루프가 더 중요합니다.</p>
     </div>
     <div class="page">52</div>
   </div>
   <main class="content">
-      <div class="diagram-panel">
+      <div class="diagram-panel" style="grid-template-columns: 0.98fr 1.02fr; gap: 12px; align-items: start;">
         <div class="visual-col">
-          <div class="visual-card contain">
-            <img src="./assets/harness-blueprint.svg" alt="arcade board metaphor">
+          <div class="visual-card contain" style="min-height: 294px; padding: 8px; display: flex; align-items: center; justify-content: center; overflow: visible; position:relative;">
+            <img src="./assets/harness-blueprint.svg" alt="arcade board metaphor" style="width: 110%; max-width: none; transform: scale(1.12); transform-origin: center center;">
+            <div style="position:absolute; left:10px; right:10px; bottom:10px; padding:7px 9px; border-radius:12px; border:1px solid rgba(122,154,255,0.22); background:rgba(5,7,13,0.88); backdrop-filter: blur(6px);">
+              <div style="font-size:7px; letter-spacing:0.14em; text-transform:uppercase; color:var(--primary-soft); margin-bottom:3px;">Analog map</div>
+              <div style="font-size:11px; line-height:1.34; font-weight:800; letter-spacing:-0.02em;">한 명의 천재보다, <span class="accent">잘 세팅된 기판 전체</span>를 보는 편이 더 정확합니다.</div>
+            </div>
           </div>
         </div>
         <div class="text-col">
-          <div class="matrix">
-            <div class="cell"><h4>Model = CPU</h4><p>중앙에서 추론하지만 혼자서 모든 것을 보장하진 않는다.</p></div>
-            <div class="cell"><h4>Plans = 회로도</h4><p>작업의 방향과 연결 관계를 먼저 정리한다.</p></div>
-            <div class="cell"><h4>Subagents = 모듈 보드</h4><p>역할별로 다른 처리 회로가 붙는다.</p></div>
-            <div class="cell"><h4>MCP / Tools = 포트</h4><p>외부 세계와 닿게 만드는 연결 지점</p></div>
-            <div class="cell"><h4>Playwright = 테스트 장비</h4><p>실행 환경에서 실제로 확인하는 계측기</p></div>
-            <div class="cell"><h4>Review loop = 진단 모니터</h4><p>이상 징후를 다시 구조 문제로 연결</p></div>
+          <div class="card" style="padding: 8px 10px 8px;">
+            <h3 style="margin-bottom: 5px;">한 줄 비유</h3>
+            <p class="quote" style="font-size:15px; line-height:1.32;">Claude Code는 <span class="accent">천재 개발자</span>보다 <span class="accent">잘 세팅된 오락실 기판</span>에 가깝습니다.</p>
+            <p style="margin-top:6px; font-size:9px; line-height:1.42;">중요한 건 모델 자체가 아니라, 배선·포트·검증 루프가 살아 있는 세팅입니다.</p>
+          </div>
+          <div class="matrix" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px;">
+            <div class="cell" style="min-height: 52px;"><h4 style="font-size:9px; margin-bottom:4px;">Model = CPU</h4><p style="font-size:8px; line-height:1.34;">중앙에서 추론하지만 전체를 보장하진 않는다.</p></div>
+            <div class="cell" style="min-height: 52px;"><h4 style="font-size:9px; margin-bottom:4px;">Plans = 회로도</h4><p style="font-size:8px; line-height:1.34;">연결과 순서를 먼저 정리한다.</p></div>
+            <div class="cell" style="min-height: 52px;"><h4 style="font-size:9px; margin-bottom:4px;">Subagents = 모듈 보드</h4><p style="font-size:8px; line-height:1.34;">역할별로 다른 처리 회로가 붙는다.</p></div>
+            <div class="cell" style="min-height: 52px;"><h4 style="font-size:9px; margin-bottom:4px;">MCP / Tools = 포트</h4><p style="font-size:8px; line-height:1.34;">외부 세계와 닿는 연결 지점이다.</p></div>
+            <div class="cell" style="min-height: 52px;"><h4 style="font-size:9px; margin-bottom:4px;">Playwright = 테스트 장비</h4><p style="font-size:8px; line-height:1.34;">실행 환경을 바로 확인하는 계측기다.</p></div>
+            <div class="cell" style="min-height: 52px;"><h4 style="font-size:9px; margin-bottom:4px;">Review loop = 진단 모니터</h4><p style="font-size:8px; line-height:1.34;">이상 징후를 다시 구조 문제로 연결한다.</p></div>
           </div>
         </div>
       </div>

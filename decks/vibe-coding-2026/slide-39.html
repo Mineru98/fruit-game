@@ -17,8 +17,9 @@
     <div class="page">39</div>
   </div>
   <main class="content">
-      <div class="compare">
-        <div class="bad">
+      <div class="stack" style="display:grid; grid-template-rows: auto auto auto; gap: 8px; align-content: stretch; min-height: 100%; padding-block: 0;">
+        <div class="compare" style="grid-template-columns: 1fr 1fr; gap: 10px; align-items: stretch; min-height: 132px;">
+        <div class="bad" style="min-height: 132px; padding: 10px 11px 8px;">
           <h3>Before</h3>
           <ul>
             <li>데이터만 제거</li>
@@ -26,13 +27,36 @@
             <li>하지만 physics body가 남아서 이상 동작 발생</li>
           </ul>
         </div>
-        <div class="good">
+        <div class="good" style="min-height: 132px; padding: 10px 11px 8px;">
           <h3>After</h3>
           <ul>
             <li>물리와 데이터를 함께 제거</li>
             <li>경계가 맞아 떨어지도록 수정</li>
             <li>겉보기 수정이 아니라 구조 수정이 됨</li>
           </ul>
+        </div>
+        </div>
+        <div class="callout" style="max-width: 1040px; margin: 0 auto; padding: 12px 14px 14px;">
+          <p style="font-size: 14px;"><strong>핵심:</strong> 화면에서 지우는 것과 실제 물리 상태를 없애는 것은 같은 작업이어야 합니다.</p>
+          <div class="badge-row" style="margin-top: 7px;">
+            <div class="badge">데이터 + 물리 동기화</div>
+            <div class="badge">경계 수정</div>
+            <div class="badge">회귀 방지</div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px;">
+            <div class="card" style="padding: 10px 11px; min-height: 78px;">
+              <h3 style="margin-bottom: 6px;">데이터</h3>
+              <p style="font-size: 13px; line-height: 1.28;">보이는 과일은 지워졌는지 먼저 확인합니다.</p>
+            </div>
+            <div class="card" style="padding: 10px 11px; min-height: 78px;">
+              <h3 style="margin-bottom: 6px;">물리</h3>
+              <p style="font-size: 13px; line-height: 1.28;">충돌체도 같이 제거해야 상태가 남지 않습니다.</p>
+            </div>
+            <div class="card" style="padding: 10px 11px; min-height: 78px;">
+              <h3 style="margin-bottom: 6px;">경계</h3>
+              <p style="font-size: 13px; line-height: 1.28;">한쪽만 고치지 않도록 검증 루프를 둡니다.</p>
+            </div>
+          </div>
         </div>
       </div>
     </main>

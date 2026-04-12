@@ -4,44 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
-  <title>31. 진짜 바이브 코딩은 “과일 게임 만들어줘”가 아니었습니다</title>
+  <title>31. 바이브 코딩은 문서부터였습니다</title>
 </head>
 <body>
   <div class="noise"></div>
   <div class="header">
     <div>
       <div class="eyebrow">Real vibe coding</div>
-      <h1 class="title">진짜 바이브 코딩은 “과일 게임 만들어줘”가 아니었습니다</h1>
+      <h1 class="title">바이브 코딩은 문서부터였습니다</h1>
       <p class="subtitle">먼저 기획 문서를 만들고, 그 문서를 기준으로 첫 구현을 시켰습니다.</p>
     </div>
     <div class="page">31</div>
   </div>
   <main class="content">
-      <div class="diagram-panel">
+      <div class="diagram-panel" style="grid-template-columns: 0.48fr 1.52fr; align-items: stretch; gap: 14px;">
         <div class="text-col">
-          <div class="architecture">
-            <div class="arch-box">
+          <div class="architecture" style="grid-template-columns: 1fr; gap: 10px; min-width: 240px;">
+            <div class="arch-box" style="padding: 12px 14px; min-width: 0;">
               <h3>Before</h3>
               <ul>
-                <li>막연한 한 줄 요청</li>
+                <li>한 줄 요청</li>
                 <li>도메인 이해 부족</li>
                 <li>큰 문제를 그대로 던짐</li>
               </ul>
             </div>
-            <div class="arch-arrow">→</div>
-            <div class="arch-box">
+            <div class="arch-arrow" style="transform: rotate(90deg); font-size: 22px; line-height: 1; margin: 2px 0;">→</div>
+            <div class="arch-box" style="padding: 12px 14px; min-width: 0;">
               <h3>After</h3>
               <ul>
-                <li>게임 메커닉 가이드 문서</li>
-                <li>역할 분리된 첫 구현</li>
+                <li>문서 먼저</li>
+                <li>역할 분리 구현</li>
                 <li>검증 기준 포함</li>
               </ul>
             </div>
           </div>
         </div>
         <div class="visual-col">
-          <div class="visual-card contain">
-            <img src="./assets/fruit-architecture.svg" alt="fruit game architecture system">
+          <div class="visual-card contain" style="padding: 2px; min-height: 274px;">
+            <img src="./assets/fruit-architecture.svg" alt="fruit game architecture system" style="transform: scale(1.22); transform-origin: center;">
           </div>
         </div>
       </div>
