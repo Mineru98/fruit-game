@@ -18,13 +18,13 @@
   </div>
   <main class="content">
       <div class="grid-2" style="grid-template-columns: 1.3fr 0.7fr; align-items: stretch;">
-        <div class="stack" style="height:100%;">
-          <div class="badge-row" style="flex-shrink:0;">
+        <div style="display:grid; grid-template-rows: auto 1fr; gap:6px; min-height:0;">
+          <div class="badge-row">
             <span class="badge">VIDEO</span>
             <span class="badge">SCRIPT → GUIDE</span>
           </div>
-          <div class="video-frame" style="flex:1; min-height:0; height:auto; position:relative;">
-            <video src="./assets/miniflex.mp4" poster="./assets/miniflex-poster.png" muted autoplay loop playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;"></video>
+          <div class="video-frame">
+            <video src="./assets/miniflex.mp4" poster="./assets/miniflex-poster.png" controls muted playsinline preload="auto" style="width:100%; height:100%; object-fit:contain;"></video>
           </div>
         </div>
         <div class="stack" style="gap: 6px; height: 100%; justify-content: space-between;">

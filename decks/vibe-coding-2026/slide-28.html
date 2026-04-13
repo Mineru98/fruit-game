@@ -18,13 +18,13 @@
   </div>
   <main class="content">
       <div class="grid-2" style="grid-template-columns: 1.28fr 0.72fr; align-items: stretch;">
-        <div class="stack" style="height:100%;">
-          <div class="badge-row" style="flex-shrink:0;">
+        <div style="display:grid; grid-template-rows: auto 1fr; gap:6px; min-height:0;">
+          <div class="badge-row">
             <span class="badge">FAILURE CLIP</span>
             <span class="badge">브라우저 UI 제거</span>
           </div>
-          <div class="video-frame" style="flex:1; min-height:0; height:auto; position:relative;">
-            <video src="./assets/dark-soul.mp4" poster="./assets/dark-soul-poster.png" muted autoplay loop playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;"></video>
+          <div class="video-frame">
+            <video src="./assets/dark-soul.mp4" poster="./assets/dark-soul-poster.png" controls muted playsinline preload="auto" style="width:100%; height:100%; object-fit:contain;"></video>
           </div>
         </div>
         <div class="stack" style="gap: 6px; height: 100%; justify-content: space-between;">
