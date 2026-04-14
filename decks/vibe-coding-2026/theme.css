@@ -623,10 +623,14 @@ body::before {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 12px;
 }
+.cover-grid > * {
+  min-width: 0;
+}
 .cover-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 .cover-title {
   font-size: 30px;
@@ -645,12 +649,14 @@ body::before {
 .cover-right {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 .cover-panel {
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 10px;
   background: rgba(17,26,43,0.92);
+  min-width: 0;
 }
 .cover-panel .k {
   color: var(--primary-soft);
@@ -664,6 +670,7 @@ body::before {
   line-height: 1.36;
   color: var(--text);
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 .mini-chart {
   height: 72px;
