@@ -176,7 +176,7 @@
 
 ## 슬라이드 12
 ### 좋은 점
-- Spec → Plan → Build → Review → Fix → Ship의 흐름은 매우 명확합니다.
+- Spec → Plan → Build → Review → Fix → Deploy의 흐름은 매우 명확합니다.
 - 프로세스 자체를 한 장에 정리하려는 의도는 잘 드러납니다.
 - 각 박스 제목이 짧아 발표자가 구두 설명을 얹기 쉽습니다.
 

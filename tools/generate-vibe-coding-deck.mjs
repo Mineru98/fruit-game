@@ -1321,7 +1321,7 @@ const slides = [
         <div class="process-step"><h4>Build</h4><p>문서 기준으로 순차 작업. 중간에 목표가 흔들리지 않음</p></div>
         <div class="process-step"><h4>Review</h4><p>보는 사람 기준으로 다시 검토하고 화면 완성도를 점검</p></div>
         <div class="process-step"><h4>Fix</h4><p>자연어 피드백을 곧바로 수정 루프로 연결</p></div>
-        <div class="process-step"><h4>Ship</h4><p>결과를 보여줄 수 있는 상태까지 밀어붙임</p></div>
+        <div class="process-step"><h4>Deploy</h4><p>결과를 보여줄 수 있는 상태까지 밀어붙임</p></div>
       </div>
     `
   })},
