@@ -4,6 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
+  <style>
+    .video-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-poster {
+      position: relative;
+      display: none;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      border-radius: inherit;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      width: 64px;
+      height: 45px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    @media print {
+      .video-frame iframe {
+        display: none !important;
+      }
+      .video-poster {
+        display: flex !important;
+      }
+    }
+  </style>
   <title>30. 전환점은 설명 영상이었습니다</title>
 </head>
 <body>
@@ -23,8 +79,12 @@
             <span class="badge">VIDEO</span>
             <span class="badge">SCRIPT → GUIDE</span>
           </div>
-          <div class="video-frame">
-            <video src="./assets/miniflex.mp4" poster="./assets/miniflex-poster.png" controls muted playsinline preload="auto" style="width:100%; height:100%; object-fit:contain;"></video>
+            <div class="video-frame">
+            <a class="video-poster" href="https://www.youtube.com/watch?v=Q7qpkNyWOw4" target="_blank" rel="noopener noreferrer">
+              <img src="./assets/fruit-thumnail.avif" alt="유튜브 영상 썸네일">
+              <span class="video-play-btn">▶</span>
+            </a>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Q7qpkNyWOw4?si=KLInHJQwTBRDhdXU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         </div>
         <div class="stack" style="gap: 6px; height: 100%; justify-content: space-between;">
