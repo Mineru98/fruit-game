@@ -5,36 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
   <title>바이브 코딩, 문서화, 그리고 Harness Engineering</title>
+  <style>
+    .cover-grid.cover-grid-intro {
+      display: block;
+    }
+    .cover-grid-intro .cover-left {
+      height: 100%;
+      justify-content: flex-start !important;
+      gap: 14px;
+    }
+    .cover-grid-intro .cover-title {
+      max-width: 590px;
+      margin-top: 46px;
+      font-size: 27px;
+      line-height: 1.04;
+    }
+    .cover-grid-intro .subtitle {
+      max-width: 560px;
+    }
+    .intro-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+      max-width: 610px;
+    }
+    .intro-panels .cover-panel {
+      min-height: 96px;
+      padding: 10px 11px;
+    }
+    .intro-panels .cover-panel .v {
+      font-size: 9.5px;
+      line-height: 1.34;
+    }
+    .intro-panels .badge-row {
+      gap: 6px;
+    }
+    .intro-panels .badge {
+      padding: 4px 8px;
+      font-size: 7px;
+    }
+  </style>
 </head>
 <body>
   <div class="noise"></div>
-  <main class="content cover-grid">
-    <section class="cover-left" style="justify-content:space-between; min-height:100%;">
+  <main class="content cover-grid cover-grid-intro">
+    <section class="cover-left" style="min-height:100%;">
       <div class="eyebrow">VIBE CODING</div>
       <h1 class="cover-title">바이브 코딩, 문서화, 그리고 Harness Engineering</h1>
-      <p class="subtitle" style="font-size:15pt;max-width:520pt;">Claude Code로 게임을 완성한 2일짜리 실험</p>
-      <div class="cover-meta">
-        <div>발표자 · 임근석</div>
-        <div>회사 · 쓸모랩 · 우리기획</div>
-        <div>발표일 · 2026년 4월 17일</div>
-      </div>
-    </section>
-    <section class="cover-right" style="grid-template-rows: minmax(0, 1.05fr) minmax(0, 0.95fr); align-content: stretch; height:100%;">
-      <div class="cover-panel">
-        <div class="k">Core thesis</div>
-        <div class="v">AI가 알아서 만든 게 아니라<br>문서화와 harness로<br>끝까지 완성시킨 프로젝트</div>
-      </div>
-      <div class="cover-panel">
-        <div class="k">Focus</div>
-        <div class="badge-row" style="margin-top:12pt;">
-          <span class="badge">Vibe Coding</span>
-          <span class="badge">Documentation</span>
-          <span class="badge">Skills</span>
-          <span class="badge">Subagents</span>
-          <span class="badge">테스트 자동화</span>
-          <span class="badge">Harness Engineering</span>
+      <p class="subtitle" style="font-size:12pt;max-width:560px;">Claude Code로 게임을 완성한 2일짜리 실험</p>
+      <div class="intro-panels">
+        <div class="cover-panel">
+          <div class="k">Core thesis</div>
+          <div class="v">AI가 알아서 만든 게 아니라 문서화와 harness로 끝까지 완성시킨 프로젝트</div>
         </div>
-        <div class="v" style="margin-top:10px;font-size:11px;line-height:1.45;color:var(--muted);">문서화 · 구조화 · 검증 자동화가 끝까지 밀어붙이는 방식입니다.</div>
+        <div class="cover-panel">
+          <div class="k">Focus</div>
+          <div class="badge-row" style="margin-top:6pt;">
+            <span class="badge">Vibe Coding</span>
+            <span class="badge">Documentation</span>
+            <span class="badge">Skills</span>
+            <span class="badge">Subagents</span>
+            <span class="badge">테스트 자동화</span>
+            <span class="badge">Harness Engineering</span>
+          </div>
+          <div class="v" style="margin-top:7px;font-size:8px;line-height:1.32;color:var(--muted);">문서화 · 구조화 · 검증 자동화가 끝까지 밀어붙이는 방식입니다.</div>
+        </div>
       </div>
     </section>
   </main>

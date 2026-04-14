@@ -17,31 +17,48 @@
     <div class="page">31</div>
   </div>
   <main class="content">
-      <div class="diagram-panel" style="grid-template-columns: 0.52fr 1.48fr; align-items: stretch; gap: 10px;">
-        <div class="text-col" style="justify-content:center;">
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            <div class="arch-box" style="padding: 8px 10px; min-width: 0;">
-              <h3 style="font-size: 12px; margin-bottom:5px;">Before</h3>
-              <ul style="font-size: 11px; line-height:1.35;">
-                <li>한 줄 요청</li>
-                <li>도메인 이해 부족</li>
-                <li>큰 문제를 그대로 던짐</li>
-              </ul>
-            </div>
-            <div style="text-align:center; color:var(--cyan); font-size:18px; font-weight:700; line-height:1;">↓</div>
-            <div class="arch-box" style="padding: 8px 10px; min-width: 0;">
-              <h3 style="font-size: 12px; margin-bottom:5px;">After</h3>
-              <ul style="font-size: 11px; line-height:1.35;">
-                <li>문서 먼저</li>
-                <li>역할 분리 구현</li>
-                <li>검증 기준 포함</li>
-              </ul>
-            </div>
+      <div class="stack" style="height:100%; gap:8px;">
+        <div class="compare" style="flex-shrink:0;">
+          <div class="bad" style="padding:8px 12px;">
+            <h3 style="font-size:12px; margin-bottom:4px;">Before</h3>
+            <ul style="font-size:11px; line-height:1.38;">
+              <li>한 줄 요청, 도메인 이해 부족</li>
+              <li>큰 문제를 그대로 던짐</li>
+            </ul>
+          </div>
+          <div class="good" style="padding:8px 12px;">
+            <h3 style="font-size:12px; margin-bottom:4px;">After — 문서 기반 설계</h3>
+            <ul style="font-size:11px; line-height:1.38;">
+              <li>기획 문서 먼저, 역할 분리 구현</li>
+              <li>검증 기준 포함</li>
+            </ul>
           </div>
         </div>
-        <div class="visual-col" style="height:100%; overflow:hidden;">
-          <div class="visual-card contain" style="padding: 2px; overflow: hidden; height:100%;">
-            <img src="./assets/fruit-architecture.svg" alt="fruit game architecture system" style="width: 100%; height: 100%; object-fit: contain; transform-origin: center;">
+        <div class="visual-card" style="flex:1; min-height:0; padding:14px 18px; display:flex; align-items:center;">
+          <div style="display:grid; grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr; gap:8px; align-items:center; width:100%;">
+            <div style="border-radius:10px; padding:12px 14px; background:#121d30; border:1px solid rgba(122,154,255,0.28);">
+              <div style="font-size:9px; letter-spacing:0.12em; color:#86a7ff; margin-bottom:5px; text-transform:uppercase;">Input</div>
+              <div style="font-size:16px; font-weight:700; color:#f5f7ff; margin-bottom:4px;">InputHandler</div>
+              <div style="font-size:10px; color:#9aa7c7;">키보드 / 터치 / 마우스</div>
+            </div>
+            <div style="text-align:center; color:#67d5ff; font-size:16px; font-weight:700;">→</div>
+            <div style="border-radius:10px; padding:12px 14px; background:#121d30; border:1px solid rgba(122,154,255,0.28);">
+              <div style="font-size:9px; letter-spacing:0.12em; color:#86a7ff; margin-bottom:5px; text-transform:uppercase;">State</div>
+              <div style="font-size:16px; font-weight:700; color:#f5f7ff; margin-bottom:4px;">GameState</div>
+              <div style="font-size:10px; color:#9aa7c7;">점수 / 스폰 / 게임오버</div>
+            </div>
+            <div style="text-align:center; color:#67d5ff; font-size:16px; font-weight:700;">→</div>
+            <div style="border-radius:10px; padding:12px 14px; background:#121d30; border:1px solid rgba(122,154,255,0.28);">
+              <div style="font-size:9px; letter-spacing:0.12em; color:#86a7ff; margin-bottom:5px; text-transform:uppercase;">Physics</div>
+              <div style="font-size:16px; font-weight:700; color:#f5f7ff; margin-bottom:4px;">Physics</div>
+              <div style="font-size:10px; color:#9aa7c7;">중력 / 마찰 / 충돌</div>
+            </div>
+            <div style="text-align:center; color:#67d5ff; font-size:16px; font-weight:700;">→</div>
+            <div style="border-radius:10px; padding:12px 14px; background:#13233d; border:2px solid #4f7dff; box-shadow:0 0 12px rgba(79,125,255,0.25);">
+              <div style="font-size:9px; letter-spacing:0.12em; color:#86a7ff; margin-bottom:5px; text-transform:uppercase;">Render</div>
+              <div style="font-size:16px; font-weight:700; color:#f5f7ff; margin-bottom:4px;">Game + UI</div>
+              <div style="font-size:10px; color:#9aa7c7;">Canvas / SVG / HUD</div>
+            </div>
           </div>
         </div>
       </div>
