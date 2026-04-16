@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00ffff"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="400" fill="#0a0a1a"/>
+  <!-- Cycle nodes -->
+  <g filter="url(#glow)">
+    <!-- Plan -->
+    <rect x="30" y="110" width="120" height="60" rx="10" fill="none" stroke="#ff00ff" stroke-width="2"/>
+    <text x="90" y="145" text-anchor="middle" fill="#ff00ff" font-family="monospace" font-size="16" font-weight="bold">PLAN</text>
+    <text x="90" y="190" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="10">writing-plans</text>
+    <!-- Design -->
+    <rect x="190" y="110" width="120" height="60" rx="10" fill="none" stroke="#FFE000" stroke-width="2"/>
+    <text x="250" y="145" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="16" font-weight="bold">DESIGN</text>
+    <text x="250" y="190" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="10">brainstorming</text>
+    <!-- Implement -->
+    <rect x="350" y="110" width="120" height="60" rx="10" fill="none" stroke="#00ff88" stroke-width="2"/>
+    <text x="410" y="145" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="16" font-weight="bold">BUILD</text>
+    <text x="410" y="190" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="10">executing-plans</text>
+    <!-- Debug -->
+    <rect x="510" y="110" width="120" height="60" rx="10" fill="none" stroke="#ff0055" stroke-width="2"/>
+    <text x="570" y="145" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="16" font-weight="bold">DEBUG</text>
+    <text x="570" y="190" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="10">debugging</text>
+    <!-- Review -->
+    <rect x="670" y="110" width="120" height="60" rx="10" fill="none" stroke="#00ffff" stroke-width="2"/>
+    <text x="730" y="145" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="16" font-weight="bold">REVIEW</text>
+    <text x="730" y="190" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="10">code-reviewer</text>
+  </g>
+  <!-- Arrows -->
+  <line x1="150" y1="140" x2="185" y2="140" stroke="#00ffff" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="310" y1="140" x2="345" y2="140" stroke="#00ffff" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="470" y1="140" x2="505" y2="140" stroke="#00ffff" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="630" y1="140" x2="665" y2="140" stroke="#00ffff" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- Return arrow -->
+  <path d="M730 170 L730 270 L90 270 L90 175" fill="none" stroke="#ff00ff" stroke-width="1.5" stroke-dasharray="8,4" marker-end="url(#arrow)"/>
+  <text x="400" y="290" text-anchor="middle" fill="#ff00ff" font-family="monospace" font-size="11">ITERATE</text>
+</svg>

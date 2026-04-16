@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#67d5ff"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="440" y="220" width="400" height="220" rx="32" fill="#142440" stroke="#4f7dff" stroke-width="4"/>
+    <text x="640" y="290" text-anchor="middle" font-size="50" fill="#f5f7ff" font-weight="800">Claude Code</text>
+    <text x="640" y="340" text-anchor="middle" font-size="24" fill="#9aa7c7">한 명의 AI가 아니라 작업 시스템</text>
+    <g fill="#121d30" stroke="rgba(122,154,255,0.25)">
+      <rect x="80" y="120" width="250" height="120" rx="24"/>
+      <rect x="80" y="300" width="250" height="120" rx="24"/>
+      <rect x="80" y="480" width="250" height="120" rx="24"/>
+      <rect x="950" y="120" width="250" height="120" rx="24"/>
+      <rect x="950" y="300" width="250" height="120" rx="24"/>
+      <rect x="950" y="480" width="250" height="120" rx="24"/>
+    </g>
+    <g fill="#f5f7ff" font-size="32" font-weight="700">
+      <text x="120" y="190">CLAUDE.md</text>
+      <text x="120" y="370">MCP</text>
+      <text x="120" y="550">Hooks</text>
+      <text x="985" y="190">Subagents</text>
+      <text x="985" y="370">Skills</text>
+      <text x="985" y="550">Agent Teams</text>
+    </g>
+    <g fill="#9aa7c7" font-size="18">
+      <text x="120" y="220">기준과 기억 유지</text>
+      <text x="120" y="400">외부 도구 연결</text>
+      <text x="120" y="580">자동 개입 지점</text>
+      <text x="985" y="220">역할 분리</text>
+      <text x="985" y="400">재사용 워크플로우</text>
+      <text x="985" y="580">다중 에이전트 협업</text>
+    </g>
+  </g>
+  <g stroke="#67d5ff" stroke-width="4" opacity="0.8" fill="none" marker-end="url(#arrow)">
+    <path d="M330 180 C380 180,400 270,440 270"/>
+    <path d="M330 360 L440 330"/>
+    <path d="M330 540 C380 540,400 390,440 390"/>
+    <path d="M840 270 C880 270,900 180,950 180"/>
+    <path d="M840 330 L950 360"/>
+    <path d="M840 390 C880 390,900 540,950 540"/>
+  </g>
+</svg>

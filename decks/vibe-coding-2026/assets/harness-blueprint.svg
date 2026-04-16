@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <marker id="arrow" markerWidth="9.5" markerHeight="9.5" refX="8.4" refY="4.75" orient="auto" markerUnits="userSpaceOnUse">
+      <polygon points="0 0, 9.5 4.75, 0 9.5" fill="#67d5ff"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="420" y="210" width="440" height="300" rx="34" fill="#13233d" stroke="#4f7dff" stroke-width="4"/>
+    <text x="640" y="322" text-anchor="middle" font-size="58" fill="#f5f7ff" font-weight="900" dominant-baseline="middle">HARNESS</text>
+    <text x="640" y="382" text-anchor="middle" font-size="24" fill="#9aa7c7" dominant-baseline="middle">계획 · 위임 · 검증 · 반복</text>
+    <g fill="#121d30" stroke="rgba(122,154,255,0.26)">
+      <rect x="120" y="150" width="220" height="110" rx="24"/>
+      <rect x="120" y="460" width="220" height="110" rx="24"/>
+      <rect x="940" y="150" width="220" height="110" rx="24"/>
+      <rect x="940" y="460" width="220" height="110" rx="24"/>
+    </g>
+    <g fill="#f5f7ff" font-size="28" font-weight="700" text-anchor="middle" dominant-baseline="middle">
+      <text x="230" y="205">문서화</text>
+      <text x="230" y="515">브라우저 검증</text>
+      <text x="1050" y="205">서브 에이전트</text>
+      <text x="1050" y="515">리뷰 루프</text>
+    </g>
+  </g>
+  <g stroke="#67d5ff" stroke-width="6" stroke-linecap="round" fill="none" marker-end="url(#arrow)">
+    <path d="M340 205 C372 205,390 250,420 285"/>
+    <path d="M340 515 C372 515,390 470,420 435"/>
+    <path d="M860 285 C890 250,908 205,940 205"/>
+    <path d="M860 435 C890 470,908 515,940 515"/>
+  </g>
+</svg>

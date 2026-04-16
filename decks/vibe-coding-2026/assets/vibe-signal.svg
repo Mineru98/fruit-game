@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#05070d"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0%" stop-color="#4f7dff"/>
+      <stop offset="100%" stop-color="#67d5ff"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 18 -8"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g stroke="rgba(255,255,255,0.08)" fill="none">
+    <path d="M0 160H1280"/>
+    <path d="M0 360H1280"/>
+    <path d="M0 560H1280"/>
+    <path d="M180 0V720"/>
+    <path d="M500 0V720"/>
+    <path d="M820 0V720"/>
+    <path d="M1140 0V720"/>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M140 530C300 520 360 360 470 345C575 330 593 450 710 450C830 450 875 205 1030 200C1125 197 1180 250 1210 280" fill="none" stroke="url(#line)" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g fill="#4f7dff">
+    <circle cx="470" cy="345" r="16"/>
+    <circle cx="710" cy="450" r="16"/>
+    <circle cx="1030" cy="200" r="16"/>
+  </g>
+  <g fill="#f5f7ff" font-family="Pretendard, sans-serif">
+    <text x="138" y="580" font-size="26" opacity="0.8">2025.02</text>
+    <text x="430" y="300" font-size="28" font-weight="700">Karpathy tweet</text>
+    <text x="670" y="500" font-size="28" font-weight="700">Vibe coding practice</text>
+    <text x="935" y="160" font-size="28" font-weight="700">Game project</text>
+  </g>
+</svg>

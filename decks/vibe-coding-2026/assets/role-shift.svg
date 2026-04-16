@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <clipPath id="clip-l">
+      <rect x="120" y="180" width="420" height="340" rx="28"/>
+    </clipPath>
+    <clipPath id="clip-r">
+      <rect x="740" y="180" width="420" height="340" rx="28"/>
+    </clipPath>
+  </defs>
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="120" y="180" width="420" height="340" rx="28" fill="#151820" stroke="rgba(255,107,107,0.3)"/>
+    <rect x="740" y="180" width="420" height="340" rx="28" fill="#13233d" stroke="#4f7dff"/>
+    <g clip-path="url(#clip-l)">
+      <text x="180" y="250" fill="#ff6b6b" font-size="24">OLD HAND POSITION</text>
+      <text x="180" y="322" fill="#f5f7ff" font-size="46" font-weight="900">Code typing</text>
+      <text x="180" y="378" fill="#9aa7c7" font-size="24">구현 세부에 손이 머문다</text>
+    </g>
+    <g clip-path="url(#clip-r)">
+      <text x="800" y="250" fill="#86a7ff" font-size="24">NEW HAND POSITION</text>
+      <text x="800" y="322" fill="#f5f7ff" font-size="46" font-weight="900">System design</text>
+      <text x="800" y="378" fill="#9aa7c7" font-size="24">문서 · 검증 · 오케스트레이션</text>
+    </g>
+    <text x="600" y="372" fill="#67d5ff" font-size="84" font-weight="900">→</text>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 215 1100 291">
+  <rect x="0" y="0" width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <rect x="200" y="240" width="190" height="240" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.28)"/>
+    <rect x="430" y="240" width="190" height="240" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.28)"/>
+    <rect x="660" y="240" width="190" height="240" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.28)"/>
+    <rect x="890" y="240" width="190" height="240" rx="22" fill="#13233d" stroke="#4f7dff" stroke-width="3"/>
+    <text x="240" y="295" fill="#86a7ff" font-size="22">INPUT</text>
+    <text x="240" y="345" fill="#f5f7ff" font-size="34" font-weight="700">InputHandler</text>
+    <text x="240" y="385" fill="#9aa7c7" font-size="18">키보드 / 터치 / 마우스</text>
+    <text x="470" y="295" fill="#86a7ff" font-size="22">STATE</text>
+    <text x="470" y="345" fill="#f5f7ff" font-size="34" font-weight="700">GameState</text>
+    <text x="470" y="385" fill="#9aa7c7" font-size="18">점수 / 스폰 / 게임오버</text>
+    <text x="700" y="295" fill="#86a7ff" font-size="22">PHYSICS</text>
+    <text x="700" y="345" fill="#f5f7ff" font-size="34" font-weight="700">Physics</text>
+    <text x="700" y="385" fill="#9aa7c7" font-size="18">중력 / 마찰 / 충돌</text>
+    <text x="930" y="295" fill="#86a7ff" font-size="22">RENDER</text>
+    <text x="930" y="345" fill="#f5f7ff" font-size="34" font-weight="700">Game + UI</text>
+    <text x="930" y="385" fill="#9aa7c7" font-size="18">Canvas / SVG / HUD</text>
+  </g>
+  <g stroke="#67d5ff" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M390 360H430"/>
+    <path d="M620 360H660"/>
+    <path d="M850 360H890"/>
+  </g>
+</svg>

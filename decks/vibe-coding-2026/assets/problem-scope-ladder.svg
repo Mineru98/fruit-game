@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <text x="120" y="120" fill="#f5f7ff" font-size="52" font-weight="800">Problem scope ladder</text>
+    <text x="120" y="165" fill="#9aa7c7" font-size="24">문제가 클수록 AI가 못하는 게 아니라, 내가 제대로 지시하지 못할 확률이 커집니다.</text>
+    <g>
+      <rect x="160" y="460" width="280" height="120" rx="20" fill="#101927" stroke="rgba(122,154,255,0.18)"/>
+      <text x="195" y="525" fill="#f5f7ff" font-size="34" font-weight="700">과일 게임</text>
+      <text x="195" y="560" fill="#71f5b1" font-size="20">성공 가능한 적정 범위</text>
+    </g>
+    <g>
+      <rect x="520" y="320" width="280" height="170" rx="20" fill="#1b1620" stroke="rgba(255,107,107,0.28)"/>
+      <text x="555" y="385" fill="#f5f7ff" font-size="34" font-weight="700">다크소울</text>
+      <text x="555" y="420" fill="#ff6b6b" font-size="20">엔진 / 물리 / 시스템 과대</text>
+    </g>
+    <g>
+      <rect x="880" y="180" width="280" height="220" rx="20" fill="#1b1620" stroke="rgba(255,107,107,0.28)"/>
+      <text x="915" y="245" fill="#f5f7ff" font-size="34" font-weight="700">마인크래프트</text>
+      <text x="915" y="280" fill="#ff6b6b" font-size="20">스코프가 제품 수준</text>
+      <text x="915" y="312" fill="#9aa7c7" font-size="18">월드 · 렌더링 · 상호작용 · 컨텐츠</text>
+    </g>
+    <path d="M260 420L620 280L980 140" stroke="#67d5ff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <g fill="#67d5ff">
+      <circle cx="260" cy="420" r="12"/>
+      <circle cx="620" cy="280" r="12"/>
+      <circle cx="980" cy="140" r="12"/>
+    </g>
+  </g>
+</svg>

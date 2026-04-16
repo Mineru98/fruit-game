@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g font-family="Pretendard, sans-serif">
+    <circle cx="640" cy="360" r="190" fill="none" stroke="rgba(122,154,255,0.2)" stroke-width="22"/>
+    <circle cx="640" cy="360" r="190" fill="none" stroke="#4f7dff" stroke-width="18" stroke-dasharray="250 1000" transform="rotate(-90 640 360)"/>
+    <rect x="530" y="300" width="220" height="120" rx="26" fill="#13233d" stroke="#4f7dff" stroke-width="3"/>
+    <text x="640" y="355" text-anchor="middle" fill="#f5f7ff" font-size="40" font-weight="800">ITERATE</text>
+    <text x="640" y="388" text-anchor="middle" fill="#9aa7c7" font-size="18">테스트 -> 피드백 -> 수정</text>
+    <g fill="#121d30" stroke="rgba(122,154,255,0.24)">
+      <rect x="160" y="110" width="220" height="96" rx="22"/>
+      <rect x="905" y="110" width="220" height="96" rx="22"/>
+      <rect x="905" y="515" width="220" height="96" rx="22"/>
+      <rect x="160" y="515" width="220" height="96" rx="22"/>
+    </g>
+    <g fill="#f5f7ff" font-size="28" font-weight="700">
+      <text x="195" y="168">Play test</text>
+      <text x="943" y="168">Bug trace</text>
+      <text x="944" y="573">Design polish</text>
+      <text x="195" y="573">Browser verify</text>
+    </g>
+  </g>
+</svg>

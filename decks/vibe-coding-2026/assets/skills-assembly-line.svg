@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0%" stop-color="#4f7dff"/>
+      <stop offset="100%" stop-color="#67d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#07101b"/>
+  <g fill="none" stroke="rgba(122,154,255,0.18)">
+    <rect x="70" y="120" width="1140" height="460" rx="30"/>
+    <path d="M160 350H1120" stroke-width="6"/>
+  </g>
+  <g font-family="Pretendard, sans-serif">
+    <g>
+      <rect x="120" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="145" y="255" fill="#86a7ff" font-size="22">STEP 1</text>
+      <text x="145" y="305" fill="#f5f7ff" font-size="34" font-weight="700">기획</text>
+      <text x="145" y="340" fill="#9aa7c7" font-size="18">장르 / 목표 / 범위</text>
+    </g>
+    <g>
+      <rect x="330" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="355" y="255" fill="#86a7ff" font-size="22">STEP 2</text>
+      <text x="355" y="305" fill="#f5f7ff" font-size="34" font-weight="700">설계</text>
+      <text x="355" y="340" fill="#9aa7c7" font-size="18">문서 / 구조 / 역할</text>
+    </g>
+    <g>
+      <rect x="540" y="210" width="200" height="160" rx="22" fill="#13233d" stroke="#4f7dff"/>
+      <text x="565" y="255" fill="#86a7ff" font-size="22">STEP 3</text>
+      <text x="565" y="305" fill="#f5f7ff" font-size="34" font-weight="700">SKILLS</text>
+      <text x="565" y="340" fill="#9aa7c7" font-size="18">문서화된 실행 방식</text>
+    </g>
+    <g>
+      <rect x="790" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="815" y="255" fill="#86a7ff" font-size="22">STEP 4</text>
+      <text x="815" y="305" fill="#f5f7ff" font-size="34" font-weight="700">구현</text>
+      <text x="815" y="340" fill="#9aa7c7" font-size="18">병렬 / 자동화</text>
+    </g>
+    <g>
+      <rect x="1000" y="210" width="160" height="160" rx="22" fill="#121d30" stroke="rgba(122,154,255,0.3)"/>
+      <text x="1025" y="255" fill="#86a7ff" font-size="22">STEP 5</text>
+      <text x="1025" y="305" fill="#f5f7ff" font-size="34" font-weight="700">검증</text>
+      <text x="1025" y="340" fill="#9aa7c7" font-size="18">리뷰 / 테스트</text>
+    </g>
+  </g>
+  <g stroke="url(#g1)" stroke-width="6" fill="none" stroke-linecap="round">
+    <path d="M280 290H330"/>
+    <path d="M490 290H540"/>
+    <path d="M740 290H790"/>
+    <path d="M950 290H1000"/>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <marker id="arr4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00ff88"/>
+    </marker>
+  </defs>
+  <rect width="800" height="400" fill="#0a0a1a"/>
+  <text x="400" y="35" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="18" font-weight="bold">Physics Engine Concepts</text>
+  <!-- Container box -->
+  <rect x="30" y="60" width="230" height="300" rx="5" fill="none" stroke="#333" stroke-width="1"/>
+  <text x="145" y="85" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="13" font-weight="bold">GRAVITY</text>
+  <!-- Falling fruit -->
+  <circle cx="145" cy="140" r="20" fill="none" stroke="#ff0055" stroke-width="2"/>
+  <text x="145" y="145" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="10">LV1</text>
+  <line x1="145" y1="165" x2="145" y2="220" stroke="#00ff88" stroke-width="2" marker-end="url(#arr4)"/>
+  <text x="175" y="195" fill="#00ff88" font-family="monospace" font-size="10">vy += g</text>
+  <!-- Bounce -->
+  <circle cx="145" cy="260" r="20" fill="none" stroke="#ff0055" stroke-width="2"/>
+  <text x="145" y="265" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="10">LV1</text>
+  <line x1="145" y1="280" x2="145" y2="310" stroke="#666" stroke-width="2"/>
+  <rect x="70" y="310" width="150" height="4" fill="#555"/>
+  <text x="145" y="340" text-anchor="middle" fill="#888" font-family="monospace" font-size="9">vx *= 0.75 (friction)</text>
+  <!-- Collision section -->
+  <rect x="290" y="60" width="230" height="300" rx="5" fill="none" stroke="#333" stroke-width="1"/>
+  <text x="405" y="85" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="13" font-weight="bold">COLLISION</text>
+  <!-- Two fruits colliding -->
+  <circle cx="370" cy="170" r="25" fill="none" stroke="#ff9900" stroke-width="2"/>
+  <text x="370" y="175" text-anchor="middle" fill="#ff9900" font-family="monospace" font-size="10">LV3</text>
+  <circle cx="440" cy="170" r="25" fill="none" stroke="#ff9900" stroke-width="2"/>
+  <text x="440" y="175" text-anchor="middle" fill="#ff9900" font-family="monospace" font-size="10">LV3</text>
+  <!-- Distance formula -->
+  <text x="405" y="230" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10">d = sqrt(dx2+dy2)</text>
+  <text x="405" y="250" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="10">d &lt; r1 + r2 ?</text>
+  <!-- Merge arrow -->
+  <text x="405" y="290" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="12" font-weight="bold">MERGE!</text>
+  <circle cx="405" cy="330" r="30" fill="none" stroke="#FFE000" stroke-width="2"/>
+  <text x="405" y="335" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="12">LV4</text>
+  <!-- Game Over section -->
+  <rect x="550" y="60" width="220" height="300" rx="5" fill="none" stroke="#333" stroke-width="1"/>
+  <text x="660" y="85" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="13" font-weight="bold">GAME OVER</text>
+  <!-- Stacked fruits -->
+  <rect x="600" y="310" width="120" height="4" fill="#555"/>
+  <circle cx="635" cy="285" r="15" fill="none" stroke="#ff0055" stroke-width="1.5"/>
+  <circle cx="665" cy="280" r="18" fill="none" stroke="#ff9900" stroke-width="1.5"/>
+  <circle cx="645" cy="255" r="12" fill="none" stroke="#cc00ff" stroke-width="1.5"/>
+  <circle cx="670" cy="250" r="14" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+  <circle cx="650" cy="230" r="10" fill="none" stroke="#ff00ff" stroke-width="1.5"/>
+  <!-- Danger line -->
+  <line x1="600" y1="150" x2="720" y2="150" stroke="#ff0055" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="660" y="140" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="10">SPAWN LINE</text>
+  <text x="660" y="190" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">fruit.y &lt; line</text>
+  <text x="660" y="210" text-anchor="middle" fill="#fff" font-family="monospace" font-size="9">for 3+ seconds</text>
+  <text x="660" y="340" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="12" font-weight="bold">GAME OVER</text>
+</svg>

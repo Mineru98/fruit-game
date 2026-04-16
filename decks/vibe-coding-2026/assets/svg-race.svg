@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380">
+  <defs>
+    <marker id="arr6" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff9900"/>
+    </marker>
+    <marker id="arr6g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00ff88"/>
+    </marker>
+  </defs>
+  <rect width="800" height="380" fill="#0a0a1a"/>
+  <text x="400" y="35" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="18" font-weight="bold">SVG Async Race Condition</text>
+  <!-- Timeline BUG -->
+  <text x="200" y="65" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="14" font-weight="bold">Image.onload (async)</text>
+  <line x1="50" y1="90" x2="370" y2="90" stroke="#333" stroke-width="1"/>
+  <!-- Frame 0 -->
+  <rect x="50" y="100" width="100" height="30" rx="4" fill="#1a1a00" stroke="#ff9900" stroke-width="1.5"/>
+  <text x="100" y="120" text-anchor="middle" fill="#ff9900" font-family="monospace" font-size="9">img.src = data:</text>
+  <!-- Frame 1 -->
+  <rect x="160" y="100" width="90" height="30" rx="4" fill="#2a0000" stroke="#ff0055" stroke-width="1.5"/>
+  <text x="205" y="120" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="9">FRAME 1</text>
+  <text x="205" y="155" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="8">canvas empty!</text>
+  <!-- onload fires -->
+  <rect x="260" y="100" width="100" height="30" rx="4" fill="#001a00" stroke="#00ff88" stroke-width="1.5"/>
+  <text x="310" y="120" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="9">onload fires</text>
+  <!-- Frame 2 -->
+  <rect x="50" y="180" width="90" height="30" rx="4" fill="#001a00" stroke="#00ff88" stroke-width="1.5"/>
+  <text x="95" y="200" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="9">FRAME 2</text>
+  <text x="95" y="235" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="8">now visible</text>
+  <!-- Timeline FIX -->
+  <text x="600" y="65" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="14" font-weight="bold">fillRect (sync)</text>
+  <line x1="440" y1="90" x2="760" y2="90" stroke="#333" stroke-width="1"/>
+  <!-- Direct draw -->
+  <rect x="440" y="100" width="140" height="30" rx="4" fill="#001a00" stroke="#00ff88" stroke-width="1.5"/>
+  <text x="510" y="120" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="9">ctx.fillRect()</text>
+  <!-- Frame 1 OK -->
+  <rect x="590" y="100" width="90" height="30" rx="4" fill="#001a00" stroke="#00ff88" stroke-width="2"/>
+  <text x="635" y="120" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="9">FRAME 1</text>
+  <text x="635" y="155" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="8" font-weight="bold">visible!</text>
+  <!-- Comparison -->
+  <rect x="100" y="270" width="250" height="70" rx="8" fill="#1a0000" stroke="#ff0055" stroke-width="2"/>
+  <text x="225" y="295" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="11" font-weight="bold">data URI != synchronous</text>
+  <text x="225" y="315" text-anchor="middle" fill="#888" font-family="monospace" font-size="9">Even data: URIs go through</text>
+  <text x="225" y="330" text-anchor="middle" fill="#888" font-family="monospace" font-size="9">the async image decode pipeline</text>
+  <rect x="450" y="270" width="250" height="70" rx="8" fill="#001a00" stroke="#00ff88" stroke-width="2"/>
+  <text x="575" y="295" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="11" font-weight="bold">fillRect = instant</text>
+  <text x="575" y="315" text-anchor="middle" fill="#888" font-family="monospace" font-size="9">Pixel art = rectangles</text>
+  <text x="575" y="330" text-anchor="middle" fill="#888" font-family="monospace" font-size="9">No Image object needed</text>
+</svg>

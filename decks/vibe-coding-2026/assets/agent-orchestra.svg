@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#00ffff"/>
+    </marker>
+  </defs>
+  <rect width="800" height="500" fill="#0a0a1a"/>
+  <!-- Central Hub -->
+  <circle cx="400" cy="240" r="55" fill="none" stroke="#FFE000" stroke-width="3" filter="url(#glow2)"/>
+  <text x="400" y="233" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="13" font-weight="bold">CLAUDE</text>
+  <text x="400" y="250" text-anchor="middle" fill="#FFE000" font-family="monospace" font-size="11">CODE</text>
+  <!-- Architect -->
+  <rect x="60" y="120" width="110" height="50" rx="8" fill="none" stroke="#cc00ff" stroke-width="2"/>
+  <text x="115" y="150" text-anchor="middle" fill="#cc00ff" font-family="monospace" font-size="12" font-weight="bold">architect</text>
+  <text x="115" y="100" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">opus</text>
+  <line x1="170" y1="145" x2="345" y2="220" stroke="#cc00ff" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Designer -->
+  <rect x="60" y="300" width="110" height="50" rx="8" fill="none" stroke="#ff00ff" stroke-width="2"/>
+  <text x="115" y="330" text-anchor="middle" fill="#ff00ff" font-family="monospace" font-size="12" font-weight="bold">designer</text>
+  <text x="115" y="280" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">sonnet</text>
+  <line x1="170" y1="325" x2="345" y2="260" stroke="#ff00ff" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Executor -->
+  <rect x="630" y="120" width="110" height="50" rx="8" fill="none" stroke="#00ff88" stroke-width="2"/>
+  <text x="685" y="150" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="12" font-weight="bold">executor</text>
+  <text x="685" y="100" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">sonnet/opus</text>
+  <line x1="455" y1="220" x2="625" y2="150" stroke="#00ff88" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Code Reviewer -->
+  <rect x="630" y="210" width="110" height="50" rx="8" fill="none" stroke="#00ffff" stroke-width="2"/>
+  <text x="685" y="232" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="10" font-weight="bold">code-</text>
+  <text x="685" y="247" text-anchor="middle" fill="#00ffff" font-family="monospace" font-size="10" font-weight="bold">reviewer</text>
+  <line x1="455" y1="240" x2="625" y2="235" stroke="#00ffff" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Debugger -->
+  <rect x="630" y="300" width="110" height="50" rx="8" fill="none" stroke="#ff0055" stroke-width="2"/>
+  <text x="685" y="330" text-anchor="middle" fill="#ff0055" font-family="monospace" font-size="12" font-weight="bold">debugger</text>
+  <text x="685" y="280" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">sonnet</text>
+  <line x1="455" y1="260" x2="625" y2="320" stroke="#ff0055" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <!-- Document Specialist -->
+  <rect x="310" y="400" width="180" height="50" rx="8" fill="none" stroke="#ff9900" stroke-width="2"/>
+  <text x="400" y="430" text-anchor="middle" fill="#ff9900" font-family="monospace" font-size="11" font-weight="bold">document-specialist</text>
+  <text x="400" y="380" text-anchor="middle" fill="#aabbcc" font-family="monospace" font-size="9">Gemini CLI</text>
+  <line x1="400" y1="295" x2="400" y2="395" stroke="#ff9900" stroke-width="1.5" marker-end="url(#arr2)"/>
+</svg>
