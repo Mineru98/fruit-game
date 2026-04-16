@@ -1,4 +1,4 @@
-import { Fruit } from './Fruit';
+import { Fruit } from './fruit';
 import { GameStateData } from './types';
 
 export class GameState {

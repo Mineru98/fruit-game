@@ -1,10 +1,4 @@
-interface GameUIProps {
-  score: number;
-  gameOver: boolean;
-  onRestart: () => void;
-  soundOn: boolean;
-  onSoundToggle: () => void;
-}
+import { GameUIProps } from './types';
 
 const FONT = "'Press Start 2P', monospace";
 

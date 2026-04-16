@@ -1,5 +1,5 @@
-import { Fruit } from './Fruit';
-import { GameState } from './GameState';
+import { Fruit } from './fruit';
+import { GameState } from './gameState';
 
 export interface MergeCallback {
   (fruit1: Fruit, fruit2: Fruit, newFruit: Fruit): void;

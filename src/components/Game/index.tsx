@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { Fruit } from '../engine/Fruit';
-import { GameState } from '../engine/GameState';
-import { InputHandler } from '../engine/InputHandler';
-import { CannonPhysics } from '../engine/CannonPhysics';
-import { CollisionHandler } from '../engine/CollisionHandler';
-import { SoundEngine } from '../engine/SoundEngine';
-import { GameRenderer } from '../renderer/GameRenderer';
-import { CANVAS_WIDTH, CANVAS_HEIGHT, SPAWN_Y } from '../constants';
-import GameCanvas from './GameCanvas';
-import GameUI from './GameUI';
+import { Fruit } from '../../engine/fruit';
+import { GameState } from '../../engine/gameState';
+import { InputHandler } from '../../engine/inputHandler';
+import { CannonPhysics } from '../../engine/cannonPhysics';
+import { CollisionHandler } from '../../engine/collisionHandler';
+import { SoundEngine } from '../../engine/soundEngine';
+import { GameRenderer } from '../../renderer/gameRenderer';
+import { CANVAS_WIDTH, CANVAS_HEIGHT, SPAWN_Y } from '../../constants';
+import GameCanvas from '../GameCanvas';
+import GameUI from '../GameUI';
+import { GamePhase } from './types';
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,7 +25,7 @@ export default function Game() {
   const touchFireRef = useRef(false);
   const handleRestartRef = useRef<() => void>(() => {});
 
-  const gamePhaseRef = useRef<'title' | 'countdown' | 'playing'>('title');
+  const gamePhaseRef = useRef<GamePhase>('title');
   const countdownStartRef = useRef(0);
   const countdownSoundStepRef = useRef(-1);
 

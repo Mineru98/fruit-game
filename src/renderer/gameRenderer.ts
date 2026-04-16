@@ -1,6 +1,6 @@
-import { Fruit } from '../engine/Fruit';
+import { Fruit } from '../engine/fruit';
 import { CANVAS_WIDTH, CANVAS_HEIGHT, SPAWN_Y, NEON_COLORS } from '../constants';
-import { FruitRenderer } from './FruitRenderer';
+import { FruitRenderer } from './fruitRenderer';
 
 export class GameRenderer {
   private fruitRenderer = new FruitRenderer();
