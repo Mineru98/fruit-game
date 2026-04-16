@@ -2,8 +2,14 @@ import { GameUIProps } from './types';
 
 const FONT = "'Press Start 2P', monospace";
 
-export default function GameUI({ score, gameOver, onRestart, soundOn, onSoundToggle }: GameUIProps) {
+export default function GameUI({ score, gameOver, onRestart, soundOn, onSoundToggle, timeRemaining, difficulty }: GameUIProps) {
   const scoreStr = String(score).padStart(5, '0');
+
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  };
 
   return (
     <div style={{ fontFamily: FONT, width: '100%', maxWidth: '400px', margin: '0 auto' }}>
@@ -36,6 +42,19 @@ export default function GameUI({ score, gameOver, onRestart, soundOn, onSoundTog
           <div style={{ color: '#ff00ff', fontSize: '7px', letterSpacing: '2px' }}>HI SCORE</div>
           <div style={{ color: '#ffffff', fontSize: '11px', marginTop: '3px' }}>99999</div>
         </div>
+        {difficulty && (
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ color: '#ff00ff', fontSize: '7px', letterSpacing: '2px' }}>TIME</div>
+            <div style={{
+              color: timeRemaining <= 10 ? '#ff0055' : '#00ffff',
+              fontSize: '11px',
+              marginTop: '3px',
+              animation: timeRemaining <= 10 ? 'blink 0.5s step-end infinite' : 'none',
+            }}>
+              {formatTime(timeRemaining)}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* 조작 안내 + 사운드 토글 */}

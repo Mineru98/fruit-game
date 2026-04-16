@@ -6,10 +6,11 @@ import { CannonPhysics } from '../../engine/cannonPhysics';
 import { CollisionHandler } from '../../engine/collisionHandler';
 import { SoundEngine } from '../../engine/soundEngine';
 import { GameRenderer } from '../../renderer/gameRenderer';
-import { CANVAS_WIDTH, CANVAS_HEIGHT, SPAWN_Y } from '../../constants';
+import { CANVAS_WIDTH, CANVAS_HEIGHT, SPAWN_Y, DIFFICULTY_CONFIG } from '../../constants';
 import GameCanvas from '../GameCanvas';
 import GameUI from '../GameUI';
-import { GamePhase } from './types';
+import DifficultyDialog from '../DifficultyDialog';
+import { GamePhase, Difficulty } from './types';
 
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -28,11 +29,17 @@ export default function Game() {
   const gamePhaseRef = useRef<GamePhase>('title');
   const countdownStartRef = useRef(0);
   const countdownSoundStepRef = useRef(-1);
+  const playStartRef = useRef(0);
+  const scaleRef = useRef(1);
+  const difficultyRef = useRef<Difficulty | null>(null);
 
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [showUI, setShowUI] = useState(false);
+  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
+  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [showDifficulty, setShowDifficulty] = useState(false);
 
   const handleRestart = () => {
     const gameState = gameStateRef.current;
@@ -47,7 +54,24 @@ export default function Game() {
       touchFireRef.current = false;
       setScore(0);
       setGameOver(false);
+      setDifficulty(null);
+      difficultyRef.current = null;
+      setTimeRemaining(0);
+      gamePhaseRef.current = 'difficulty';
+      setShowDifficulty(true);
     }
+  };
+
+  const handleDifficultySelect = (diff: Difficulty) => {
+    setDifficulty(diff);
+    difficultyRef.current = diff;
+    const config = DIFFICULTY_CONFIG[diff];
+    scaleRef.current = config.scale;
+    setTimeRemaining(config.timeLimit);
+    setShowDifficulty(false);
+    gamePhaseRef.current = 'countdown';
+    countdownStartRef.current = Date.now();
+    countdownSoundStepRef.current = -1;
   };
 
   const handleSoundToggle = () => {
@@ -133,10 +157,17 @@ export default function Game() {
       if (phase === 'title') {
         renderer.drawStartScreen(ctx, Date.now());
         if (shouldFire) {
-          gamePhaseRef.current = 'countdown';
-          countdownStartRef.current = Date.now();
-          countdownSoundStepRef.current = -1;
+          gamePhaseRef.current = 'difficulty';
+          setShowDifficulty(true);
         }
+        if (touchFireRef.current) touchFireRef.current = false;
+        animationIdRef.current = requestAnimationFrame(gameLoop);
+        return;
+      }
+
+      // === DIFFICULTY SELECTION ===
+      if (phase === 'difficulty') {
+        renderer.drawStartScreen(ctx, Date.now());
         if (touchFireRef.current) touchFireRef.current = false;
         animationIdRef.current = requestAnimationFrame(gameLoop);
         return;
@@ -161,6 +192,7 @@ export default function Game() {
 
         if (elapsed >= 2000) {
           gamePhaseRef.current = 'playing';
+          playStartRef.current = Date.now();
           setShowUI(true);
         }
 
@@ -170,6 +202,18 @@ export default function Game() {
       }
 
       // === PLAYING ===
+
+      // Timer
+      if (difficultyRef.current) {
+        const config = DIFFICULTY_CONFIG[difficultyRef.current];
+        const elapsed = (Date.now() - playStartRef.current) / 1000;
+        const remaining = Math.max(0, config.timeLimit - elapsed);
+        setTimeRemaining(remaining);
+        if (remaining <= 0 && !gameState.isGameOver) {
+          gameState.setGameOver();
+          soundRef.current.gameOver();
+        }
+      }
 
       // Keyboard input
       const dir = inputHandler.getDirection();
@@ -186,7 +230,8 @@ export default function Game() {
             `fruit-${Date.now()}`,
             gameState.nextFruitLevel,
             spawnXRef.current,
-            SPAWN_Y
+            SPAWN_Y,
+            scaleRef.current
           );
           gameState.addFruit(fruit);
           physics.addFruit(fruit);
@@ -279,9 +324,14 @@ export default function Game() {
             onRestart={handleRestart}
             soundOn={soundOn}
             onSoundToggle={handleSoundToggle}
+            timeRemaining={Math.ceil(timeRemaining)}
+            difficulty={difficulty}
           />
         )}
       </div>
+      {showDifficulty && (
+        <DifficultyDialog onSelect={handleDifficultySelect} />
+      )}
     </div>
   );
 }

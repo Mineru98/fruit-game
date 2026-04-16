@@ -51,7 +51,8 @@ export class CollisionHandler {
       `fruit-${Date.now()}-${Math.random()}`,
       newLevel,
       (fruit1.x + fruit2.x) / 2,
-      (fruit1.y + fruit2.y) / 2
+      (fruit1.y + fruit2.y) / 2,
+      fruit1.scale
     );
 
     newFruit.vx = (fruit1.vx + fruit2.vx) / 2;

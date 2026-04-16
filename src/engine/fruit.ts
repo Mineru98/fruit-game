@@ -24,15 +24,17 @@ export class Fruit {
   radius: number;
   isActive: boolean;
   createdAt: number;
+  scale: number;
 
-  constructor(id: string, level: number, x: number, y: number) {
+  constructor(id: string, level: number, x: number, y: number, scale = 1) {
     this.id = id;
     this.level = level;
     this.x = x;
     this.y = y;
     this.vx = 0;
     this.vy = 0;
-    this.radius = Fruit.getRadius(level);
+    this.scale = scale;
+    this.radius = Fruit.getRadius(level) * scale;
     this.isActive = true;
     this.createdAt = Date.now();
   }
@@ -61,11 +63,12 @@ export class Fruit {
       radius: this.radius,
       isActive: this.isActive,
       createdAt: this.createdAt,
+      scale: this.scale,
     };
   }
 
   static fromData(data: FruitData): Fruit {
-    const fruit = new Fruit(data.id, data.level, data.x, data.y);
+    const fruit = new Fruit(data.id, data.level, data.x, data.y, data.scale);
     fruit.vx = data.vx;
     fruit.vy = data.vy;
     fruit.isActive = data.isActive;
