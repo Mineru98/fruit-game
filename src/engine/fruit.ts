@@ -3,16 +3,16 @@ import { FruitData } from './types';
 export class Fruit {
   static readonly RADIUS_MAP: Record<number, number> = {
     1: 12,
-    2: 14,
-    3: 16,
-    4: 18,
-    5: 20,
-    6: 22,
-    7: 24,
-    8: 26,
-    9: 28,
-    10: 30,
-    11: 35,
+    2: 15,
+    3: 18,
+    4: 22,
+    5: 26,
+    6: 31,
+    7: 36,
+    8: 42,
+    9: 48,
+    10: 55,
+    11: 65,
   };
 
   id: string;
@@ -24,15 +24,17 @@ export class Fruit {
   radius: number;
   isActive: boolean;
   createdAt: number;
+  scale: number;
 
-  constructor(id: string, level: number, x: number, y: number) {
+  constructor(id: string, level: number, x: number, y: number, scale = 1) {
     this.id = id;
     this.level = level;
     this.x = x;
     this.y = y;
     this.vx = 0;
     this.vy = 0;
-    this.radius = Fruit.getRadius(level);
+    this.scale = scale;
+    this.radius = Fruit.getRadius(level) * scale;
     this.isActive = true;
     this.createdAt = Date.now();
   }
@@ -61,11 +63,12 @@ export class Fruit {
       radius: this.radius,
       isActive: this.isActive,
       createdAt: this.createdAt,
+      scale: this.scale,
     };
   }
 
   static fromData(data: FruitData): Fruit {
-    const fruit = new Fruit(data.id, data.level, data.x, data.y);
+    const fruit = new Fruit(data.id, data.level, data.x, data.y, data.scale);
     fruit.vx = data.vx;
     fruit.vy = data.vy;
     fruit.isActive = data.isActive;

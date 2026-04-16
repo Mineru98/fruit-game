@@ -1,10 +1,5 @@
 import { forwardRef } from 'react';
-
-interface GameCanvasProps {
-  width: number;
-  height: number;
-  className?: string;
-}
+import { GameCanvasProps } from './types';
 
 const GameCanvas = forwardRef<HTMLCanvasElement, GameCanvasProps>(
   ({ width, height, className }, ref) => {

@@ -10,6 +10,7 @@ export interface FruitData {
   radius: number;
   isActive: boolean;
   createdAt: number;
+  scale: number;
 }
 
 export interface GameStateData {

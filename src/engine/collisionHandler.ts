@@ -1,5 +1,5 @@
-import { Fruit } from './Fruit';
-import { GameState } from './GameState';
+import { Fruit } from './fruit';
+import { GameState } from './gameState';
 
 export interface MergeCallback {
   (fruit1: Fruit, fruit2: Fruit, newFruit: Fruit): void;
@@ -51,7 +51,8 @@ export class CollisionHandler {
       `fruit-${Date.now()}-${Math.random()}`,
       newLevel,
       (fruit1.x + fruit2.x) / 2,
-      (fruit1.y + fruit2.y) / 2
+      (fruit1.y + fruit2.y) / 2,
+      fruit1.scale
     );
 
     newFruit.vx = (fruit1.vx + fruit2.vx) / 2;

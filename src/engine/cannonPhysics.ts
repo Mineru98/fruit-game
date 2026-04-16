@@ -1,5 +1,5 @@
 import * as CANNON from 'cannon-es';
-import { Fruit } from './Fruit';
+import { Fruit } from './fruit';
 import { PhysicsConfig } from './types';
 
 export class CannonPhysics {
