@@ -194,7 +194,7 @@ export default function Game() {
           nextFruitDelayRef.current = true;
           setTimeout(() => {
             nextFruitDelayRef.current = false;
-          }, 500);
+          }, 100);
         }
       }
       // Reset touch fire after each frame check
