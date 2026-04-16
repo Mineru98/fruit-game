@@ -4,35 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
-  <title>56. 제가 내린 결론</title>
+  <style>
+    .video-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-poster {
+      position: relative;
+      display: none;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      border-radius: inherit;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      width: 64px;
+      height: 45px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    @media print {
+      .video-frame iframe {
+        display: none !important;
+      }
+      .video-poster {
+        display: flex !important;
+      }
+    }
+  </style>
+  <title>56. 같은 프로젝트, 같은 바이브 코딩, 실시간 데모</title>
 </head>
 <body>
   <div class="noise"></div>
   <div class="header">
     <div>
-      <div class="eyebrow">Conclusion</div>
-      <h1 class="title">제가 내린 결론</h1>
-      <p class="subtitle">프롬프트보다 중요한 건, 결과를 끝까지 수렴시키는 시스템입니다.</p>
+      <div class="eyebrow">Live demo</div>
+      <h1 class="title">같은 프로젝트를 다시, 실시간 바이브 코딩으로</h1>
+      <p class="subtitle">이번 발표의 과일 게임을 똑같이 다시 시연한 바이브 코딩 실황 영상입니다.</p>
     </div>
     <div class="page">56</div>
   </div>
   <main class="content">
-      <div class="stack">
-        <div class="card">
-          <p class="quote">AI 시대 개발자의 경쟁력은 <span class="accent">프롬프트</span>가 아니라 <span class="accent2">작업 시스템</span>에 있습니다.</p>
+      <div class="grid-2" style="grid-template-columns: 1.3fr 0.7fr; align-items: stretch;">
+        <div style="display:grid; grid-template-rows: auto 1fr; gap:6px; min-height:0;">
+          <div class="badge-row">
+            <span class="badge">LIVE DEMO</span>
+            <span class="badge">REPLAY</span>
+            <span class="badge">VIBE CODING</span>
+          </div>
+          <div class="video-frame">
+            <a class="video-poster" href="https://www.youtube.com/watch?v=VFOZzx5PxQQ" target="_blank" rel="noopener noreferrer">
+              <img src="https://img.youtube.com/vi/VFOZzx5PxQQ/hqdefault.jpg" alt="바이브 코딩 실시간 데모 영상 썸네일">
+              <span class="video-play-btn">▶</span>
+            </a>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VFOZzx5PxQQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
-        <div class="metric-grid">
-          <div class="metric"><div class="label">step 1</div><div class="value">문서화</div><div class="hint">기준을 고정한다</div></div>
-          <div class="metric"><div class="label">step 2</div><div class="value">분리</div><div class="hint">역할을 나눈다</div></div>
-          <div class="metric"><div class="label">step 3</div><div class="value">검증</div><div class="hint">실행 환경에서 확인한다</div></div>
-          <div class="metric"><div class="label">step 4</div><div class="value">완성</div><div class="hint">끝까지 수렴시킨다</div></div>
+        <div class="stack" style="gap: 6px; height: 100%; justify-content: space-between;">
+          <div class="card" style="padding: 8px 10px;">
+            <h3 style="font-size: 14px;">이 영상이 증명하는 것</h3>
+            <ul style="font-size: 13px;">
+              <li>같은 과일 게임을 다시 바이브 코딩으로 완성합니다.</li>
+              <li>문서·역할 분리·검증이 실시간에도 그대로 동작합니다.</li>
+              <li>결과물이 재현 가능하다는 건 운 아니라 공정이라는 뜻입니다.</li>
+            </ul>
+          </div>
+          <div class="callout" style="padding: 8px 10px;">
+            <p style="font-size: 13px;">한 번 만들어진 파이프라인은 다음 번에도 똑같이 끝까지 굴러갑니다.</p>
+          </div>
         </div>
       </div>
     </main>
-  
+
   <div class="footer">
     <div>임근석 · <strong>쓸모랩 · 우리기획</strong></div>
-    <div>CLOSING · 2026년 4월 17일</div>
+    <div>LIVE DEMO · 2026년 4월 17일</div>
   </div>
 
 </body>

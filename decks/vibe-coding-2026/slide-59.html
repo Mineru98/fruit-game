@@ -69,6 +69,17 @@
       font-size: 9.5px;
       line-height: 1.5;
     }
+    .qr-side .card ul {
+      padding-left: 14px;
+      display: grid;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .qr-side .card li {
+      font-size: 9.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
     .qr-url {
       margin-top: 6px;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -85,34 +96,39 @@
       line-height: 1.5;
     }
   </style>
-  <title>57. 지금 바로 플레이해 보세요</title>
+  <title>59. 동료의 게임도 지금 바로 플레이</title>
 </head>
 <body>
   <div class="noise"></div>
   <div class="header">
     <div>
-      <div class="eyebrow">Try it now</div>
-      <h1 class="title">지금 바로 플레이해 보세요</h1>
-      <p class="subtitle">이 발표에서 함께 만든 과일 게임은 아래 QR 코드로 바로 접속할 수 있습니다.</p>
+      <div class="eyebrow">Friend's game</div>
+      <h1 class="title">동료의 게임도 지금 바로 플레이</h1>
+      <p class="subtitle">Gemini · Claude Code · Suno AI가 함께 완성한 또 하나의 바이브 코딩 결과물입니다.</p>
     </div>
-    <div class="page">57</div>
+    <div class="page">59</div>
   </div>
   <main class="content">
       <div class="qr-layout">
         <div class="qr-card">
           <div class="qr-image">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fvibe-fruit-game.netlify.app%2F" alt="과일 게임 페이지 QR 코드">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fgame.baejji.com%2F" alt="동료가 만든 웹 게임 페이지 QR 코드">
           </div>
           <div class="qr-caption">스마트폰 카메라로 스캔하세요</div>
         </div>
         <div class="qr-side">
           <div class="card">
-            <h3>완성된 과일 게임</h3>
-            <p>Claude Code · 문서화 · 하네스로 2일 만에 마무리한 결과물입니다. 데스크탑·모바일 어디서든 접속해 난이도를 골라 바로 플레이할 수 있습니다.</p>
-            <div class="qr-url">https://vibe-fruit-game.netlify.app/</div>
+            <h3>game.baejji.com</h3>
+            <p>AI 에이전트를 함께 연구·제품화하는 동료가 만든 웹 게임입니다. 모델별 역할 분담이 그대로 플레이 가능한 결과물로 이어졌습니다.</p>
+            <ul>
+              <li>Gemini 3.1 Pro(AI Studio) — 초안 설계 및 구현</li>
+              <li>Claude Code — 소스를 끌어와 웹 코드로 완성</li>
+              <li>Suno AI — 게임 BGM은 제가 직접 제작</li>
+            </ul>
+            <div class="qr-url">https://game.baejji.com/</div>
           </div>
           <div class="callout qr-callout">
-            <p>QR 코드로 직접 체험해 보신 뒤의 감상이 오늘 발표의 마지막 검증입니다.</p>
+            <p>다른 손으로, 다른 모델 조합으로도 같은 방식이 끝까지 완성된다는 증거입니다.</p>
           </div>
         </div>
       </div>

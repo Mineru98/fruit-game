@@ -4,32 +4,152 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./theme.css">
-  <title>58. Q&A</title>
+  <style>
+    .video-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-poster {
+      position: relative;
+      display: none;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      border-radius: inherit;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      width: 64px;
+      height: 45px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    @media print {
+      .video-frame iframe {
+        display: none !important;
+      }
+      .video-poster {
+        display: flex !important;
+      }
+    }
+
+    .stack-role {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .stack-role .chip-cell {
+      padding: 7px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(17,26,43,0.92);
+    }
+    .stack-role .chip-cell .k {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-soft);
+      margin-bottom: 4px;
+    }
+    .stack-role .chip-cell .v {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .stack-role .chip-cell .sub {
+      margin-top: 2px;
+      font-size: 8.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+  </style>
+  <title>58. 동료가 만든 또 다른 바이브 코딩 게임</title>
 </head>
 <body>
   <div class="noise"></div>
   <div class="header">
     <div>
-      <div class="eyebrow">Closing</div>
-      <h1 class="title">감사합니다</h1>
-      <p class="subtitle">오늘의 결론은 한 문장으로 충분합니다.</p>
+      <div class="eyebrow">Companion case</div>
+      <h1 class="title">동료가 만든 또 다른 바이브 코딩 게임</h1>
+      <p class="subtitle">AI 에이전트를 함께 연구하고 프로덕트를 만드는 동료가, 여러 모델을 엮어 완성한 웹 게임입니다.</p>
     </div>
     <div class="page">58</div>
   </div>
   <main class="content">
-      <div class="centered" style="height:100%;">
-        <div class="hero-statement">
-          오늘의 결론은 분명합니다.<br>
-          <span class="accent">vibe coding</span>은<br>
-          <span class="accent2">개발 공정 설계</span>의 문제였습니다.<br>
-          그래서 저는 <span class="accent">하네스</span>를 이야기했습니다.
+      <div class="grid-2" style="grid-template-columns: 1.3fr 0.7fr; align-items: stretch;">
+        <div style="display:grid; grid-template-rows: auto 1fr; gap:6px; min-height:0;">
+          <div class="badge-row">
+            <span class="badge">FRIEND'S BUILD</span>
+            <span class="badge">MULTI-MODEL</span>
+            <span class="badge">VIBE CODING</span>
+          </div>
+          <div class="video-frame">
+            <a class="video-poster" href="https://www.youtube.com/watch?v=5kncSkg6k6o" target="_blank" rel="noopener noreferrer">
+              <img src="https://img.youtube.com/vi/5kncSkg6k6o/hqdefault.jpg" alt="동료가 만든 바이브 코딩 게임 영상 썸네일">
+              <span class="video-play-btn">▶</span>
+            </a>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/5kncSkg6k6o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="stack" style="gap: 6px; height: 100%; justify-content: space-between;">
+          <div class="card" style="padding: 8px 10px;">
+            <h3 style="font-size: 13px; margin-bottom: 6px;">어떻게 만들어졌나</h3>
+            <div class="stack-role">
+              <div class="chip-cell">
+                <div class="k">DRAFT</div>
+                <div class="v">Gemini 3.1 Pro</div>
+                <div class="sub">AI Studio에서 초안 구현</div>
+              </div>
+              <div class="chip-cell">
+                <div class="k">BUILD</div>
+                <div class="v">Claude Code</div>
+                <div class="sub">소스를 끌어와 웹 코드로 완성</div>
+              </div>
+              <div class="chip-cell">
+                <div class="k">MUSIC</div>
+                <div class="v">Suno AI</div>
+                <div class="sub">게임 배경 음악은 제가 제작</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" style="padding: 8px 10px;">
+            <p style="font-size: 11px; line-height: 1.5;">한 사람이 전부 치지 않아도, 모델과 역할을 나누면 하나의 게임이 끝까지 완성됩니다.</p>
+          </div>
         </div>
       </div>
     </main>
-  
+
   <div class="footer">
     <div>임근석 · <strong>쓸모랩 · 우리기획</strong></div>
-    <div>CLOSING · 2026년 4월 17일</div>
+    <div>COMPANION · 2026년 4월 17일</div>
   </div>
 
 </body>
