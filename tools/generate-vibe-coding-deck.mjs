@@ -2159,7 +2159,7 @@ const slides = [
     page: 52,
     section: 'HARNESS',
     eyebrow: 'Architecture',
-    title: 'Claude Code를 “천재 개발자”보다 “잘 세팅된 오락실 기판”으로 보는 편이 맞습니다',
+    title: 'Claude Code를 “천재 개발자”보다 “장비 지원이 빵빵한 환경”으로 보는 편이 맞습니다',
     subtitle: '현재 발표의 레트로 아케이드 톤과도 잘 맞는 비유입니다.',
     content: `
       <div class="diagram-panel">
