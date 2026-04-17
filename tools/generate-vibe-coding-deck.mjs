@@ -1171,7 +1171,7 @@ const slides = [
         </div>
         <div class="stack">
           <div class="card">
-            <h3>제가 받아들인 번역</h3>
+            <h3>가장 와닿았던 문구</h3>
             <p class="quote" style="font-size:16px;">“AI에게 코딩을 시킨다”는 건<br><span class="accent">직접 타이핑을 안 한다</span>가 아니라,<br><span class="accent2">일을 위임하고 통제한다</span>에 가깝다.</p>
           </div>
           <div class="metric-grid" style="grid-template-columns:repeat(2,1fr);">
@@ -1399,7 +1399,7 @@ const slides = [
       <div class="centered" style="height:100%;">
         <div class="hero-statement">
           <span class="accent">SKILLS</span>를 잘 쓰려면<br>
-          그 아래에 있는 <span class="accent2">Claude Code의 핵심 구성 요소</span>를<br>
+          다음 슬라이드에 있는 <span class="accent2">Claude Code의 핵심 구성 요소</span>를<br>
           같이 이해해야 합니다.
         </div>
       </div>
