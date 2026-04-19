@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>바이브 코딩으로 게임을 만들다</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===========================================
+       CSS CUSTOM PROPERTIES (RETRO SYNTHWAVE SYSTEM)
+       =========================================== */
+    :root {
+      --bg-dark: #0d0221;
+      --bg-mid: #1a0533;
+      --bg-bright: #2d0a4e;
+      --neon-orange: #ff6b35;
+      --neon-pink: #ff2e63;
+      --neon-purple: #8b2fc9;
+      --neon-teal: #00f5d4;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.48);
+      --panel-bg: rgba(10, 6, 27, 0.72);
+      --panel-strong: rgba(18, 8, 43, 0.9);
+      --panel-border: rgba(255, 255, 255, 0.16);
+      --orange-glow: rgba(255, 107, 53, 0.35);
+      --pink-glow: rgba(255, 46, 99, 0.35);
+      --purple-glow: rgba(139, 47, 201, 0.36);
+      --teal-glow: rgba(0, 245, 212, 0.32);
+      --shadow-panel: 0 0 clamp(0.75rem, 2vw, 1.5rem) rgba(255, 46, 99, 0.15);
+      --shadow-teal: 0 0 clamp(0.8rem, 2vw, 1.8rem) rgba(0, 245, 212, 0.18);
+      --shadow-orange: 0 0 clamp(0.8rem, 2vw, 1.8rem) rgba(255, 107, 53, 0.2);
+      --radius-sm: clamp(0.6rem, 1vw, 0.9rem);
+      --radius-md: clamp(0.9rem, 1.6vw, 1.35rem);
+      --radius-lg: clamp(1.25rem, 2vw, 1.8rem);
+      --space-1: clamp(0.35rem, 0.8vw, 0.6rem);
+      --space-2: clamp(0.55rem, 1vw, 0.9rem);
+      --space-3: clamp(0.75rem, 1.4vw, 1.2rem);
+      --space-4: clamp(1rem, 1.8vw, 1.6rem);
+      --space-5: clamp(1.4rem, 2.6vw, 2.4rem);
+      --space-6: clamp(1.8rem, 3vw, 3.2rem);
+      --line-subtle: 1px solid rgba(255, 255, 255, 0.12);
+      --line-orange: 1px solid rgba(255, 107, 53, 0.45);
+      --line-teal: 1px solid rgba(0, 245, 212, 0.45);
+      --font-display: "Orbitron", sans-serif;
+      --font-body: "Noto Sans KR", sans-serif;
+      --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+      --bg-gradient: linear-gradient(180deg, #0d0221 0%, #1a0533 40%, #2d0a4e 70%, #0d0221 100%);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-fast: 0.4s;
+      --duration-normal: 0.8s;
+      --duration-slow: 1.2s;
+    }
+
+    /* ===========================================
+       BASE STYLES
+       =========================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===========================================
+       VIEWPORT FITTING: MANDATORY BASE STYLES
+       Include this ENTIRE file in every presentation.
+       These styles ensure slides fit exactly in the viewport.
+       =========================================== */
+
+    /* 1. Lock html/body to viewport */
+    html, body {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    html {
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+    }
+
+    /* 2. Each slide = exact viewport height */
+    .slide {
+        width: 100vw;
+        height: 100vh;
+        /* biome-ignore lint/suspicious/noDuplicateProperties: viewport-base.css requires both viewport units for mobile compatibility */
+        height: 100dvh; /* Dynamic viewport height for mobile browsers */
+        overflow: hidden; /* CRITICAL: Prevent ANY overflow */
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* 3. Content container with flex for centering */
+    .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 100%;
+        overflow: hidden; /* Double-protection against overflow */
+        padding: var(--slide-padding);
+    }
+
+    /* 4. ALL typography uses clamp() for responsive scaling */
+    :root {
+        /* Titles scale from mobile to desktop */
+        --title-size: clamp(1.5rem, 5vw, 4rem);
+        --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+        --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+
+        /* Body text */
+        --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+        --small-size: clamp(0.65rem, 1vw, 0.875rem);
+
+        /* Spacing scales with viewport */
+        --slide-padding: clamp(1rem, 4vw, 4rem);
+        --content-gap: clamp(0.5rem, 2vw, 2rem);
+        --element-gap: clamp(0.25rem, 1vw, 1rem);
+    }
+
+    /* 5. Cards/containers use viewport-relative max sizes */
+    .card, .container, .content-box {
+        max-width: min(90vw, 1000px);
+        max-height: min(80vh, 700px);
+    }
+
+    /* 6. Lists auto-scale with viewport */
+    .feature-list, .bullet-list {
+        gap: clamp(0.4rem, 1vh, 1rem);
+    }
+
+    .feature-list li, .bullet-list li {
+        font-size: var(--body-size);
+        line-height: 1.4;
+    }
+
+    /* 7. Grids adapt to available space */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+
+    /* 8. Images constrained to viewport */
+    img, .image-container {
+        max-width: 100%;
+        max-height: min(50vh, 400px);
+        object-fit: contain;
+    }
+
+    /* ===========================================
+       RESPONSIVE BREAKPOINTS
+       Aggressive scaling for smaller viewports
+       =========================================== */
+
+    /* Short viewports (< 700px height) */
+    @media (max-height: 700px) {
+        :root {
+            --slide-padding: clamp(0.75rem, 3vw, 2rem);
+            --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+            --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+            --h2-size: clamp(1rem, 3vw, 1.75rem);
+        }
+    }
+
+    /* Very short viewports (< 600px height) */
+    @media (max-height: 600px) {
+        :root {
+            --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+            --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+            --title-size: clamp(1.1rem, 4vw, 2rem);
+            --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+        }
+
+        /* Hide non-essential elements */
+        .nav-dots, .keyboard-hint, .decorative {
+            display: none;
+        }
+    }
+
+    /* Extremely short (landscape phones, < 500px height) */
+    @media (max-height: 500px) {
+        :root {
+            --slide-padding: clamp(0.4rem, 2vw, 1rem);
+            --title-size: clamp(1rem, 3.5vw, 1.5rem);
+            --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+            --body-size: clamp(0.65rem, 1vw, 0.85rem);
+        }
+    }
+
+    /* Narrow viewports (< 600px width) */
+    @media (max-width: 600px) {
+        :root {
+            --title-size: clamp(1.25rem, 7vw, 2.5rem);
+        }
+
+        /* Stack grids vertically */
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ===========================================
+       REDUCED MOTION
+       Respect user preferences
+       =========================================== */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            /* biome-ignore lint/complexity/noImportantStyles: reduced-motion overrides must win across all animation declarations */
+            animation-duration: 0.01ms !important;
+            /* biome-ignore lint/complexity/noImportantStyles: reduced-motion overrides must win across all transition declarations */
+            transition-duration: 0.2s !important;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      overscroll-behavior-y: none;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 46, 99, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 22%, rgba(0, 245, 212, 0.12), transparent 24%),
+        radial-gradient(circle at 50% 90%, rgba(255, 107, 53, 0.12), transparent 30%);
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: clamp(2.25rem, 5vw, 4rem) clamp(2.25rem, 5vw, 4rem);
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0.95) 60%, rgba(0, 0, 0, 1) 100%);
+      z-index: -2;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===========================================
+       SHARED LAYOUT SYSTEM
+       =========================================== */
+    .slide {
+      background: transparent;
+      isolation: isolate;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 46, 99, 0.08), transparent 32%),
+        linear-gradient(315deg, rgba(0, 245, 212, 0.06), transparent 28%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      gap: var(--content-gap);
+    }
+
+    .slide-content.centered {
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide-content.compact {
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .section-tag,
+    .kicker,
+    .mini-label,
+    .eyebrow,
+    .timeline-label,
+    .metric-label,
+    .nav-label {
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--neon-teal);
+    }
+
+    .hero-title,
+    .slide-title,
+    .section-title,
+    .display-number,
+    .impact-line {
+      font-family: var(--font-display);
+      line-height: 1.08;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 7vw, 5.8rem);
+      font-weight: 900;
+      text-shadow: 0 0 clamp(1rem, 2vw, 1.8rem) rgba(255, 46, 99, 0.28);
+      max-width: min(88vw, 16ch);
+    }
+
+    .hero-title .accent-text,
+    .gradient-text {
+      background: linear-gradient(135deg, var(--neon-orange), var(--neon-pink), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-title,
+    .slide-title {
+      font-size: var(--h2-size);
+      font-weight: 800;
+      max-width: min(88vw, 18ch);
+    }
+
+    .slide-title.wide {
+      max-width: min(90vw, 24ch);
+    }
+
+    .display-number {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-5);
+      font-size: clamp(4.5rem, 14vw, 10rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.06);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .lead,
+    .body-copy,
+    .quote-body,
+    .card-copy,
+    .summary-copy,
+    .feature-list li,
+    .bullet-list li,
+    .inline-note,
+    .metric-value,
+    .code-caption,
+    .badge-copy,
+    .diag-copy {
+      font-size: var(--body-size);
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .lead {
+      max-width: min(80vw, 52ch);
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .panel,
+    .metric-card,
+    .summary-card,
+    .feature-card,
+    .comparison-card,
+    .quote-panel,
+    .code-panel,
+    .timeline-card,
+    .statement-card,
+    .failure-card,
+    .harness-stage,
+    .component-card {
+      background: linear-gradient(180deg, rgba(20, 9, 44, 0.92) 0%, rgba(12, 5, 30, 0.82) 100%);
+      border: var(--line-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(14px);
+    }
+
+    .metric-grid,
+    .cards-grid,
+    .summary-grid,
+    .component-grid,
+    .two-col,
+    .timeline-compare,
+    .harness-flow,
+    .comparison-grid,
+    .workflow-main,
+    .signal-flow,
+    .stack-grid {
+      width: 100%;
+      max-width: min(92vw, 1200px);
+      gap: var(--space-3);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      align-items: stretch;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metric-card,
+    .summary-card,
+    .feature-card,
+    .component-card,
+    .statement-card,
+    .failure-card {
+      padding: var(--space-4);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .metric-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-color: rgba(0, 245, 212, 0.25);
+      box-shadow: var(--shadow-teal);
+    }
+
+    .metric-number,
+    .counter {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .metric-suffix {
+      font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+      color: var(--neon-orange);
+    }
+
+    .neon-divider {
+      width: clamp(3rem, 10vw, 7rem);
+      height: clamp(0.16rem, 0.5vw, 0.25rem);
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-purple));
+      box-shadow: 0 0 clamp(0.75rem, 2vw, 1.4rem) rgba(255, 107, 53, 0.3);
+    }
+
+    .badge-row,
+    .cta-row,
+    .chip-row,
+    .sub-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+
+    .neon-badge,
+    .sub-chip,
+    .cta-badge,
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.45rem, 0.9vw, 0.65rem) clamp(0.75rem, 1.5vw, 1.1rem);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.04);
+      white-space: nowrap;
+    }
+
+    .cta-badge.orange,
+    .sub-chip.orange,
+    .status-pill.orange {
+      border-color: rgba(255, 107, 53, 0.5);
+      color: var(--neon-orange);
+      box-shadow: var(--shadow-orange);
+    }
+
+    .cta-badge.teal,
+    .sub-chip.teal,
+    .status-pill.teal {
+      border-color: rgba(0, 245, 212, 0.5);
+      color: var(--neon-teal);
+      box-shadow: var(--shadow-teal);
+    }
+
+    .cta-badge.pink,
+    .sub-chip.pink,
+    .status-pill.pink {
+      border-color: rgba(255, 46, 99, 0.5);
+      color: var(--neon-pink);
+      box-shadow: var(--shadow-panel);
+    }
+
+    .bullet-list {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      max-width: min(80vw, 52ch);
+    }
+
+    .bullet-list li {
+      display: flex;
+      gap: var(--space-2);
+      align-items: flex-start;
+    }
+
+    .bullet-list li::before {
+      content: "▹";
+      color: var(--neon-teal);
+      font-family: var(--font-display);
+      margin-top: 0.15em;
+    }
+
+    .quote-panel {
+      padding: var(--space-5);
+      border-color: rgba(255, 107, 53, 0.3);
+      box-shadow: var(--shadow-orange);
+    }
+
+    .quote-body {
+      font-size: clamp(1rem, 2.2vw, 1.7rem);
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: rgba(255, 107, 53, 0.35);
+      line-height: 0.8;
+    }
+
+    .section-slide .slide-content {
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--space-2);
+    }
+
+    .section-slide .section-title {
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      max-width: 14ch;
+    }
+
+    .section-slide .section-tag {
+      color: var(--neon-orange);
+    }
+
+    .section-slide .neon-divider {
+      margin: var(--space-3) 0;
+    }
+
+    /* ===========================================
+       SYNTHWAVE DECORATIONS
+       =========================================== */
+    .sun {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(6rem, 12vh, 9rem);
+      transform: translateX(-50%);
+      width: clamp(18rem, 42vw, 34rem);
+      height: clamp(9rem, 22vw, 17rem);
+      border-radius: 50% 50% 0 0;
+      background: linear-gradient(180deg, #ff6b35 0%, #ff2e63 32%, #8b2fc9 68%, rgba(45, 10, 78, 0.3) 100%);
+      opacity: 0.36;
+      overflow: hidden;
+      filter: blur(0.02rem);
+      animation: pulseSun 6s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .sun::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent clamp(0.42rem, 0.8vw, 0.6rem),
+        rgba(13, 2, 33, 0.96) clamp(0.42rem, 0.8vw, 0.6rem),
+        rgba(13, 2, 33, 0.96) clamp(0.54rem, 1vw, 0.76rem)
+      );
+    }
+
+    .grid-floor {
+      position: absolute;
+      left: -30%;
+      bottom: calc(-1 * clamp(4rem, 8vh, 6rem));
+      width: 160%;
+      height: clamp(14rem, 34vh, 22rem);
+      background:
+        linear-gradient(90deg, rgba(139, 47, 201, 0.18) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(139, 47, 201, 0.18) 1px, transparent 1px);
+      background-size: clamp(2.4rem, 5vw, 4rem) clamp(1.8rem, 4vw, 3rem);
+      transform: perspective(26rem) rotateX(70deg);
+      transform-origin: center top;
+      animation: gridScroll 5s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .neon-shape {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      opacity: 0.24;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatDrift 8s ease-in-out infinite;
+    }
+
+    .neon-shape.square {
+      top: 12%;
+      right: 10%;
+      width: clamp(2.8rem, 5vw, 4.2rem);
+      height: clamp(2.8rem, 5vw, 4.2rem);
+      border-color: rgba(255, 107, 53, 0.35);
+      transform: rotate(45deg);
+    }
+
+    .neon-shape.circle {
+      top: 18%;
+      left: 10%;
+      width: clamp(2.2rem, 4vw, 3.4rem);
+      height: clamp(2.2rem, 4vw, 3.4rem);
+      border-color: rgba(0, 245, 212, 0.35);
+      border-radius: 50%;
+      animation-delay: 1.6s;
+    }
+
+    .neon-shape.triangle {
+      top: 64%;
+      right: 18%;
+      width: 0;
+      height: 0;
+      border-left: clamp(1rem, 2vw, 1.4rem) solid transparent;
+      border-right: clamp(1rem, 2vw, 1.4rem) solid transparent;
+      border-bottom: clamp(1.8rem, 3vw, 2.6rem) solid rgba(255, 46, 99, 0.18);
+      border-top: 0;
+      animation-delay: 3.2s;
+    }
+
+    /* ===========================================
+       DIAGRAMS / COMPARISONS / CODE BLOCKS
+       =========================================== */
+    .workflow-main {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      align-items: start;
+      position: relative;
+    }
+
+    .workflow-main::before {
+      content: "";
+      position: absolute;
+      top: clamp(2.6rem, 5vw, 3.3rem);
+      left: 6%;
+      right: 6%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.75), rgba(0, 245, 212, 0.75), rgba(255, 107, 53, 0.1));
+      box-shadow: 0 0 clamp(0.6rem, 1.6vw, 1rem) rgba(255, 107, 53, 0.35);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-slow) var(--ease-out-expo) 0.2s;
+    }
+
+    .slide.visible .workflow-main::before {
+      transform: scaleX(1);
+    }
+
+    .workflow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      text-align: center;
+      position: relative;
+    }
+
+    .diagram-node,
+    .compare-step,
+    .harness-stage,
+    .component-card,
+    .signal-node,
+    .timeline-card {
+      opacity: 0;
+      transform: translateY(clamp(1rem, 2vw, 1.5rem)) scale(0.96);
+    }
+
+    .slide.visible .diagram-node,
+    .slide.visible .compare-step,
+    .slide.visible .harness-stage,
+    .slide.visible .component-card,
+    .slide.visible .signal-node,
+    .slide.visible .timeline-card {
+      animation: nodeReveal 0.72s var(--ease-out-expo) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .node-main {
+      min-width: 100%;
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 107, 53, 0.55);
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.18), rgba(255, 46, 99, 0.15));
+      box-shadow: var(--shadow-orange);
+      font-family: var(--font-display);
+      font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .sub-chip-row {
+      justify-content: center;
+      max-width: 100%;
+    }
+
+    .feature-card h3,
+    .summary-card h3,
+    .component-card h3,
+    .statement-card h3,
+    .failure-card h3,
+    .comparison-card h3,
+    .timeline-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--h3-size);
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+      line-height: 1.2;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .feature-card .mini-label,
+    .summary-card .mini-label,
+    .component-card .mini-label,
+    .statement-card .mini-label {
+      color: var(--neon-orange);
+      margin-bottom: var(--space-1);
+    }
+
+    .code-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border-color: rgba(0, 245, 212, 0.35);
+      box-shadow: var(--shadow-teal);
+      min-height: 0;
+    }
+
+    .code-frame {
+      position: relative;
+      flex: 1;
+      min-height: clamp(12rem, 26vh, 17rem);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(6, 7, 18, 0.98), rgba(15, 10, 31, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .code-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 16%);
+      pointer-events: none;
+    }
+
+    .code-header {
+      display: flex;
+      gap: var(--space-1);
+      margin-bottom: var(--space-3);
+    }
+
+    .code-dot {
+      width: clamp(0.55rem, 1vw, 0.7rem);
+      height: clamp(0.55rem, 1vw, 0.7rem);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .code-dot.orange { background: var(--neon-orange); }
+    .code-dot.pink { background: var(--neon-pink); }
+    .code-dot.teal { background: var(--neon-teal); }
+
+    pre,
+    code {
+      font-family: var(--font-mono);
+      font-size: clamp(0.72rem, 1vw, 0.96rem);
+      line-height: 1.6;
+      color: #dffefe;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .typing-code.typing::after {
+      content: "▌";
+      color: var(--neon-teal);
+      margin-left: 0.15em;
+      animation: cursorBlink 0.8s step-end infinite;
+    }
+
+    .signal-flow,
+    .harness-flow {
+      display: grid;
+      align-items: center;
+      position: relative;
+    }
+
+    .signal-flow {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    }
+
+    .harness-flow {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    }
+
+    .signal-flow .signal-node,
+    .harness-flow .harness-stage {
+      padding: var(--space-4);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(17, 7, 40, 0.92), rgba(10, 5, 25, 0.84));
+      text-align: center;
+      min-height: clamp(8.5rem, 18vh, 11rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .signal-arrow,
+    .harness-arrow {
+      position: relative;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.8), rgba(0, 245, 212, 0.8));
+      box-shadow: 0 0 clamp(0.5rem, 1.2vw, 0.9rem) rgba(255, 107, 53, 0.3);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .slide.visible .signal-arrow,
+    .slide.visible .harness-arrow {
+      animation: lineGrow 0.6s var(--ease-out-expo) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .signal-arrow::after,
+    .harness-arrow::after {
+      content: "";
+      position: absolute;
+      right: calc(-1 * clamp(0.2rem, 0.6vw, 0.35rem));
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: clamp(0.55rem, 1vw, 0.7rem);
+      height: clamp(0.55rem, 1vw, 0.7rem);
+      border-top: 2px solid var(--neon-teal);
+      border-right: 2px solid var(--neon-teal);
+    }
+
+    .timeline-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .timeline-card {
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      min-height: 0;
+    }
+
+    .lane-stack {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
+    }
+
+    .lane {
+      display: grid;
+      grid-template-columns: clamp(3rem, 8vw, 5rem) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .lane-label {
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .lane-track {
+      height: clamp(0.9rem, 1.8vw, 1.2rem);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lane-bar {
+      height: 100%;
+      width: var(--bar-width, 60%);
+      transform: scaleX(0);
+      transform-origin: left;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
+      box-shadow: var(--shadow-orange);
+    }
+
+    .lane-bar.parallel {
+      background: linear-gradient(90deg, var(--neon-teal), var(--neon-purple));
+      box-shadow: var(--shadow-teal);
+    }
+
+    .slide.visible .lane-bar {
+      animation: barGrow 0.75s var(--ease-out-expo) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .comparison-card {
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      border-radius: var(--radius-md);
+      border: var(--line-subtle);
+    }
+
+    .compare-track {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      position: relative;
+    }
+
+    .compare-track::before {
+      content: "";
+      position: absolute;
+      top: clamp(1rem, 2vw, 1.2rem);
+      bottom: clamp(1rem, 2vw, 1.2rem);
+      left: clamp(1rem, 2vw, 1.25rem);
+      width: 2px;
+      background: linear-gradient(180deg, rgba(255, 107, 53, 0.9), rgba(0, 245, 212, 0.8));
+      opacity: 0.4;
+    }
+
+    .compare-step {
+      position: relative;
+      margin-left: clamp(1rem, 2vw, 1.3rem);
+      padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .compare-step::before {
+      content: "";
+      position: absolute;
+      left: calc(-1 * clamp(1.05rem, 2vw, 1.25rem));
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(0.7rem, 1.2vw, 0.9rem);
+      height: clamp(0.7rem, 1.2vw, 0.9rem);
+      border-radius: 50%;
+      background: var(--neon-orange);
+      box-shadow: var(--shadow-orange);
+    }
+
+    .comparison-card.team .compare-step::before {
+      background: var(--neon-teal);
+      box-shadow: var(--shadow-teal);
+    }
+
+    .compare-step strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      margin-bottom: var(--space-1);
+      color: var(--text-primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mesh-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-2);
+    }
+
+    .mesh-node {
+      padding: var(--space-3);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0, 245, 212, 0.35);
+      background: rgba(0, 245, 212, 0.05);
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      letter-spacing: 0.1em;
+    }
+
+    .mesh-links {
+      position: relative;
+      min-height: clamp(4rem, 10vh, 5.6rem);
+      border-radius: var(--radius-sm);
+      border: 1px dashed rgba(0, 245, 212, 0.2);
+      background:
+        linear-gradient(45deg, rgba(0, 245, 212, 0.06), transparent),
+        rgba(255, 255, 255, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--body-size);
+      color: var(--text-secondary);
+    }
+
+    .diagnosis-card {
+      border-color: rgba(255, 46, 99, 0.35);
+    }
+
+    .failure-slide::before {
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255, 46, 99, 0.22), transparent 24%),
+        radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.16), transparent 24%);
+    }
+
+    .failure-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+      width: 100%;
+      max-width: min(90vw, 1000px);
+    }
+
+    .failure-card {
+      border-color: rgba(255, 46, 99, 0.4);
+      box-shadow: 0 0 clamp(0.9rem, 2vw, 1.6rem) rgba(255, 46, 99, 0.16);
+      position: relative;
+      min-height: clamp(12rem, 22vh, 15rem);
+    }
+
+    .failure-card::after {
+      content: "FAILED";
+      position: absolute;
+      right: var(--space-3);
+      top: var(--space-3);
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      color: rgba(255, 46, 99, 0.55);
+      letter-spacing: 0.18em;
+    }
+
+    .closing-slide .slide-content {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-4);
+    }
+
+    .closing-slide .hero-title {
+      max-width: min(90vw, 14ch);
+    }
+
+    .statement-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+      width: 100%;
+      max-width: min(92vw, 1080px);
+    }
+
+    .statement-card {
+      min-height: clamp(9rem, 20vh, 12rem);
+      text-align: left;
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .impact-line {
+      font-size: clamp(1.4rem, 3vw, 2.5rem);
+      color: var(--text-primary);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===========================================
+       NAVIGATION / PROGRESS / INLINE EDITING
+       =========================================== */
+    .progress-wrap {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: clamp(0.25rem, 0.5vw, 0.35rem);
+      background: rgba(255, 255, 255, 0.06);
+      z-index: 9997;
+      pointer-events: none;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-teal));
+      box-shadow: 0 0 clamp(0.75rem, 2vw, 1.4rem) rgba(255, 46, 99, 0.5);
+      transition: width 0.3s ease;
+    }
+
+    .nav-dots {
+      position: fixed;
+      right: clamp(0.6rem, 1.2vw, 1rem);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.28rem, 0.8vw, 0.5rem);
+      z-index: 9996;
+    }
+
+    .nav-dot {
+      width: clamp(0.65rem, 1vw, 0.85rem);
+      height: clamp(0.65rem, 1vw, 0.85rem);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav-dot.active {
+      background: var(--neon-teal);
+      border-color: rgba(0, 245, 212, 0.6);
+      box-shadow: var(--shadow-teal);
+      transform: scale(1.18);
+    }
+
+    .keyboard-hint {
+      position: fixed;
+      left: clamp(0.8rem, 2vw, 1.4rem);
+      bottom: clamp(0.8rem, 2vw, 1.4rem);
+      z-index: 9995;
+      padding: var(--space-2) var(--space-3);
+      border-radius: 999px;
+      background: rgba(10, 6, 27, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      backdrop-filter: blur(10px);
+    }
+
+    .edit-hotzone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 80px;
+      z-index: 10000;
+      cursor: pointer;
+    }
+
+    .edit-toggle {
+      position: fixed;
+      top: clamp(0.8rem, 1.5vw, 1rem);
+      left: clamp(0.8rem, 1.5vw, 1rem);
+      width: clamp(2.6rem, 4vw, 3rem);
+      height: clamp(2.6rem, 4vw, 3rem);
+      border-radius: 50%;
+      border: 1px solid rgba(0, 245, 212, 0.5);
+      background: rgba(10, 6, 27, 0.85);
+      color: var(--neon-teal);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      box-shadow: var(--shadow-teal);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 10001;
+    }
+
+    .edit-toggle.show,
+    .edit-toggle.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    .edit-banner {
+      position: fixed;
+      top: clamp(0.8rem, 1.5vw, 1rem);
+      left: calc(clamp(0.8rem, 1.5vw, 1rem) + clamp(3.2rem, 4.8vw, 3.8rem));
+      padding: var(--space-2) var(--space-3);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 107, 53, 0.5);
+      background: rgba(10, 6, 27, 0.9);
+      color: var(--neon-orange);
+      font-family: var(--font-display);
+      font-size: var(--small-size);
+      letter-spacing: 0.12em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10001;
+    }
+
+    .edit-banner.show,
+    .edit-banner.active {
+      opacity: 1;
+    }
+
+    body.edit-active .editable[contenteditable="true"] {
+      outline: 1px dashed rgba(0, 245, 212, 0.55);
+      outline-offset: 0.2rem;
+      border-radius: clamp(0.2rem, 0.5vw, 0.4rem);
+    }
+
+    /* ===========================================
+       ANIMATIONS
+       =========================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(clamp(1rem, 2vw, 1.5rem));
+      transition:
+        opacity var(--duration-normal) var(--ease-out-expo),
+        transform var(--duration-normal) var(--ease-out-expo);
+    }
+
+    .slide.visible .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal:nth-child(1) { transition-delay: 0.08s; }
+    .reveal:nth-child(2) { transition-delay: 0.16s; }
+    .reveal:nth-child(3) { transition-delay: 0.24s; }
+    .reveal:nth-child(4) { transition-delay: 0.32s; }
+    .reveal:nth-child(5) { transition-delay: 0.4s; }
+    .reveal:nth-child(6) { transition-delay: 0.48s; }
+
+    @keyframes nodeReveal {
+      from {
+        opacity: 0;
+        transform: translateY(clamp(1rem, 2vw, 1.5rem)) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pulseSun {
+      0%, 100% { opacity: 0.32; filter: blur(0.02rem); }
+      50% { opacity: 0.42; filter: blur(0.08rem); }
+    }
+
+    @keyframes gridScroll {
+      from { background-position: 0 0; }
+      to { background-position: 0 clamp(1.8rem, 4vw, 3rem); }
+    }
+
+    @keyframes floatDrift {
+      0%, 100% { transform: translateY(0) rotate(45deg); }
+      50% { transform: translateY(calc(-1 * clamp(0.5rem, 1vw, 0.9rem))) rotate(55deg); }
+    }
+
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes barGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ===========================================
+       RESPONSIVE TUNING
+       =========================================== */
+    @media (max-width: 980px) {
+      .cards-grid,
+      .component-grid,
+      .summary-grid,
+      .statement-strip,
+      .metric-grid,
+      .workflow-main,
+      .signal-flow,
+      .harness-flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .two-col,
+      .timeline-compare,
+      .comparison-grid,
+      .failure-stack,
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workflow-main::before,
+      .signal-arrow,
+      .harness-arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .cards-grid,
+      .component-grid,
+      .summary-grid,
+      .statement-strip,
+      .metric-grid,
+      .workflow-main,
+      .signal-flow,
+      .harness-flow,
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .display-number {
+        right: var(--space-3);
+      }
+
+      .nav-dots {
+        right: clamp(0.4rem, 1vw, 0.6rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-wrap" aria-hidden="true"><div class="progress-bar"></div></div>
+  <nav class="nav-dots" aria-label="슬라이드 탐색"></nav>
+  <div class="keyboard-hint">↑ ↓ SPACE · SWIPE · CLICK DOTS</div>
+  <div class="edit-hotzone" aria-hidden="true"></div>
+  <button class="edit-toggle" id="editToggle" type="button" title="Edit mode (E)" aria-label="편집 모드 토글">✏️</button>
+  <div class="edit-banner" id="editBanner">EDIT MODE · Ctrl+S EXPORT</div>
+
+  <main>
+    <!-- ===========================================
+         01. TITLE SLIDE
+         =========================================== -->
+    <section class="slide title-slide" data-nav="시작">
+      <div class="sun"></div>
+      <div class="grid-floor"></div>
+      <div class="neon-shape square"></div>
+      <div class="neon-shape circle"></div>
+      <div class="neon-shape triangle"></div>
+      <div class="slide-content centered compact">
+        <p class="section-tag reveal editable">CONFERENCE 2025 // VIBE CODING</p>
+        <h1 class="hero-title reveal editable">바이브 코딩으로 <span class="accent-text">게임을 만들다</span></h1>
+        <div class="neon-divider reveal"></div>
+        <p class="lead reveal editable">AI 통제 방법론: SKILLS와 하네스의 실전 적용</p>
+        <div class="cta-row reveal">
+          <span class="cta-badge orange editable">SKILLS</span>
+          <span class="cta-badge teal editable">HARNESS</span>
+          <span class="cta-badge pink editable">FRUIT GAME</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         02. KARPATHY ORIGIN
+         =========================================== -->
+    <section class="slide" data-nav="시작점">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Section 01 · 바이브 코딩의 등장</p>
+        <h2 class="slide-title reveal editable">바이브 코딩의 시작</h2>
+        <div class="two-col">
+          <div class="quote-panel reveal">
+            <div class="quote-mark editable">“</div>
+            <p class="quote-body editable">테슬라에서 FSD를 설계하고 OpenAI를 공동 창업한 사람도 AI한테 코딩을 시킨다면, 내가 뭐라고 직접 해야 하나?</p>
+            <p class="inline-note muted editable" style="margin-top: var(--space-3);">2025년 2월, 안드레 카파시가 ‘바이브 코딩’이라는 용어를 던진 순간부터 흐름이 시작됐다.</p>
+          </div>
+          <div class="stack-grid reveal">
+            <div class="statement-card">
+              <p class="mini-label editable">TRIGGER</p>
+              <h3 class="editable">안드레 카파시</h3>
+              <p class="summary-copy editable">FSD 설계 경험과 AI 개발 경험을 가진 인물이 직접 코딩을 위임하기 시작했다는 사실이 강한 신호였다.</p>
+            </div>
+            <div class="statement-card">
+              <p class="mini-label editable">SHIFT</p>
+              <h3 class="editable">직접 구현 → 지시와 통제</h3>
+              <p class="summary-copy editable">핵심은 손을 놓는 것이 아니라, 무엇을 어떻게 시킬지 설계하는 자리로 역할이 이동한 것이다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         03. FIRST PROJECT
+         =========================================== -->
+    <section class="slide" data-nav="첫 프로젝트">
+      <div class="slide-content">
+        <p class="kicker reveal editable">실험 결과</p>
+        <h2 class="slide-title wide reveal editable">코드 한 줄 없이 완성한 프로젝트</h2>
+        <div class="metric-grid">
+          <article class="metric-card reveal">
+            <p class="metric-label editable">WORKING DAYS</p>
+            <p><span class="counter" data-target="2">0</span><span class="metric-suffix editable">일</span></p>
+            <p class="metric-value editable">총 작업 기간 2일. 한 번에 몰아친 짧고 강한 바이브 코딩 실험이었다.</p>
+          </article>
+          <article class="metric-card reveal">
+            <p class="metric-label editable">CODING HOURS</p>
+            <p><span class="counter" data-target="6">0</span><span class="metric-suffix editable">시간</span></p>
+            <p class="metric-value editable">실제로 AI에게 구현을 시킨 순수 코딩 시간은 6시간 수준이었다.</p>
+          </article>
+          <article class="metric-card reveal">
+            <p class="metric-label editable">STACK</p>
+            <p class="metric-number editable">Cursor</p>
+            <p class="metric-value editable">Cursor + Sonnet 3.7 Max, 그리고 Figma MCP를 조합해 넷플릭스 클로닝을 밀어붙였다.</p>
+          </article>
+        </div>
+        <div class="badge-row reveal">
+          <span class="neon-badge orange editable">Figma MCP</span>
+          <span class="neon-badge teal editable">Netflix Clone</span>
+          <span class="neon-badge pink editable">Almost No Rework</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         04. DOCUMENTATION IMPORTANCE
+         =========================================== -->
+    <section class="slide" data-nav="문서화">
+      <div class="slide-content centered">
+        <p class="section-tag reveal editable">Key Principle</p>
+        <h2 class="hero-title reveal editable" style="font-size: clamp(1.8rem, 5vw, 4.6rem);">핵심은 <span class="accent-text">문서화</span></h2>
+        <p class="lead reveal editable">당시에도 중요했고, 지금도 여전히 핵심적인 방법론이다. 기능 명세와 구현 계획이 정리될수록 AI의 출력 품질은 사람처럼 안정적으로 올라간다.</p>
+        <div class="chip-row reveal">
+          <span class="status-pill orange editable">기능 명세</span>
+          <span class="status-pill teal editable">구현 계획</span>
+          <span class="status-pill pink editable">순차 실행</span>
+        </div>
+        <p class="inline-note muted reveal editable">다음 섹션: 문서화의 끝판왕, SKILLS</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         05. SECTION TITLE - SKILLS
+         =========================================== -->
+    <section class="slide section-slide" data-nav="SKILLS 섹션">
+      <span class="display-number editable">02</span>
+      <div class="slide-content compact">
+        <p class="section-tag reveal editable">DOCUMENTATION MAX LEVEL</p>
+        <h2 class="section-title reveal editable">문서화 끝판왕<br /><span class="gradient-text">SKILLS</span></h2>
+        <div class="neon-divider reveal"></div>
+        <p class="lead reveal editable">워크플로우를 설명하는 문서가 아니라, 실행 가능한 개발 프로토콜로 만드는 단계.</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         06. WHAT IS SKILLS
+         =========================================== -->
+    <section class="slide" data-nav="SKILLS란">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Definition</p>
+        <h2 class="slide-title reveal editable">SKILLS = 워크플로우를 코드로 정의하는 것</h2>
+        <div class="two-col">
+          <div class="panel reveal" style="padding: var(--space-5); border: var(--line-orange); box-shadow: var(--shadow-orange);">
+            <p class="impact-line editable">업무 매뉴얼 → AI가 순서대로 실행</p>
+            <p class="lead editable" style="margin-top: var(--space-3);">무엇을 먼저 하고, 무엇을 검증하고, 어떤 산출물을 남길지를 일의 순서대로 선언하는 방식이다.</p>
+          </div>
+          <div class="summary-grid reveal" style="grid-template-columns: 1fr;">
+            <article class="summary-card">
+              <p class="mini-label editable">STEP 1</p>
+              <h3 class="editable">일의 순서를 적는다</h3>
+              <p class="summary-copy editable">계획 없이 “만들어줘”라고 던지지 않는다.</p>
+            </article>
+            <article class="summary-card">
+              <p class="mini-label editable">STEP 2</p>
+              <h3 class="editable">조건과 금지사항을 넣는다</h3>
+              <p class="summary-copy editable">제약이 많을수록 AI는 덜 흔들린다.</p>
+            </article>
+            <article class="summary-card">
+              <p class="mini-label editable">STEP 3</p>
+              <h3 class="editable">검증 루프를 연결한다</h3>
+              <p class="summary-copy editable">끝까지 통제 가능한 워크플로우가 된다.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         07. GAME DEV WORKFLOW DIAGRAM
+         =========================================== -->
+    <section class="slide" data-nav="게임 워크플로우">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Workflow Diagram</p>
+        <h2 class="slide-title wide reveal editable">게임 개발 워크플로우는 원래 이렇게 흘러간다</h2>
+        <div class="workflow-main">
+          <div class="workflow-step">
+            <div class="diagram-node node-main editable" style="--delay: 0.05s;">기획</div>
+            <div class="sub-chip-row">
+              <span class="diagram-node sub-chip orange editable" style="--delay: 0.18s;">장르 정의</span>
+              <span class="diagram-node sub-chip orange editable" style="--delay: 0.26s;">플랫폼</span>
+              <span class="diagram-node sub-chip orange editable" style="--delay: 0.34s;">핵심 재미</span>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="diagram-node node-main editable" style="--delay: 0.2s;">프로토타입</div>
+            <div class="sub-chip-row">
+              <span class="diagram-node sub-chip pink editable" style="--delay: 0.32s;">핵심 기능</span>
+              <span class="diagram-node sub-chip pink editable" style="--delay: 0.4s;">플레이 테스트</span>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="diagram-node node-main editable" style="--delay: 0.35s;">개발</div>
+            <div class="sub-chip-row">
+              <span class="diagram-node sub-chip teal editable" style="--delay: 0.48s;">코드</span>
+              <span class="diagram-node sub-chip teal editable" style="--delay: 0.56s;">아트</span>
+              <span class="diagram-node sub-chip teal editable" style="--delay: 0.64s;">사운드</span>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="diagram-node node-main editable" style="--delay: 0.5s;">테스트</div>
+            <div class="sub-chip-row">
+              <span class="diagram-node sub-chip orange editable" style="--delay: 0.62s;">버그</span>
+              <span class="diagram-node sub-chip orange editable" style="--delay: 0.7s;">밸런스</span>
+              <span class="diagram-node sub-chip orange editable" style="--delay: 0.78s;">최적화</span>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="diagram-node node-main editable" style="--delay: 0.65s;">출시</div>
+            <div class="sub-chip-row">
+              <span class="diagram-node sub-chip pink editable" style="--delay: 0.78s;">스토어</span>
+              <span class="diagram-node sub-chip pink editable" style="--delay: 0.86s;">마케팅</span>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="diagram-node node-main editable" style="--delay: 0.8s;">운영</div>
+            <div class="sub-chip-row">
+              <span class="diagram-node sub-chip teal editable" style="--delay: 0.94s;">업데이트</span>
+              <span class="diagram-node sub-chip teal editable" style="--delay: 1.02s;">이벤트</span>
+              <span class="diagram-node sub-chip teal editable" style="--delay: 1.1s;">데이터</span>
+            </div>
+          </div>
+        </div>
+        <p class="inline-note muted reveal editable">각 노드는 순서대로 나타나고, 세부 작업은 부모 단계 뒤에 이어서 노출된다.</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         08. ROLES AND LIMITS
+         =========================================== -->
+    <section class="slide" data-nav="역할과 한계">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Human Workflow</p>
+        <h2 class="slide-title reveal editable">각 단계별 역할은 뚜렷하지만, 인간은 동시에 다 못 한다</h2>
+        <div class="cards-grid">
+          <article class="feature-card reveal">
+            <p class="mini-label editable">기획</p>
+            <h3 class="editable">문제 정의</h3>
+            <p class="card-copy editable">시장, 장르, 재미 포인트를 명확히 언어화해야 한다.</p>
+          </article>
+          <article class="feature-card reveal">
+            <p class="mini-label editable">프로토타입</p>
+            <h3 class="editable">빠른 실험</h3>
+            <p class="card-copy editable">최소 기능으로 손맛과 방향성을 검증한다.</p>
+          </article>
+          <article class="feature-card reveal">
+            <p class="mini-label editable">개발</p>
+            <h3 class="editable">멀티 디서플린</h3>
+            <p class="card-copy editable">코드, 아트, 사운드, 레벨 디자인이 서로 발목을 잡는다.</p>
+          </article>
+          <article class="feature-card reveal">
+            <p class="mini-label editable">테스트</p>
+            <h3 class="editable">끝없는 수정</h3>
+            <p class="card-copy editable">버그, 밸런스, 성능 이슈는 마지막이 아니라 매일 생긴다.</p>
+          </article>
+        </div>
+        <div class="panel reveal" style="padding: var(--space-4); border: var(--line-teal); box-shadow: var(--shadow-teal);">
+          <p class="impact-line editable">인간의 한계: 물리적 시간 + 동시 작업 불가</p>
+          <p class="lead editable" style="margin-top: var(--space-2);">지식 노동의 산출물은 병렬화가 어려웠다. 그래서 SKILLS가 들어올 자리가 생긴다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         09. WHAT AI DOES WELL
+         =========================================== -->
+    <section class="slide" data-nav="AI 강점">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Why Skills Matter</p>
+        <h2 class="slide-title reveal editable">글로 디테일하게 명시되어 있다면, AI는 사람만큼 잘 해낸다</h2>
+        <div class="two-col">
+          <div class="panel reveal" style="padding: var(--space-5); border: var(--line-teal); box-shadow: var(--shadow-teal);">
+            <p class="impact-line editable">이것이 바로 SKILLS</p>
+            <ul class="bullet-list" style="margin-top: var(--space-3);">
+              <li class="editable">불분명한 요청보다 구조화된 지시를 훨씬 안정적으로 따른다.</li>
+              <li class="editable">역할 분리, 검증 조건, 실패 처리까지 써주면 결과가 급격히 좋아진다.</li>
+              <li class="editable">즉흥성보다 절차성이 강한 작업에서 특히 강하다.</li>
+            </ul>
+          </div>
+          <div class="code-panel reveal">
+            <p class="mini-label editable">STRUCTURED INSTRUCTION EXAMPLE</p>
+            <div class="code-frame">
+              <div class="code-header">
+                <span class="code-dot orange"></span>
+                <span class="code-dot pink"></span>
+                <span class="code-dot teal"></span>
+              </div>
+              <pre><code class="editable">goal: 과일 게임 핵심 루프 구현
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         10. PRACTICAL STRUCTURE
+         =========================================== -->
+    <section class="slide" data-nav="적용 구조">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Practical Pipeline</p>
+        <h2 class="slide-title wide reveal editable">SKILLS 실전 적용 구조</h2>
+        <div class="signal-flow">
+          <div class="signal-node" style="--delay: 0.05s;">
+            <p class="mini-label editable">MEMORY</p>
+            <h3 class="editable">CLAUDE.md</h3>
+            <p class="diag-copy editable">프로젝트 맥락과 장기 지침을 잡아둔다.</p>
+          </div>
+          <div class="signal-arrow" style="--delay: 0.24s;"></div>
+          <div class="signal-node" style="--delay: 0.34s;">
+            <p class="mini-label editable">WORKFLOW</p>
+            <h3 class="editable">SKILLS</h3>
+            <p class="diag-copy editable">해야 할 순서와 산출물을 정의한다.</p>
+          </div>
+          <div class="signal-arrow" style="--delay: 0.5s;"></div>
+          <div class="signal-node" style="--delay: 0.6s;">
+            <p class="mini-label editable">EXECUTION</p>
+            <h3 class="editable">Subagents</h3>
+            <p class="diag-copy editable">역할 단위로 나눠 병렬 실행한다.</p>
+          </div>
+          <div class="signal-arrow" style="--delay: 0.76s;"></div>
+          <div class="signal-node" style="--delay: 0.86s;">
+            <p class="mini-label editable">RESULT</p>
+            <h3 class="editable">Output</h3>
+            <p class="diag-copy editable">구조화된 입력이 안정적인 품질로 이어진다.</p>
+          </div>
+        </div>
+        <p class="inline-note muted reveal editable">좋은 결과는 모델만으로 나오지 않는다. 입력 구조가 결과 품질을 결정한다.</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         11. SKILLS SUMMARY
+         =========================================== -->
+    <section class="slide" data-nav="SKILLS 요약">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Summary</p>
+        <h2 class="slide-title reveal editable">SKILLS 요약</h2>
+        <div class="summary-grid">
+          <article class="summary-card reveal">
+            <p class="mini-label editable">01</p>
+            <h3 class="editable">일을 순서로 고정한다</h3>
+            <p class="summary-copy editable">즉흥 지시가 아니라 반복 가능한 작업 프로토콜이 된다.</p>
+          </article>
+          <article class="summary-card reveal">
+            <p class="mini-label editable">02</p>
+            <h3 class="editable">AI의 강점을 극대화한다</h3>
+            <p class="summary-copy editable">문서가 잘 써질수록 AI는 사람처럼 안정적으로 수행한다.</p>
+          </article>
+          <article class="summary-card reveal">
+            <p class="mini-label editable">03</p>
+            <h3 class="editable">핵심 구성 요소 이해가 필수</h3>
+            <p class="summary-copy editable">SKILLS를 제대로 쓰려면 클로드의 내부 구성 요소를 알아야 한다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         12. SECTION TITLE - CLAUDE CORE
+         =========================================== -->
+    <section class="slide section-slide" data-nav="클로드 코어">
+      <span class="display-number editable">03</span>
+      <div class="slide-content compact">
+        <p class="section-tag reveal editable">CLAUDE CODE FUNDAMENTALS</p>
+        <h2 class="section-title reveal editable">클로드의 핵심 구성 요소</h2>
+        <div class="neon-divider reveal"></div>
+        <p class="lead reveal editable">무엇이 맥락을 저장하고, 무엇이 실행하고, 무엇이 협업과 검증을 담당하는가.</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         13. COMPONENT OVERVIEW
+         =========================================== -->
+    <section class="slide" data-nav="구성 요소 6개">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Overview</p>
+        <h2 class="slide-title reveal editable">핵심 구성 요소 6개</h2>
+        <div class="component-grid">
+          <article class="component-card" style="--delay: 0.05s;">
+            <p class="mini-label editable">MEMORY</p>
+            <h3 class="editable">CLAUDE.md</h3>
+            <p class="card-copy editable">프로젝트 메모리와 작업 원칙을 담는다.</p>
+          </article>
+          <article class="component-card" style="--delay: 0.14s;">
+            <p class="mini-label editable">TOOLING</p>
+            <h3 class="editable">MCP</h3>
+            <p class="card-copy editable">외부 시스템과 기능을 확장하는 인터페이스.</p>
+          </article>
+          <article class="component-card" style="--delay: 0.23s;">
+            <p class="mini-label editable">AUTOMATION</p>
+            <h3 class="editable">Hooks</h3>
+            <p class="card-copy editable">특정 조건에서 자동 동작을 삽입한다.</p>
+          </article>
+          <article class="component-card" style="--delay: 0.32s;">
+            <p class="mini-label editable">EXECUTOR</p>
+            <h3 class="editable">Subagents</h3>
+            <p class="card-copy editable">역할이 지정된 실행 단위 에이전트.</p>
+          </article>
+          <article class="component-card" style="--delay: 0.41s;">
+            <p class="mini-label editable">WORKFLOW</p>
+            <h3 class="editable">Skills</h3>
+            <p class="card-copy editable">반복 가능한 절차를 스크립트처럼 정의한다.</p>
+          </article>
+          <article class="component-card" style="--delay: 0.5s;">
+            <p class="mini-label editable">COLLABORATION</p>
+            <h3 class="editable">Agent Teams</h3>
+            <p class="card-copy editable">에이전트끼리 토론하며 더 나은 결과를 만든다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         14. WHAT IS SUBAGENT
+         =========================================== -->
+    <section class="slide" data-nav="서브 에이전트">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Subagent</p>
+        <h2 class="slide-title reveal editable">서브 에이전트란, 역할이 지정된 에이전트다</h2>
+        <div class="two-col">
+          <div class="panel reveal" style="padding: var(--space-5); border: var(--line-teal); box-shadow: var(--shadow-teal);">
+            <p class="impact-line editable">ROLE-BOUND AGENT</p>
+            <p class="lead editable" style="margin-top: var(--space-2);">오케스트레이터가 직접 모든 일을 하지 않고, 각 작업을 역할 중심으로 쪼개서 실시간 생성 후 즉시 실행한다.</p>
+          </div>
+          <div class="summary-grid reveal" style="grid-template-columns: 1fr;">
+            <article class="summary-card">
+              <p class="mini-label editable">특징 1</p>
+              <h3 class="editable">실시간 생성 후 즉시 실행</h3>
+              <p class="summary-copy editable">필요한 순간에 바로 역할을 만들고 그 역할에 맞게 일시킨다.</p>
+            </article>
+            <article class="summary-card">
+              <p class="mini-label editable">특징 2</p>
+              <h3 class="editable">병렬 실행 가능</h3>
+              <p class="summary-copy editable">순차로 안 해도 되는 작업은 여러 개를 동시에 돌릴 수 있다.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         15. SEQUENTIAL VS PARALLEL
+         =========================================== -->
+    <section class="slide" data-nav="병렬 처리">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Critical Animation</p>
+        <h2 class="slide-title reveal editable">순차 처리 vs 병렬 처리</h2>
+        <div class="timeline-compare">
+          <article class="timeline-card" style="--delay: 0.05s; border: var(--line-orange); box-shadow: var(--shadow-orange);">
+            <p class="mini-label editable">Sequential</p>
+            <h3 class="editable">한 번에 하나씩</h3>
+            <div class="lane-stack">
+              <div class="lane"><span class="lane-label editable">Task A</span><div class="lane-track"><div class="lane-bar" style="--bar-width: 100%; --delay: 0.16s;"></div></div></div>
+              <div class="lane"><span class="lane-label editable">Task B</span><div class="lane-track"><div class="lane-bar" style="--bar-width: 82%; --delay: 0.32s;"></div></div></div>
+              <div class="lane"><span class="lane-label editable">Task C</span><div class="lane-track"><div class="lane-bar" style="--bar-width: 92%; --delay: 0.48s;"></div></div></div>
+              <div class="lane"><span class="lane-label editable">Task D</span><div class="lane-track"><div class="lane-bar" style="--bar-width: 74%; --delay: 0.64s;"></div></div></div>
+            </div>
+            <p class="summary-copy editable">총 소요 시간은 모든 작업 길이의 합으로 늘어난다.</p>
+          </article>
+          <article class="timeline-card" style="--delay: 0.12s; border: var(--line-teal); box-shadow: var(--shadow-teal);">
+            <p class="mini-label editable">Parallel</p>
+            <h3 class="editable">동시에 처리</h3>
+            <div class="lane-stack">
+              <div class="lane"><span class="lane-label editable">Task A</span><div class="lane-track"><div class="lane-bar parallel" style="--bar-width: 100%; --delay: 0.22s;"></div></div></div>
+              <div class="lane"><span class="lane-label editable">Task B</span><div class="lane-track"><div class="lane-bar parallel" style="--bar-width: 82%; --delay: 0.22s;"></div></div></div>
+              <div class="lane"><span class="lane-label editable">Task C</span><div class="lane-track"><div class="lane-bar parallel" style="--bar-width: 92%; --delay: 0.22s;"></div></div></div>
+              <div class="lane"><span class="lane-label editable">Task D</span><div class="lane-track"><div class="lane-bar parallel" style="--bar-width: 74%; --delay: 0.22s;"></div></div></div>
+            </div>
+            <p class="summary-copy editable">전체 시간은 가장 오래 걸리는 작업 기준으로 줄어든다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         16. AGENT TEAMS
+         =========================================== -->
+    <section class="slide" data-nav="에이전트 팀">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Agent Teams</p>
+        <h2 class="slide-title wide reveal editable">에이전트 팀은 서브 에이전트의 한 단계 더 발전한 형태</h2>
+        <div class="two-col">
+          <div class="panel reveal" style="padding: var(--space-5);">
+            <p class="impact-line editable">에이전트끼리 대화하며 피드백</p>
+            <ul class="bullet-list" style="margin-top: var(--space-3);">
+              <li class="editable">중간 산출물에 서로 의견을 주고받는다.</li>
+              <li class="editable">한 에이전트의 맹점을 다른 에이전트가 잡아준다.</li>
+              <li class="editable">컨텍스트가 많아지지만 결과 품질도 함께 상승한다.</li>
+            </ul>
+          </div>
+          <div class="comparison-card team reveal">
+            <p class="mini-label editable">FEEDBACK LOOP</p>
+            <div class="mesh-row">
+              <div class="mesh-node editable">PLANNER</div>
+              <div class="mesh-node editable">EXECUTOR</div>
+              <div class="mesh-node editable">REVIEWER</div>
+            </div>
+            <div class="mesh-links editable">대화 · 재질문 · 반박 · 개선안 제시</div>
+            <p class="card-copy editable">결과적으로 한 명의 긴 독백보다 여러 역할의 짧은 토론이 방향성 오류를 줄여준다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         17. SUBAGENT VS AGENT TEAMS
+         =========================================== -->
+    <section class="slide" data-nav="비교 다이어그램">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Critical Animation</p>
+        <h2 class="slide-title wide reveal editable">서브 에이전트 vs 에이전트 팀</h2>
+        <div class="comparison-grid">
+          <article class="comparison-card reveal">
+            <p class="mini-label editable">Subagents</p>
+            <h3 class="editable">각자 역할 수행 → 오케스트레이터 보고 → 취합</h3>
+            <div class="compare-track">
+              <div class="compare-step" style="--delay: 0.12s;"><strong class="editable">Agent A</strong><span class="diag-copy editable">탐색</span></div>
+              <div class="compare-step" style="--delay: 0.24s;"><strong class="editable">Agent B</strong><span class="diag-copy editable">구현</span></div>
+              <div class="compare-step" style="--delay: 0.36s;"><strong class="editable">Agent C</strong><span class="diag-copy editable">검증</span></div>
+              <div class="compare-step" style="--delay: 0.48s;"><strong class="editable">Orchestrator</strong><span class="diag-copy editable">결과를 받아 최종 취합</span></div>
+            </div>
+          </article>
+          <article class="comparison-card team reveal">
+            <p class="mini-label editable">Agent Teams</p>
+            <h3 class="editable">에이전트끼리 대화 → 피드백 → 협업 결과 생성</h3>
+            <div class="compare-track">
+              <div class="compare-step" style="--delay: 0.12s;"><strong class="editable">Planner ↔ Executor</strong><span class="diag-copy editable">계획을 구현 가능 단위로 재조정</span></div>
+              <div class="compare-step" style="--delay: 0.24s;"><strong class="editable">Executor ↔ Reviewer</strong><span class="diag-copy editable">문제점과 개선안을 즉시 주고받음</span></div>
+              <div class="compare-step" style="--delay: 0.36s;"><strong class="editable">Shared Context</strong><span class="diag-copy editable">중간 산출물이 팀 안에서 순환</span></div>
+              <div class="compare-step" style="--delay: 0.48s;"><strong class="editable">Final Output</strong><span class="diag-copy editable">더 많은 컨텍스트를 반영한 결과</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         18. COLLABORATION EFFECT
+         =========================================== -->
+    <section class="slide" data-nav="협업 효과">
+      <div class="slide-content centered">
+        <p class="section-tag reveal editable">INSIGHT</p>
+        <h2 class="slide-title reveal editable">사람도, AI도 함께할 때 더 좋은 아이데이션을 한다</h2>
+        <div class="quote-panel reveal" style="max-width: min(86vw, 900px);">
+          <p class="quote-body editable">혼자 깊게 파는 힘도 중요하지만, 토론이 들어오면 방향성 오류를 훨씬 빨리 잡을 수 있다. AI 모델도 마찬가지다.</p>
+        </div>
+        <div class="chip-row reveal">
+          <span class="status-pill orange editable">오류 방향 조기 차단</span>
+          <span class="status-pill teal editable">더 넓은 컨텍스트</span>
+          <span class="status-pill pink editable">자기합리화 감소</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         19. SECTION TITLE - FRUIT GAME
+         =========================================== -->
+    <section class="slide section-slide" data-nav="게임 사례">
+      <span class="display-number editable">04</span>
+      <div class="slide-content compact">
+        <p class="section-tag reveal editable">PROOF BY SHIPPING</p>
+        <h2 class="section-title reveal editable">바이브 코딩으로 만들어 본 게임</h2>
+        <div class="neon-divider reveal"></div>
+        <p class="lead reveal editable">실패에서 출발해, 문서와 검증을 붙이자 실제 제품 품질로 수렴했던 과정.</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         20. FAILURE STORY
+         =========================================== -->
+    <section class="slide failure-slide" data-nav="실패 스토리">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Reality Check</p>
+        <h2 class="slide-title reveal editable">처참한 실패: 다크소울, 마인크래프트</h2>
+        <div class="failure-stack">
+          <article class="failure-card reveal">
+            <p class="mini-label editable">ATTEMPT 01</p>
+            <h3 class="editable">DARK SOULS</h3>
+            <p class="card-copy editable">스코프가 너무 컸고, 전투·애니메이션·상태 머신에 대한 개념이 없이 “비슷하게”를 요구했다.</p>
+          </article>
+          <article class="failure-card reveal">
+            <p class="mini-label editable">ATTEMPT 02</p>
+            <h3 class="editable">MINECRAFT</h3>
+            <p class="card-copy editable">장르 특성, 엔진 구조, 월드 생성 개념을 모른 채 무작정 큰 문제를 던졌다.</p>
+          </article>
+        </div>
+        <div class="panel reveal" style="padding: var(--space-4); border: 1px solid rgba(255, 46, 99, 0.42);">
+          <p class="impact-line editable">바이브 코딩 신봉자였는데, 왜 게임은 안 됐을까?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         21. WHY FAILURE
+         =========================================== -->
+    <section class="slide" data-nav="실패 원인">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Diagnosis</p>
+        <h2 class="slide-title reveal editable">왜 실패했나?</h2>
+        <div class="summary-grid">
+          <article class="summary-card diagnosis-card reveal">
+            <p class="mini-label editable">ROOT CAUSE 01</p>
+            <h3 class="editable">도메인 키워드 부족</h3>
+            <p class="summary-copy editable">AI를 잘 쓰려면 해당 분야에서 어떤 키워드가 중요한지부터 알아야 한다.</p>
+          </article>
+          <article class="summary-card diagnosis-card reveal">
+            <p class="mini-label editable">ROOT CAUSE 02</p>
+            <h3 class="editable">물리 엔진 이해 부족</h3>
+            <p class="summary-copy editable">중력, 충돌, 마찰 같은 개념이 약하면 구현 지시도 약해진다.</p>
+          </article>
+          <article class="summary-card diagnosis-card reveal">
+            <p class="mini-label editable">ROOT CAUSE 03</p>
+            <h3 class="editable">장르별 엔진 선택 개념 부재</h3>
+            <p class="summary-copy editable">같은 게임 개발이라도 장르에 따라 써야 할 엔진과 구조가 다르다.</p>
+          </article>
+        </div>
+        <p class="inline-note muted reveal editable">결국 실패는 AI 때문이 아니라, 내가 통제할 언어를 아직 갖고 있지 않았기 때문이다.</p>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         22. TURNING POINT WITH CODE TYPING
+         =========================================== -->
+    <section class="slide" data-nav="전환점">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Critical Animation</p>
+        <h2 class="slide-title wide reveal editable">유튜브 영상 → 기획 문서 → 첫 구현</h2>
+        <div class="two-col">
+          <div class="panel reveal" style="padding: var(--space-5); border: var(--line-orange); box-shadow: var(--shadow-orange);">
+            <ul class="bullet-list">
+              <li class="editable">유튜브 설명을 정독해 엑셀 과일 게임의 핵심 규칙을 먼저 이해했다.</li>
+              <li class="editable">그 내용을 바탕으로 게임 가이드라인 문서를 만들고, 역할 단위로 구현을 나눴다.</li>
+              <li class="editable">“그냥 만들어줘”가 아니라 “문서 기반으로 구현해”로 바뀌는 순간 결과가 달라졌다.</li>
+            </ul>
+            <div class="badge-row" style="margin-top: var(--space-4);">
+              <span class="status-pill teal editable">JEST TEST 51 PASS</span>
+            </div>
+          </div>
+          <div class="code-panel reveal">
+            <p class="mini-label editable">CANVAS + VANILLA JS</p>
+            <div class="code-frame">
+              <div class="code-header">
+                <span class="code-dot orange"></span>
+                <span class="code-dot pink"></span>
+                <span class="code-dot teal"></span>
+              </div>
+              <pre><code class="typing-code editable">// Canvas + Vanilla JS
+Game.js
+Fruit.js
+Physics.js
+CollisionDetector.js
+GameState.js
+InputHandler.js</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         23. MIGRATION WITH CODE TYPING
+         =========================================== -->
+    <section class="slide" data-nav="마이그레이션">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Architecture Shift</p>
+        <h2 class="slide-title wide reveal editable">TypeScript + React + Cannon.js로 마이그레이션</h2>
+        <div class="two-col">
+          <div class="panel reveal" style="padding: var(--space-5); border: var(--line-teal); box-shadow: var(--shadow-teal);">
+            <p class="impact-line editable">설계 후 구현 &gt; 바로 구현</p>
+            <ul class="bullet-list" style="margin-top: var(--space-3);">
+              <li class="editable">engine 계층을 분리하고 React 구조를 다시 잡았다.</li>
+              <li class="editable">AI는 무에서 유를 만드는 것보다, 정리된 구조를 더 나은 구조로 재배치하는 데 강했다.</li>
+              <li class="editable">문서가 설계도가 되자 리팩터링도 통제 가능한 작업이 되었다.</li>
+            </ul>
+          </div>
+          <div class="code-panel reveal">
+            <p class="mini-label editable">ARCHITECTURE MIGRATION</p>
+            <div class="code-frame">
+              <div class="code-header">
+                <span class="code-dot orange"></span>
+                <span class="code-dot pink"></span>
+                <span class="code-dot teal"></span>
+              </div>
+              <pre><code class="typing-code editable">// Architecture migration
+engine/ → Game.tsx → GameCanvas.tsx
+Cannon-es physics engine integration
+Fruit data / collision / input / UI split
+Design first, then implementation</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         24. HARNESS ROLE
+         =========================================== -->
+    <section class="slide" data-nav="Harness">
+      <div class="slide-content">
+        <p class="kicker reveal editable">Harness as OS</p>
+        <h2 class="slide-title wide reveal editable">oh my claudecode 같은 harness = 작업 운영체제</h2>
+        <div class="harness-flow">
+          <div class="harness-stage" style="--delay: 0.06s;">
+            <p class="mini-label editable">PLANNER</p>
+            <h3 class="editable">계획 수립</h3>
+            <p class="diag-copy editable">스펙, 작업 쪼개기, 산출물 정의</p>
+          </div>
+          <div class="harness-arrow" style="--delay: 0.24s;"></div>
+          <div class="harness-stage" style="--delay: 0.34s;">
+            <p class="mini-label editable">GENERATOR</p>
+            <h3 class="editable">구현 생성</h3>
+            <p class="diag-copy editable">문서 기준으로 코드와 산출물 생성</p>
+          </div>
+          <div class="harness-arrow" style="--delay: 0.52s;"></div>
+          <div class="harness-stage" style="--delay: 0.62s;">
+            <p class="mini-label editable">EVALUATOR</p>
+            <h3 class="editable">실행 검증</h3>
+            <p class="diag-copy editable">테스트, 브라우저 실행, 피드백 반영</p>
+          </div>
+        </div>
+        <div class="panel reveal" style="padding: var(--space-4); border: var(--line-orange); box-shadow: var(--shadow-orange);">
+          <p class="impact-line editable">생성과 검증의 분리로 자기합리화 방지</p>
+          <p class="lead editable" style="margin-top: var(--space-2);">긴 작업일수록 한 명의 AI에게 맡기는 것이 아니라, 생성과 평가를 분리한 공정으로 운영해야 한다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+         25. CONCLUSION
+         =========================================== -->
+    <section class="slide closing-slide" data-nav="결론">
+      <div class="sun"></div>
+      <div class="grid-floor"></div>
+      <div class="neon-shape square"></div>
+      <div class="neon-shape circle"></div>
+      <div class="neon-shape triangle"></div>
+      <div class="slide-content">
+        <p class="section-tag reveal editable">FINAL TAKEAWAY</p>
+        <h2 class="hero-title reveal editable" style="font-size: clamp(1.9rem, 5.8vw, 4.9rem);">바이브 코딩은 <span class="accent-text">운 좋은 한 방</span>이 아니다</h2>
+        <div class="statement-strip">
+          <article class="statement-card reveal">
+            <p class="mini-label editable">01</p>
+            <h3 class="editable">잘게 쪼갠다</h3>
+            <p class="summary-copy editable">작업을 작은 단계로 나눌수록 AI는 더 잘 움직인다.</p>
+          </article>
+          <article class="statement-card reveal">
+            <p class="mini-label editable">02</p>
+            <h3 class="editable">계속 검증한다</h3>
+            <p class="summary-copy editable">테스트와 실행 검증이 붙지 않으면 금방 무너진다.</p>
+          </article>
+          <article class="statement-card reveal">
+            <p class="mini-label editable">03</p>
+            <h3 class="editable">통제 위치가 이동한다</h3>
+            <p class="summary-copy editable">키보드 입력 대신 문서·검증·오케스트레이션이 중심이 된다.</p>
+          </article>
+        </div>
+        <div class="cta-row reveal">
+          <span class="cta-badge orange editable">GAME OVER? NO.</span>
+          <span class="cta-badge teal editable">GAME START.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* ===========================================
+       SLIDE PRESENTATION CONTROLLER
+       =========================================== */
+    class SlidePresentation {
+      constructor() {
+        this.slides = Array.from(document.querySelectorAll('.slide'));
+        this.progressBar = document.querySelector('.progress-bar');
+        this.navDotsContainer = document.querySelector('.nav-dots');
+        this.currentSlide = 0;
+        this.touchStartY = 0;
+        this.touchEndY = 0;
+        this.wheelLocked = false;
+        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.setupIntersectionObserver();
+        this.setupKeyboardNav();
+        this.setupTouchNav();
+        this.setupWheelNav();
+        this.setupNavDots();
+        this.prepareTypingBlocks();
+        this.updateProgressBar(0);
+        this.activateSlide(0);
+      }
+
+      setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const index = this.slides.indexOf(entry.target);
+            entry.target.classList.add('visible');
+            this.activateSlide(index);
+            this.animateCounters(entry.target);
+            this.startTypingWithin(entry.target);
+          });
+        }, {
+          threshold: 0.55,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        this.slides.forEach((slide) => {
+          observer.observe(slide);
+        });
+      }
+
+      setupKeyboardNav() {
+        document.addEventListener('keydown', (event) => {
+          if (this.isEditingText(event.target)) return;
+          const nextKeys = ['ArrowDown', 'ArrowRight', 'PageDown', ' '];
+          const prevKeys = ['ArrowUp', 'ArrowLeft', 'PageUp'];
+          if (nextKeys.includes(event.key)) {
+            event.preventDefault();
+            this.goToSlide(this.currentSlide + 1);
+          }
+          if (prevKeys.includes(event.key)) {
+            event.preventDefault();
+            this.goToSlide(this.currentSlide - 1);
+          }
+          if (event.key === 'Home') {
+            event.preventDefault();
+            this.goToSlide(0);
+          }
+          if (event.key === 'End') {
+            event.preventDefault();
+            this.goToSlide(this.slides.length - 1);
+          }
+        });
+      }
+
+      setupTouchNav() {
+        document.addEventListener('touchstart', (event) => {
+          this.touchStartY = event.changedTouches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (event) => {
+          this.touchEndY = event.changedTouches[0].clientY;
+          const delta = this.touchStartY - this.touchEndY;
+          if (Math.abs(delta) < 40) return;
+          if (delta > 0) this.goToSlide(this.currentSlide + 1);
+          if (delta < 0) this.goToSlide(this.currentSlide - 1);
+        }, { passive: true });
+      }
+
+      setupWheelNav() {
+        window.addEventListener('wheel', (event) => {
+          if (this.isEditingText(event.target)) return;
+          if (this.wheelLocked) return;
+          if (Math.abs(event.deltaY) < 22) return;
+          event.preventDefault();
+          this.wheelLocked = true;
+          if (event.deltaY > 0) this.goToSlide(this.currentSlide + 1);
+          if (event.deltaY < 0) this.goToSlide(this.currentSlide - 1);
+          window.setTimeout(() => {
+            this.wheelLocked = false;
+          }, 700);
+        }, { passive: false });
+      }
+
+      setupNavDots() {
+        this.navDotsContainer.innerHTML = '';
+        this.slides.forEach((slide, index) => {
+          const button = document.createElement('button');
+          button.className = 'nav-dot';
+          button.type = 'button';
+          button.setAttribute('aria-label', `${index + 1}번 슬라이드: ${slide.dataset.nav || '슬라이드'}`);
+          button.addEventListener('click', () => this.goToSlide(index));
+          this.navDotsContainer.appendChild(button);
+        });
+      }
+
+      activateSlide(index) {
+        if (index < 0 || index >= this.slides.length) return;
+        this.currentSlide = index;
+        this.updateProgressBar(index);
+        Array.from(this.navDotsContainer.children).forEach((dot, dotIndex) => {
+          dot.classList.toggle('active', dotIndex === index);
+        });
+      }
+
+      goToSlide(index) {
+        const bounded = Math.max(0, Math.min(index, this.slides.length - 1));
+        this.slides[bounded].scrollIntoView({ behavior: this.prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      updateProgressBar(index) {
+        const ratio = this.slides.length <= 1 ? 1 : index / (this.slides.length - 1);
+        this.progressBar.style.width = `${Math.max(0, Math.min(100, ratio * 100))}%`;
+      }
+
+      animateCounters(slide) {
+        slide.querySelectorAll('.counter[data-target]').forEach((counter) => {
+          if (counter.dataset.animated === 'true') return;
+          counter.dataset.animated = 'true';
+          const target = Number(counter.dataset.target || 0);
+          const duration = 1200;
+          const startTime = performance.now();
+          const tick = (now) => {
+            const progress = Math.min(1, (now - startTime) / duration);
+            const value = Math.round(target * (1 - (1 - progress) ** 3));
+            counter.textContent = String(value);
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }
+
+      prepareTypingBlocks() {
+        document.querySelectorAll('.typing-code').forEach((code) => {
+          const source = code.textContent.replace(/^\n+/, '').replace(/\s+$/, '');
+          code.dataset.code = source;
+          code.textContent = '';
+        });
+      }
+
+      startTypingWithin(slide) {
+        slide.querySelectorAll('.typing-code').forEach((code) => {
+          if (code.dataset.typed === 'true') return;
+          const source = code.dataset.code || '';
+          code.dataset.typed = 'true';
+          code.classList.add('typing');
+          let index = 0;
+          const speed = this.prefersReducedMotion ? 0 : 18;
+          const write = () => {
+            if (index <= source.length) {
+              code.textContent = source.slice(0, index);
+              index += 1;
+              if (speed === 0) {
+                code.textContent = source;
+                code.classList.remove('typing');
+                return;
+              }
+              window.setTimeout(write, speed);
+            } else {
+              code.classList.remove('typing');
+            }
+          };
+          write();
+        });
+      }
+
+      isEditingText(target) {
+        return target && typeof target.closest === 'function' && target.closest('[contenteditable="true"]');
+      }
+    }
+
+    /* ===========================================
+       INLINE EDITOR (OPT-IN)
+       =========================================== */
+    class InlineEditor {
+      constructor() {
+        this.isActive = false;
+        this.storagePrefix = 'vibe-coding-presentation:';
+        this.editToggle = document.getElementById('editToggle');
+        this.editBanner = document.getElementById('editBanner');
+        this.hotzone = document.querySelector('.edit-hotzone');
+        this.hideTimeout = null;
+        this.editables = Array.from(document.querySelectorAll('.editable'));
+        this.assignKeys();
+        this.restoreSavedContent();
+        this.setupInteractions();
+      }
+
+      assignKeys() {
+        this.editables.forEach((el, index) => {
+          if (!el.dataset.editKey) {
+            el.dataset.editKey = `editable-${index + 1}`;
+          }
+        });
+      }
+
+      restoreSavedContent() {
+        this.editables.forEach((el) => {
+          const saved = localStorage.getItem(this.storagePrefix + el.dataset.editKey);
+          if (saved !== null) {
+            el.innerHTML = saved;
+          }
+        });
+      }
+
+      setupInteractions() {
+        this.editToggle.addEventListener('click', () => {
+          this.toggleEditMode();
+        });
+
+        this.hotzone.addEventListener('mouseenter', () => {
+          clearTimeout(this.hideTimeout);
+          this.editToggle.classList.add('show');
+          this.editBanner.classList.add('show');
+        });
+
+        this.hotzone.addEventListener('mouseleave', () => {
+          this.hideTimeout = window.setTimeout(() => {
+            if (!this.isActive) {
+              this.editToggle.classList.remove('show');
+              this.editBanner.classList.remove('show');
+            }
+          }, 400);
+        });
+
+        this.editToggle.addEventListener('mouseenter', () => {
+          clearTimeout(this.hideTimeout);
+        });
+
+        this.editToggle.addEventListener('mouseleave', () => {
+          this.hideTimeout = window.setTimeout(() => {
+            if (!this.isActive) {
+              this.editToggle.classList.remove('show');
+              this.editBanner.classList.remove('show');
+            }
+          }, 400);
+        });
+
+        this.hotzone.addEventListener('click', () => {
+          this.toggleEditMode();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if ((event.key === 'e' || event.key === 'E') && !event.target?.getAttribute?.('contenteditable')) {
+            event.preventDefault();
+            this.toggleEditMode();
+          }
+
+          if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+            if (this.isActive) {
+              event.preventDefault();
+              this.exportFile();
+            }
+          }
+        });
+
+        document.addEventListener('input', (event) => {
+          const target = event.target;
+          if (!target?.dataset?.editKey) return;
+          localStorage.setItem(`${this.storagePrefix}${target.dataset.editKey}`, target.innerHTML);
+        });
+      }
+
+      toggleEditMode(force) {
+        const nextState = typeof force === 'boolean' ? force : !this.isActive;
+        this.isActive = nextState;
+        document.body.classList.toggle('edit-active', nextState);
+        this.editToggle.classList.toggle('active', nextState);
+        this.editToggle.classList.toggle('show', nextState);
+        this.editBanner.classList.toggle('active', nextState);
+        this.editBanner.classList.toggle('show', nextState);
+
+        this.editables.forEach((el) => {
+          if (nextState) {
+            el.setAttribute('contenteditable', 'true');
+            el.setAttribute('spellcheck', 'false');
+          } else {
+            el.removeAttribute('contenteditable');
+            el.removeAttribute('spellcheck');
+          }
+        });
+      }
+
+      exportFile() {
+        const editableEls = Array.from(document.querySelectorAll('[contenteditable="true"]'));
+        editableEls.forEach((el) => {
+          el.removeAttribute('contenteditable');
+        });
+        document.body.classList.remove('edit-active');
+
+        const editToggle = document.getElementById('editToggle');
+        const editBanner = document.getElementById('editBanner');
+        editToggle?.classList.remove('active', 'show');
+        editBanner?.classList.remove('active', 'show');
+
+        const html = `<!DOCTYPE html>\n${document.documentElement.outerHTML}`;
+
+        document.body.classList.add('edit-active');
+        editableEls.forEach((el) => {
+          el.setAttribute('contenteditable', 'true');
+        });
+        editToggle?.classList.add('active', 'show');
+        editBanner?.classList.add('active', 'show');
+
+        const blob = new Blob([html], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'vibe-coding-presentation.html';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+    }
+
+    /* ===========================================
+       INITIALIZATION
+       =========================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      new SlidePresentation();
+      new InlineEditor();
+    });
+  </script>
+</body>
+</html>
